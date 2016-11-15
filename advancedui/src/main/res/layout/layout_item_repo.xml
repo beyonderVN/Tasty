@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black_54p"
+        android:textSize="16dp"
+        android:textAllCaps="true"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/tvHtmlUrl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autoLink="web"/>
+    <TextView
+        android:id="@+id/tvDes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black_54p"/>
+    <View
+        android:background="@color/card_default_background"
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:layout_margin="24dp"/>
+</LinearLayout>

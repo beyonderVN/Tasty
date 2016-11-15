@@ -1,0 +1,238 @@
+[
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_multichoice_material.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\select_dialog_multichoice_material.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_checkbox.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_list_menu_item_checkbox.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_lines.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\notification_template_lines.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_layout.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_action_menu_layout.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\abc_select_dialog_material.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_select_dialog_material.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\overlay_confirmation.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.google.android.support\\wearable\\2.0.0-alpha2\\res\\layout\\overlay_confirmation.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_content_include.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_screen_content_include.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_bar.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_action_mode_bar.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\abc_popup_menu_item_layout.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_popup_menu_item_layout.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_time.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\notification_template_part_time.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_media.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\notification_template_media.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\wearable_drawer_view.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.google.android.support\\wearable\\2.0.0-alpha2\\res\\layout\\wearable_drawer_view.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media_narrow.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_dropdown_item_icons_2line.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_search_dropdown_item_icons_2line.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\abc_expanded_menu_layout.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_expanded_menu_layout.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\support_simple_spinner_dropdown_item.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\support_simple_spinner_dropdown_item.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_up_container.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_action_bar_up_container.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\design_menu_item_action_area.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.0.0\\res\\layout\\design_menu_item_action_area.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_view.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_search_view.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_activity_chooser_view.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_button_bar_material.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_alert_dialog_button_bar_material.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_radio.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_list_menu_item_radio.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_toolbar.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_screen_toolbar.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_menu_item.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.0.0\\res\\layout\\design_navigation_menu_item.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\abc_dialog_title_material.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_dialog_title_material.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\action_drawer_item_view.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.google.android.support\\wearable\\2.0.0-alpha2\\res\\layout\\action_drawer_item_view.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_layout.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_list_menu_item_layout.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\design_layout_snackbar_include.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.0.0\\res\\layout\\design_layout_snackbar_include.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\design_bottom_sheet_dialog.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.0.0\\res\\layout\\design_bottom_sheet_dialog.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_icon.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_list_menu_item_icon.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\error_layout.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.google.android.support\\wearable\\2.0.0-alpha2\\res\\layout\\error_layout.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\design_layout_tab_text.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.0.0\\res\\layout\\design_layout_tab_text.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item_header.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.0.0\\res\\layout\\design_navigation_item_header.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\notification_template_big_media.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\notification_media_action.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\notification_media_action.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\design_layout_snackbar.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.0.0\\res\\layout\\design_layout_snackbar.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view_list_item.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_activity_chooser_view_list_item.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\alert_dialog_wearable.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.google.android.support\\wearable\\2.0.0-alpha2\\res\\layout\\alert_dialog_wearable.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.0.0\\res\\layout\\design_navigation_item.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_close_item_material.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_action_mode_close_item_material.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_menu.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.0.0\\res\\layout\\design_navigation_menu.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\navigation_drawer_view.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.google.android.support\\wearable\\2.0.0-alpha2\\res\\layout\\navigation_drawer_view.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_item_layout.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_action_menu_item_layout.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\notification_media_cancel_action.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_simple.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_screen_simple.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_material.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_alert_dialog_material.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\navigation_drawer_item_view.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.google.android.support\\wearable\\2.0.0-alpha2\\res\\layout\\navigation_drawer_item_view.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_chronometer.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_view_list_nav_layout.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_action_bar_view_list_nav_layout.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item_subheader.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.0.0\\res\\layout\\design_navigation_item_subheader.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_singlechoice_material.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\select_dialog_singlechoice_material.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_simple_overlay_action_mode.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_screen_simple_overlay_action_mode.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item_separator.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.0.0\\res\\layout\\design_navigation_item_separator.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\action_drawer_peek_view.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.google.android.support\\wearable\\2.0.0-alpha2\\res\\layout\\action_drawer_peek_view.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\achievement_layout.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\TwitterClient\\libs\\unspecified\\res\\layout\\achievement_layout.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\design_layout_tab_icon.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.0.0\\res\\layout\\design_layout_tab_icon.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_item_material.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\select_dialog_item_material.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\abc_popup_menu_header_item_layout.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_popup_menu_header_item_layout.xml"
+    },
+    {
+        "merged": "D:\\TwitterClient\\mobile\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_title_item.xml",
+        "source": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_action_bar_title_item.xml"
+    }
+]

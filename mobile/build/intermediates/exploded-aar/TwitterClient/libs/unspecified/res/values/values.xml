@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ElasticDragDismissFrameLayout"><attr format="dimension" name="dragDismissDistance"/><attr format="float" name="dragDismissFraction"/><attr format="float" name="dragDismissScale"/><attr format="float" name="dragElasticity"/></declare-styleable>
+    <declare-styleable name="InkPageIndicator"><attr format="dimension" name="dotDiameter"/><attr format="dimension" name="dotGap"/><attr format="integer" name="animationDuration"/><attr format="color" name="pageIndicatorColor"/><attr format="color" name="currentPageIndicatorColor"/></declare-styleable>
+    <item name="achievement_body" type="id"/>
+    <item name="achievement_icon" type="id"/>
+    <item name="achievement_main_view" type="id"/>
+    <item name="achievement_subtitle" type="id"/>
+    <item name="achievement_title" type="id"/>
+    <string name="app_name">App Core</string>
+    <string name="exception_message_data_not_found">Retrieve no data</string>
+    <string name="exception_message_generic">There was an application error</string>
+    <string name="exception_message_no_connection">There is no internet connection</string>
+</resources>

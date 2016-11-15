@@ -1,0 +1,589 @@
+[
+    {
+        "outputFile": "D:\\TwitterClient\\mobile\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-cs\\values-cs.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 105,
+                    "endLine": 7,
+                    "endColumn": 14,
+                    "endOffset": 516
+                },
+                "from": {
+                    "file": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.google.android.support\\wearable\\2.0.0-alpha2\\res\\values-cs\\values.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 308,
+                        "endLine": 9,
+                        "endColumn": 14,
+                        "endOffset": 719
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 8,
+                    "startColumn": 4,
+                    "startOffset": 521,
+                    "endLine": 13,
+                    "endColumn": 14,
+                    "endOffset": 937
+                },
+                "from": {
+                    "file": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.google.android.support\\wearable\\2.0.0-alpha2\\res\\values-cs\\values.xml",
+                    "position": {
+                        "startLine": 10,
+                        "startColumn": 4,
+                        "startOffset": 724,
+                        "endLine": 15,
+                        "endColumn": 14,
+                        "endOffset": 1140
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 14,
+                    "startColumn": 4,
+                    "startOffset": 942,
+                    "endLine": 19,
+                    "endColumn": 14,
+                    "endOffset": 1376
+                },
+                "from": {
+                    "file": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.google.android.support\\wearable\\2.0.0-alpha2\\res\\values-cs\\values.xml",
+                    "position": {
+                        "startLine": 16,
+                        "startColumn": 4,
+                        "startOffset": 1145,
+                        "endLine": 21,
+                        "endColumn": 14,
+                        "endOffset": 1579
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 20,
+                    "startColumn": 4,
+                    "startOffset": 1381,
+                    "endLine": 25,
+                    "endColumn": 14,
+                    "endOffset": 1800
+                },
+                "from": {
+                    "file": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.google.android.support\\wearable\\2.0.0-alpha2\\res\\values-cs\\values.xml",
+                    "position": {
+                        "startLine": 22,
+                        "startColumn": 4,
+                        "startOffset": 1584,
+                        "endLine": 27,
+                        "endColumn": 14,
+                        "endOffset": 2003
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 26,
+                    "startColumn": 4,
+                    "startOffset": 1805,
+                    "endLine": 31,
+                    "endColumn": 14,
+                    "endOffset": 2238
+                },
+                "from": {
+                    "file": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.google.android.support\\wearable\\2.0.0-alpha2\\res\\values-cs\\values.xml",
+                    "position": {
+                        "startLine": 28,
+                        "startColumn": 4,
+                        "startOffset": 2008,
+                        "endLine": 33,
+                        "endColumn": 14,
+                        "endOffset": 2441
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 32,
+                    "startColumn": 4,
+                    "startOffset": 2243,
+                    "endLine": 37,
+                    "endColumn": 14,
+                    "endOffset": 2688
+                },
+                "from": {
+                    "file": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.google.android.support\\wearable\\2.0.0-alpha2\\res\\values-cs\\values.xml",
+                    "position": {
+                        "startLine": 34,
+                        "startColumn": 4,
+                        "startOffset": 2446,
+                        "endLine": 39,
+                        "endColumn": 14,
+                        "endOffset": 2891
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 38,
+                    "startColumn": 4,
+                    "startOffset": 2693,
+                    "endColumn": 106,
+                    "endOffset": 2795
+                },
+                "from": {
+                    "file": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-cs\\values-cs.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 106,
+                        "endOffset": 157
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 39,
+                    "startColumn": 4,
+                    "startOffset": 2800,
+                    "endColumn": 108,
+                    "endOffset": 2904
+                },
+                "from": {
+                    "file": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-cs\\values-cs.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 162,
+                        "endColumn": 108,
+                        "endOffset": 266
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 40,
+                    "startColumn": 4,
+                    "startOffset": 2909,
+                    "endColumn": 123,
+                    "endOffset": 3028
+                },
+                "from": {
+                    "file": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-cs\\values-cs.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 271,
+                        "endColumn": 123,
+                        "endOffset": 390
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 41,
+                    "startColumn": 4,
+                    "startOffset": 3033,
+                    "endColumn": 101,
+                    "endOffset": 3130
+                },
+                "from": {
+                    "file": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-cs\\values-cs.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 395,
+                        "endColumn": 101,
+                        "endOffset": 492
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 42,
+                    "startColumn": 4,
+                    "startOffset": 3135,
+                    "endColumn": 108,
+                    "endOffset": 3239
+                },
+                "from": {
+                    "file": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-cs\\values-cs.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 497,
+                        "endColumn": 108,
+                        "endOffset": 601
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 43,
+                    "startColumn": 4,
+                    "startOffset": 3244,
+                    "endColumn": 85,
+                    "endOffset": 3325
+                },
+                "from": {
+                    "file": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-cs\\values-cs.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 606,
+                        "endColumn": 85,
+                        "endOffset": 687
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 44,
+                    "startColumn": 4,
+                    "startOffset": 3330,
+                    "endColumn": 104,
+                    "endOffset": 3430
+                },
+                "from": {
+                    "file": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-cs\\values-cs.xml",
+                    "position": {
+                        "startLine": 8,
+                        "startColumn": 4,
+                        "startOffset": 692,
+                        "endColumn": 104,
+                        "endOffset": 792
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 45,
+                    "startColumn": 4,
+                    "startOffset": 3435,
+                    "endColumn": 116,
+                    "endOffset": 3547
+                },
+                "from": {
+                    "file": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-cs\\values-cs.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 4,
+                        "startOffset": 797,
+                        "endColumn": 116,
+                        "endOffset": 909
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 46,
+                    "startColumn": 4,
+                    "startOffset": 3552,
+                    "endColumn": 80,
+                    "endOffset": 3628
+                },
+                "from": {
+                    "file": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-cs\\values-cs.xml",
+                    "position": {
+                        "startLine": 10,
+                        "startColumn": 4,
+                        "startOffset": 914,
+                        "endColumn": 80,
+                        "endOffset": 990
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 47,
+                    "startColumn": 4,
+                    "startOffset": 3633,
+                    "endColumn": 80,
+                    "endOffset": 3709
+                },
+                "from": {
+                    "file": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-cs\\values-cs.xml",
+                    "position": {
+                        "startLine": 11,
+                        "startColumn": 4,
+                        "startOffset": 995,
+                        "endColumn": 80,
+                        "endOffset": 1071
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 48,
+                    "startColumn": 4,
+                    "startOffset": 3714,
+                    "endColumn": 83,
+                    "endOffset": 3793
+                },
+                "from": {
+                    "file": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-cs\\values-cs.xml",
+                    "position": {
+                        "startLine": 12,
+                        "startColumn": 4,
+                        "startOffset": 1076,
+                        "endColumn": 83,
+                        "endOffset": 1155
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 49,
+                    "startColumn": 4,
+                    "startOffset": 3798,
+                    "endColumn": 103,
+                    "endOffset": 3897
+                },
+                "from": {
+                    "file": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-cs\\values-cs.xml",
+                    "position": {
+                        "startLine": 13,
+                        "startColumn": 4,
+                        "startOffset": 1160,
+                        "endColumn": 103,
+                        "endOffset": 1259
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 50,
+                    "startColumn": 4,
+                    "startOffset": 3902,
+                    "endColumn": 108,
+                    "endOffset": 4006
+                },
+                "from": {
+                    "file": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-cs\\values-cs.xml",
+                    "position": {
+                        "startLine": 14,
+                        "startColumn": 4,
+                        "startOffset": 1264,
+                        "endColumn": 108,
+                        "endOffset": 1368
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 51,
+                    "startColumn": 4,
+                    "startOffset": 4011,
+                    "endColumn": 98,
+                    "endOffset": 4105
+                },
+                "from": {
+                    "file": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-cs\\values-cs.xml",
+                    "position": {
+                        "startLine": 15,
+                        "startColumn": 4,
+                        "startOffset": 1373,
+                        "endColumn": 98,
+                        "endOffset": 1467
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 52,
+                    "startColumn": 4,
+                    "startOffset": 4110,
+                    "endColumn": 105,
+                    "endOffset": 4211
+                },
+                "from": {
+                    "file": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-cs\\values-cs.xml",
+                    "position": {
+                        "startLine": 16,
+                        "startColumn": 4,
+                        "startOffset": 1472,
+                        "endColumn": 105,
+                        "endOffset": 1573
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 53,
+                    "startColumn": 4,
+                    "startOffset": 4216,
+                    "endColumn": 109,
+                    "endOffset": 4321
+                },
+                "from": {
+                    "file": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-cs\\values-cs.xml",
+                    "position": {
+                        "startLine": 17,
+                        "startColumn": 4,
+                        "startOffset": 1578,
+                        "endColumn": 109,
+                        "endOffset": 1683
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 54,
+                    "startColumn": 4,
+                    "startOffset": 4326,
+                    "endColumn": 106,
+                    "endOffset": 4428
+                },
+                "from": {
+                    "file": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-cs\\values-cs.xml",
+                    "position": {
+                        "startLine": 18,
+                        "startColumn": 4,
+                        "startOffset": 1688,
+                        "endColumn": 106,
+                        "endOffset": 1790
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 55,
+                    "startColumn": 4,
+                    "startOffset": 4433,
+                    "endColumn": 121,
+                    "endOffset": 4550
+                },
+                "from": {
+                    "file": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-cs\\values-cs.xml",
+                    "position": {
+                        "startLine": 19,
+                        "startColumn": 4,
+                        "startOffset": 1795,
+                        "endColumn": 121,
+                        "endOffset": 1912
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 56,
+                    "startColumn": 4,
+                    "startOffset": 4555,
+                    "endColumn": 97,
+                    "endOffset": 4648
+                },
+                "from": {
+                    "file": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-cs\\values-cs.xml",
+                    "position": {
+                        "startLine": 20,
+                        "startColumn": 4,
+                        "startOffset": 1917,
+                        "endColumn": 97,
+                        "endOffset": 2010
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 57,
+                    "startColumn": 4,
+                    "startOffset": 4653,
+                    "endColumn": 94,
+                    "endOffset": 4743
+                },
+                "from": {
+                    "file": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.google.android.support\\wearable\\2.0.0-alpha2\\res\\values-cs\\values.xml",
+                    "position": {
+                        "startLine": 40,
+                        "startColumn": 4,
+                        "startOffset": 2896,
+                        "endColumn": 94,
+                        "endOffset": 2986
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 58,
+                    "startColumn": 4,
+                    "startOffset": 4748,
+                    "endColumn": 100,
+                    "endOffset": 4844
+                },
+                "from": {
+                    "file": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\values-cs\\values-cs.xml",
+                    "position": {
+                        "startLine": 21,
+                        "startColumn": 4,
+                        "startOffset": 2015,
+                        "endColumn": 100,
+                        "endOffset": 2111
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 59,
+                    "startColumn": 4,
+                    "startOffset": 4849,
+                    "endColumn": 82,
+                    "endOffset": 4927
+                },
+                "from": {
+                    "file": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.google.android.support\\wearable\\2.0.0-alpha2\\res\\values-cs\\values.xml",
+                    "position": {
+                        "startLine": 41,
+                        "startColumn": 4,
+                        "startOffset": 2991,
+                        "endColumn": 82,
+                        "endOffset": 3069
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 60,
+                    "startColumn": 4,
+                    "startOffset": 4932,
+                    "endColumn": 167,
+                    "endOffset": 5095
+                },
+                "from": {
+                    "file": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.google.android.support\\wearable\\2.0.0-alpha2\\res\\values-cs\\values.xml",
+                    "position": {
+                        "startLine": 42,
+                        "startColumn": 4,
+                        "startOffset": 3074,
+                        "endColumn": 167,
+                        "endOffset": 3237
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 61,
+                    "startColumn": 4,
+                    "startOffset": 5100,
+                    "endColumn": 173,
+                    "endOffset": 5269
+                },
+                "from": {
+                    "file": "D:\\TwitterClient\\mobile\\build\\intermediates\\exploded-aar\\com.google.android.support\\wearable\\2.0.0-alpha2\\res\\values-cs\\values.xml",
+                    "position": {
+                        "startLine": 43,
+                        "startColumn": 4,
+                        "startOffset": 3242,
+                        "endColumn": 173,
+                        "endOffset": 3411
+                    }
+                }
+            }
+        ]
+    }
+]

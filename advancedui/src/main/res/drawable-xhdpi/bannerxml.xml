@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item >
+        <layer-list>
+            <item>
+                <bitmap android:gravity="center" android:src="@drawable/banner"  />
+            </item>
+            <item>
+                <shape xmlns:android="http://schemas.android.com/apk/res/android">
+                    <gradient
+                        android:startColor="#7ba3a3a3"
+                        android:endColor="#00000000"
+                        android:centerColor="#00000000"
+                        android:angle="-90"
+                        android:dither="true"
+
+                        />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+
+
+</selector>

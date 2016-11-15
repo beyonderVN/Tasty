@@ -1,0 +1,89 @@
+apply plugin: 'com.android.application'
+apply plugin: 'android-apt'
+apply from: '../quality_tools/findbugs.gradle'
+apply plugin: 'com.fernandocejas.frodo'
+
+apply plugin: 'me.tatarka.retrolambda'
+android {
+    dataBinding.enabled = true
+
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.vnwarriors.tasty"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
+    compile "com.android.support:design:$rootProject.ext.supportLibraryVersion"
+    compile "com.android.support:cardview-v7:$rootProject.ext.supportLibraryVersion"
+    compile "com.android.support:palette-v7:$rootProject.ext.supportLibraryVersion"
+    compile "com.android.support:customtabs:$rootProject.ext.supportLibraryVersion"
+    compile files('libs/YouTubeAndroidPlayerApi.jar')
+    compile project(path: ':libs')
+
+
+    compile 'com.jakewharton:butterknife:8.1.0'
+    compile 'com.google.code.gson:gson:2.7'
+    compile 'io.reactivex:rxjava:1.0.14'
+    compile 'io.reactivex:rxandroid:1.0.1'
+    compile 'javax.annotation:jsr250-api:1.0'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'de.hdodenhof:circleimageview:2.0.0'
+    compile 'me.gujun.android.taggroup:library:1.4@aar'
+    compile 'com.google.dagger:dagger:2.5'
+    compile 'com.google.code.findbugs:annotations:2.0.3'
+
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.iarcuschin:simpleratingbar:0.1.3'
+    compile 'jp.wasabeef:picasso-transformations:2.1.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta1'
+    compile 'com.android.support:support-v4:24.2.1'
+
+    testCompile 'junit:junit:4.12'
+    apt 'com.jakewharton:butterknife-compiler:8.1.0'
+    apt 'com.google.dagger:dagger-compiler:2.5'
+
+    // Google
+    compile 'com.google.android.gms:play-services-auth:9.4.0'
+
+    compile "com.google.firebase:firebase-auth:9.4.0"
+
+    //DATABASE FIREBASE,UI
+    compile 'com.google.firebase:firebase-database:9.4.0'
+    compile 'com.firebaseui:firebase-ui-database:0.4.1'
+
+    //STORAGE FIREBASE
+    compile 'com.google.firebase:firebase-storage:9.4.0'
+
+    //Places SERVICES
+    compile 'com.google.android.gms:play-services-places:9.4.0'
+
+}
+
+apply plugin: 'com.google.gms.google-services'

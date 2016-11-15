@@ -1,0 +1,105 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Base.Theme.AppCompat">
+        <!-- Customize your theme here. -->
+        <item name="textColorError">@color/design_textinput_error_color_light</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorPrimaryDark</item>
+        <item name="android:textColor">@color/white</item>
+
+        <item name="android:itemBackground">@color/colorPrimaryDark</item>
+
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="ActionBar" >
+
+        <item name="homeAsUpIndicator">@drawable/ic_android_white_24dp</item>
+        <item name="android:textColorPrimary">@color/white</item>
+
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="AppTheme.Translucent">
+
+        <item name="android:windowContentTransitions" tools:targetApi="lollipop">true</item>
+        <!-- using a semi-transparent window background for the drag-back gesture -->
+        <item name="android:windowBackground">@color/scrim</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds" tools:targetApi="lollipop">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+    </style>
+
+    <style name="splashScreenTheme" parent="AppTheme.Translucent">
+        <item name="android:windowBackground">@drawable/ic_android_white_24dp</item>
+    </style>
+
+    <style name="CustomTagGroup">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="atg_isAppendMode">false</item>
+        <item name="atg_inputHint">@string/add_tag</item>
+        <item name="atg_borderColor">@color/white</item>
+        <item name="atg_textColor">@color/white</item>
+        <item name="atg_backgroundColor">@color/tran</item>
+        <item name="atg_dashBorderColor">#AAAAAA</item>
+        <item name="atg_inputHintColor">#80000000</item>
+        <item name="atg_inputTextColor">#DE000000</item>
+        <item name="atg_checkedBorderColor">#49C120</item>
+        <item name="atg_checkedTextColor">#FFFFFF</item>
+        <item name="atg_checkedMarkerColor">#FFFFFF</item>
+        <item name="atg_checkedBackgroundColor">#49C120</item>
+        <item name="atg_pressedBackgroundColor">#EDEDED</item>
+        <item name="atg_borderStrokeWidth">0.5dp</item>
+        <item name="atg_textSize">13sp</item>
+        <item name="atg_horizontalSpacing">8dp</item>
+        <item name="atg_verticalSpacing">4dp</item>
+        <item name="atg_horizontalPadding">12dp</item>
+        <item name="atg_verticalPadding">3dp</item>
+    </style>
+
+    <style name="QText" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
+
+        <item name="tabIndicatorColor">?attr/colorAccent</item>
+        <item name="tabIndicatorHeight">2dp</item>
+        <item name="tabPaddingStart">12dp</item>
+        <item name="tabPaddingEnd">12dp</item>
+        <item name="tabBackground">?attr/selectableItemBackground</item>
+        <item name="tabTextAppearance">@style/MyCustomTabTextAppearance</item>
+        <item name="tabSelectedTextColor">?android:colorAccent</item>
+    </style>
+    <style name="MyCustomTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">?android:colorAccent</item>
+        <item name="textAllCaps">true</item>
+    </style>
+
+
+        <style name="textshadoweffect">
+            <item name="android:textColor">#FFFFFF</item>
+            <item name="android:textSize">25sp</item>
+            <item name="android:shadowColor">@color/Black</item>
+            <item name="android:shadowDx">0</item>
+            <item name="android:shadowDy">0</item>
+            <item name="android:shadowRadius">20</item>
+        </style>
+</resources>
