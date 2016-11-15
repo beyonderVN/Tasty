@@ -62,6 +62,6 @@
         android:layout_margin="8dp"
         android:src="@drawable/ic_edit_white_24dp"
         app:fabSize="auto"
-        app:layout_behavior="com.longngohoang.twitter.appcore.common.ScrollAwareFABBehavior" />
+        app:layout_behavior="com.vnwarriors.advancedui.appcore.common.ScrollAwareFABBehavior" />
 
 </android.support.design.widget.CoordinatorLayout>
