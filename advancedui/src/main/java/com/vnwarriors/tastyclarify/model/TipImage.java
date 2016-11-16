@@ -11,7 +11,7 @@ public class TipImage {
 
     @SerializedName("__type")
     @Expose
-    private String type;
+    private String __type;
     @SerializedName("name")
     @Expose
     private String name;
@@ -20,17 +20,17 @@ public class TipImage {
     private String url;
 
     /**
-     * @return The type
+     * @return The __type
      */
-    public String getType() {
-        return type;
+    public String get__type() {
+        return __type;
     }
 
     /**
-     * @param type The __type
+     * @param __type The __type
      */
-    public void setType(String type) {
-        this.type = type;
+    public void set__type(String __type) {
+        this.__type = __type;
     }
 
     /**

@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
+import com.squareup.picasso.Picasso;
+import com.vnwarriors.advancedui.appcore.common.DynamicHeightImageView;
 import com.vnwarriors.tastyclarify.R;
 import com.vnwarriors.tastyclarify.model.PostModel;
 
@@ -61,14 +63,17 @@ public class PostListFirebaseAdapter extends FirebaseRecyclerAdapter<PostModel,P
     @Override
     protected void populateViewHolder(PostViewHolder viewHolder, PostModel model, int position) {
         viewHolder.tvName.setText(model.getTipName());
+        viewHolder.ivTipImage.setRatio(model.getTipImageRatio());
+        Picasso.with(viewHolder.itemView.getContext()).load(model.getTipImage().getUrl()).into(viewHolder.ivTipImage);
     }
 
     public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView tvName;
-
+        DynamicHeightImageView ivTipImage;
         public PostViewHolder(View itemView) {
             super(itemView);
             tvName = (TextView) itemView.findViewById(R.id.tvName);
+            ivTipImage = (DynamicHeightImageView) itemView.findViewById(R.id.ivTipImage);
         }
 
         @Override
