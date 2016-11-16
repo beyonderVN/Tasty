@@ -3,6 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item android:title="Create Data"
+        android:id="@+id/createData"
+        android:showAsAction="never" />
     <item
         android:title="@string/sendPhoto"
         android:id="@+id/sendPhoto"
