@@ -60,14 +60,14 @@
     <declare-styleable name="WearableRecyclerView"><attr format="fraction" name="bezel_width"/><attr format="boolean" name="rotary_scrolling_enabled"/><attr format="float" name="scroll_degrees_per_screen"/></declare-styleable>
     <!-- From: file:/tmp/tmp-deduplicated574725355717134199/third_party/java_src/android_libs/android_wear/wearable_support/java/android/support/wearable/res/values/dimens.xml -->
     <eat-comment/>
-    <item format="float" name="action_chooser_base_radius_percent" type="dimen">.25</item>
-    <item format="float" name="action_chooser_bounce_in_percent" type="dimen">.1</item>
-    <item format="float" name="action_chooser_icon_height_percent" type="dimen">.5</item>
-    <item format="float" name="action_chooser_max_radius_percent" type="dimen">.5</item>
+    <item format="float" name="action_chooser_base_radius_percent" __type="dimen">.25</item>
+    <item format="float" name="action_chooser_bounce_in_percent" __type="dimen">.1</item>
+    <item format="float" name="action_chooser_icon_height_percent" __type="dimen">.5</item>
+    <item format="float" name="action_chooser_max_radius_percent" __type="dimen">.5</item>
     <!-- From: file:/tmp/tmp-deduplicated574725355717134199/third_party/java_src/android_libs/android_wear/wearable_support/java/android/support/wearable/res/values/floats.xml -->
     <eat-comment/>
-    <item format="float" name="action_chooser_min_drag_select_percent" type="dimen">.5</item>
-    <item format="float" name="action_chooser_min_swipe_select_percent" type="dimen">.25</item>
+    <item format="float" name="action_chooser_min_drag_select_percent" __type="dimen">.5</item>
+    <item format="float" name="action_chooser_min_swipe_select_percent" __type="dimen">.25</item>
     <!-- From: file:/tmp/tmp-deduplicated574725355717134199/third_party/java_src/android_libs/android_wear/wearable_support/java/android/support/wearable/res/values/dimens.xml -->
     <eat-comment/>
     <dimen name="action_drawer_item_icon_padding">6dp</dimen>
@@ -94,20 +94,20 @@
     <dimen name="peek_drawer_icon_size">20dp</dimen>
     <dimen name="progress_spinner_inline_size">36dp</dimen>
     <dimen name="progress_spinner_size">48dp</dimen>
-    <item name="action_drawer_item_bottom_padding" type="fraction">8%</item>
-    <item name="action_drawer_item_first_item_top_padding" type="fraction">5%</item>
-    <item name="action_drawer_item_icon_right_margin" type="fraction">5%</item>
-    <item name="action_drawer_item_last_item_bottom_padding" type="fraction">7.5%</item>
-    <item name="action_drawer_item_left_padding" type="fraction">5%</item>
-    <item name="action_drawer_item_right_padding" type="fraction">5%</item>
-    <item name="action_drawer_item_top_padding" type="fraction">5%</item>
-    <item name="confirmation_overlay_margin_above_text" type="fraction">5%</item>
-    <item name="confirmation_overlay_margin_side" type="fraction">4.167%</item>
-    <item name="peek_drawer_top_bottom_padding" type="fraction">2.198%</item>
-    <item name="peek_drawer_top_bottom_padding_with_chin" type="fraction">0%</item>
+    <item name="action_drawer_item_bottom_padding" __type="fraction">8%</item>
+    <item name="action_drawer_item_first_item_top_padding" __type="fraction">5%</item>
+    <item name="action_drawer_item_icon_right_margin" __type="fraction">5%</item>
+    <item name="action_drawer_item_last_item_bottom_padding" __type="fraction">7.5%</item>
+    <item name="action_drawer_item_left_padding" __type="fraction">5%</item>
+    <item name="action_drawer_item_right_padding" __type="fraction">5%</item>
+    <item name="action_drawer_item_top_padding" __type="fraction">5%</item>
+    <item name="confirmation_overlay_margin_above_text" __type="fraction">5%</item>
+    <item name="confirmation_overlay_margin_side" __type="fraction">4.167%</item>
+    <item name="peek_drawer_top_bottom_padding" __type="fraction">2.198%</item>
+    <item name="peek_drawer_top_bottom_padding_with_chin" __type="fraction">0%</item>
     <!-- From: file:/tmp/tmp-deduplicated574725355717134199/third_party/java_src/android_libs/android_wear/wearable_support/java/android/support/wearable/res/values/ids.xml -->
     <eat-comment/>
-    <item name="wearable_support_navigation_drawer_view_pager" type="id"/>
+    <item name="wearable_support_navigation_drawer_view_pager" __type="id"/>
     <!-- From: file:/tmp/tmp-deduplicated574725355717134199/third_party/java_src/android_libs/android_wear/wearable_support/java/android/support/wearable/res/values/integers.xml -->
     <eat-comment/>
     <integer name="action_choose_expand_full_duration">1000</integer>

@@ -23,16 +23,13 @@ import butterknife.ButterKnife;
 
 public class ItemActivity extends AppCompatActivity {
 
-//    @Nullable
-//    @BindView(R.id.activity_detail)
-//    ElasticDragDismissFrameLayout draggableFrame;
 
     @BindView(R.id.rvItemList)
     RecyclerView rvItemList;
     @BindView(R.id.tvHeaderSection)
     TextView tvHeaderSection;
 
-//    private ElasticDragDismissFrameLayout.SystemChromeFader chromeFader;
+
 
     List<BaseVM> sectionList = new ArrayList<>();
     BaseAdapter baseAdapter;
@@ -118,12 +115,12 @@ public class ItemActivity extends AppCompatActivity {
         for (LifecycleDelegate lifecycleDelegate : lifecycleDelegates){
             lifecycleDelegate.onResume();
         }
-//      draggableFrame.addListener(chromeFader);
+
     }
 
     @Override
     protected void onPause() {
-//      draggableFrame.removeListener(chromeFader);
+
         for (LifecycleDelegate lifecycleDelegate : lifecycleDelegates){
             lifecycleDelegate.onPause();
         }

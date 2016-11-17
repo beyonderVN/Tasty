@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="onAttachStateChangeListener" type="id"/>
-    <item name="onDateChanged" type="id"/>
-    <item name="textWatcher" type="id"/>
+    <item name="onAttachStateChangeListener" __type="id"/>
+    <item name="onDateChanged" __type="id"/>
+    <item name="textWatcher" __type="id"/>
 </resources>

@@ -8,15 +8,15 @@
     <dimen name="confirmation_overlay_image_size">72dp</dimen>
     <dimen name="peek_drawer_icon_size">20dp</dimen>
     <dimen name="progress_spinner_size">64dp</dimen>
-    <item name="action_drawer_item_bottom_padding" type="fraction">10.417%</item>
-    <item name="action_drawer_item_first_item_top_padding" type="fraction">13.542%</item>
-    <item name="action_drawer_item_icon_right_margin" type="fraction">5.208%</item>
-    <item name="action_drawer_item_last_item_bottom_padding" type="fraction">13.542%</item>
-    <item name="action_drawer_item_left_padding" type="fraction">16.667%</item>
-    <item name="action_drawer_item_right_padding" type="fraction">10.417%</item>
-    <item name="action_drawer_item_top_padding" type="fraction">6.573%</item>
-    <item name="confirmation_overlay_margin_above_text" type="fraction">4.167%</item>
-    <item name="confirmation_overlay_margin_side" type="fraction">18.75%</item>
-    <item name="peek_drawer_top_bottom_padding" type="fraction">3.125%</item>
-    <item name="peek_drawer_top_bottom_padding_with_chin" type="fraction">2.083%</item>
+    <item name="action_drawer_item_bottom_padding" __type="fraction">10.417%</item>
+    <item name="action_drawer_item_first_item_top_padding" __type="fraction">13.542%</item>
+    <item name="action_drawer_item_icon_right_margin" __type="fraction">5.208%</item>
+    <item name="action_drawer_item_last_item_bottom_padding" __type="fraction">13.542%</item>
+    <item name="action_drawer_item_left_padding" __type="fraction">16.667%</item>
+    <item name="action_drawer_item_right_padding" __type="fraction">10.417%</item>
+    <item name="action_drawer_item_top_padding" __type="fraction">6.573%</item>
+    <item name="confirmation_overlay_margin_above_text" __type="fraction">4.167%</item>
+    <item name="confirmation_overlay_margin_side" __type="fraction">18.75%</item>
+    <item name="peek_drawer_top_bottom_padding" __type="fraction">3.125%</item>
+    <item name="peek_drawer_top_bottom_padding_with_chin" __type="fraction">2.083%</item>
 </resources>

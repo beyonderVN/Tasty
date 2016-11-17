@@ -495,17 +495,17 @@
     <dimen name="abc_control_corner_material">2dp</dimen>
     <dimen name="abc_control_inset_material">4dp</dimen>
     <dimen name="abc_control_padding_material">4dp</dimen>
-    <item name="abc_dialog_fixed_height_major" type="dimen">80%</item>
-    <item name="abc_dialog_fixed_height_minor" type="dimen">100%</item>
-    <item name="abc_dialog_fixed_width_major" type="dimen">320dp</item>
-    <item name="abc_dialog_fixed_width_minor" type="dimen">320dp</item>
+    <item name="abc_dialog_fixed_height_major" __type="dimen">80%</item>
+    <item name="abc_dialog_fixed_height_minor" __type="dimen">100%</item>
+    <item name="abc_dialog_fixed_width_major" __type="dimen">320dp</item>
+    <item name="abc_dialog_fixed_width_minor" __type="dimen">320dp</item>
     <dimen name="abc_dialog_list_padding_vertical_material">8dp</dimen>
-    <item name="abc_dialog_min_width_major" type="dimen">65%</item>
-    <item name="abc_dialog_min_width_minor" type="dimen">95%</item>
+    <item name="abc_dialog_min_width_major" __type="dimen">65%</item>
+    <item name="abc_dialog_min_width_minor" __type="dimen">95%</item>
     <dimen name="abc_dialog_padding_material">24dp</dimen>
     <dimen name="abc_dialog_padding_top_material">18dp</dimen>
-    <item format="float" name="abc_disabled_alpha_material_dark" type="dimen">0.30</item>
-    <item format="float" name="abc_disabled_alpha_material_light" type="dimen">0.26</item>
+    <item format="float" name="abc_disabled_alpha_material_dark" __type="dimen">0.30</item>
+    <item format="float" name="abc_disabled_alpha_material_light" __type="dimen">0.26</item>
     <dimen name="abc_dropdownitem_icon_width">32dip</dimen>
     <dimen name="abc_dropdownitem_text_padding_left">8dip</dimen>
     <dimen name="abc_dropdownitem_text_padding_right">8dip</dimen>
@@ -540,12 +540,12 @@
     <dimen name="abc_text_size_subtitle_material_toolbar">16dp</dimen>
     <dimen name="abc_text_size_title_material">20sp</dimen>
     <dimen name="abc_text_size_title_material_toolbar">20dp</dimen>
-    <item format="float" name="action_chooser_base_radius_percent" type="dimen">.25</item>
-    <item format="float" name="action_chooser_bounce_in_percent" type="dimen">.1</item>
-    <item format="float" name="action_chooser_icon_height_percent" type="dimen">.5</item>
-    <item format="float" name="action_chooser_max_radius_percent" type="dimen">.5</item>
-    <item format="float" name="action_chooser_min_drag_select_percent" type="dimen">.5</item>
-    <item format="float" name="action_chooser_min_swipe_select_percent" type="dimen">.25</item>
+    <item format="float" name="action_chooser_base_radius_percent" __type="dimen">.25</item>
+    <item format="float" name="action_chooser_bounce_in_percent" __type="dimen">.1</item>
+    <item format="float" name="action_chooser_icon_height_percent" __type="dimen">.5</item>
+    <item format="float" name="action_chooser_max_radius_percent" __type="dimen">.5</item>
+    <item format="float" name="action_chooser_min_drag_select_percent" __type="dimen">.5</item>
+    <item format="float" name="action_chooser_min_swipe_select_percent" __type="dimen">.25</item>
     <dimen name="action_drawer_item_icon_padding">6dp</dimen>
     <dimen name="action_drawer_item_icon_size">32dp</dimen>
     <dimen name="action_drawer_item_text_size">14sp</dimen>
@@ -598,12 +598,12 @@
     <dimen name="diag_floating_height">16dp</dimen>
     <dimen name="diag_shade_height_rect">90dp</dimen>
     <dimen name="diag_shade_height_round">108dp</dimen>
-    <item format="float" name="disabled_alpha_material_dark" type="dimen">0.30</item>
-    <item format="float" name="disabled_alpha_material_light" type="dimen">0.26</item>
+    <item format="float" name="disabled_alpha_material_dark" __type="dimen">0.30</item>
+    <item format="float" name="disabled_alpha_material_light" __type="dimen">0.26</item>
     <dimen name="dismiss_padding">16dp</dimen>
-    <item format="float" name="highlight_alpha_material_colored" type="dimen">0.26</item>
-    <item format="float" name="highlight_alpha_material_dark" type="dimen">0.20</item>
-    <item format="float" name="highlight_alpha_material_light" type="dimen">0.12</item>
+    <item format="float" name="highlight_alpha_material_colored" __type="dimen">0.26</item>
+    <item format="float" name="highlight_alpha_material_dark" __type="dimen">0.20</item>
+    <item format="float" name="highlight_alpha_material_light" __type="dimen">0.12</item>
     <dimen name="item_touch_helper_max_drag_scroll_per_frame">20dp</dimen>
     <dimen name="item_touch_helper_swipe_escape_max_velocity">800dp</dimen>
     <dimen name="item_touch_helper_swipe_escape_velocity">120dp</dimen>
@@ -614,38 +614,38 @@
     <dimen name="progress_spinner_inline_size">36dp</dimen>
     <dimen name="progress_spinner_size">48dp</dimen>
     <drawable name="notification_template_icon_bg">#3333B5E5</drawable>
-    <item name="action_drawer_item_bottom_padding" type="fraction">8%</item>
-    <item name="action_drawer_item_first_item_top_padding" type="fraction">5%</item>
-    <item name="action_drawer_item_icon_right_margin" type="fraction">5%</item>
-    <item name="action_drawer_item_last_item_bottom_padding" type="fraction">7.5%</item>
-    <item name="action_drawer_item_left_padding" type="fraction">5%</item>
-    <item name="action_drawer_item_right_padding" type="fraction">5%</item>
-    <item name="action_drawer_item_top_padding" type="fraction">5%</item>
-    <item name="confirmation_overlay_margin_above_text" type="fraction">5%</item>
-    <item name="confirmation_overlay_margin_side" type="fraction">4.167%</item>
-    <item name="peek_drawer_top_bottom_padding" type="fraction">2.198%</item>
-    <item name="peek_drawer_top_bottom_padding_with_chin" type="fraction">0%</item>
-    <item name="achievement_body" type="id"/>
-    <item name="achievement_icon" type="id"/>
-    <item name="achievement_main_view" type="id"/>
-    <item name="achievement_subtitle" type="id"/>
-    <item name="achievement_title" type="id"/>
-    <item name="action_bar_activity_content" type="id"/>
-    <item name="action_bar_spinner" type="id"/>
-    <item name="action_menu_divider" type="id"/>
-    <item name="action_menu_presenter" type="id"/>
-    <item name="dataBinding" type="id"/>
-    <item name="home" type="id"/>
-    <item name="item_touch_helper_previous_elevation" type="id"/>
-    <item name="onAttachStateChangeListener" type="id"/>
-    <item name="onDateChanged" type="id"/>
-    <item name="progress_circular" type="id"/>
-    <item name="progress_horizontal" type="id"/>
-    <item name="split_action_bar" type="id"/>
-    <item name="textWatcher" type="id"/>
-    <item name="up" type="id"/>
-    <item name="view_offset_helper" type="id"/>
-    <item name="wearable_support_navigation_drawer_view_pager" type="id"/>
+    <item name="action_drawer_item_bottom_padding" __type="fraction">8%</item>
+    <item name="action_drawer_item_first_item_top_padding" __type="fraction">5%</item>
+    <item name="action_drawer_item_icon_right_margin" __type="fraction">5%</item>
+    <item name="action_drawer_item_last_item_bottom_padding" __type="fraction">7.5%</item>
+    <item name="action_drawer_item_left_padding" __type="fraction">5%</item>
+    <item name="action_drawer_item_right_padding" __type="fraction">5%</item>
+    <item name="action_drawer_item_top_padding" __type="fraction">5%</item>
+    <item name="confirmation_overlay_margin_above_text" __type="fraction">5%</item>
+    <item name="confirmation_overlay_margin_side" __type="fraction">4.167%</item>
+    <item name="peek_drawer_top_bottom_padding" __type="fraction">2.198%</item>
+    <item name="peek_drawer_top_bottom_padding_with_chin" __type="fraction">0%</item>
+    <item name="achievement_body" __type="id"/>
+    <item name="achievement_icon" __type="id"/>
+    <item name="achievement_main_view" __type="id"/>
+    <item name="achievement_subtitle" __type="id"/>
+    <item name="achievement_title" __type="id"/>
+    <item name="action_bar_activity_content" __type="id"/>
+    <item name="action_bar_spinner" __type="id"/>
+    <item name="action_menu_divider" __type="id"/>
+    <item name="action_menu_presenter" __type="id"/>
+    <item name="dataBinding" __type="id"/>
+    <item name="home" __type="id"/>
+    <item name="item_touch_helper_previous_elevation" __type="id"/>
+    <item name="onAttachStateChangeListener" __type="id"/>
+    <item name="onDateChanged" __type="id"/>
+    <item name="progress_circular" __type="id"/>
+    <item name="progress_horizontal" __type="id"/>
+    <item name="split_action_bar" __type="id"/>
+    <item name="textWatcher" __type="id"/>
+    <item name="up" __type="id"/>
+    <item name="view_offset_helper" __type="id"/>
+    <item name="wearable_support_navigation_drawer_view_pager" __type="id"/>
     <integer name="abc_config_activityDefaultDur">220</integer>
     <integer name="abc_config_activityShortDur">150</integer>
     <integer name="action_choose_expand_full_duration">1000</integer>

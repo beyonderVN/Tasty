@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="dataBinding" type="id"/>
+    <item name="dataBinding" __type="id"/>
 </resources>

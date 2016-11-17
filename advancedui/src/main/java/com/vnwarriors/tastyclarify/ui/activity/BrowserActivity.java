@@ -228,6 +228,9 @@ public class BrowserActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()){
+            case R.id.createData:
+                startActivity(new Intent(this,CreateDataActivity.class));
+                break;
             case R.id.sendPhoto:
                 photoCameraIntent();
                 break;

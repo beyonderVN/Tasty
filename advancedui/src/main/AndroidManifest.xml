@@ -11,28 +11,34 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
-        android:name="com.vnwarriors.tastyclarify.MainApplication"
+        android:name=".MainApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.vnwarriors.tastyclarify.ui.activity.BrowserActivity"
+            android:name=".ui.activity.BrowserActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.vnwarriors.tastyclarify.ui.activity.ItemActivity"
+            android:name=".ui.activity.ItemActivity"
             android:theme="@style/AppTheme.Translucent" />
         <activity
-            android:name="com.vnwarriors.tastyclarify.ui.activity.LoginActivity"
+            android:name=".ui.activity.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.vnwarriors.tastyclarify.ui.activity.SignupActivity"
+            android:name=".ui.activity.SignupActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.activity.ResetPasswordActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.activity.ProfileActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity-alias
             android:name=".laucher"
-            android:targetActivity="com.vnwarriors.tastyclarify.ui.activity.BrowserActivity">
+            android:targetActivity=".ui.activity.BrowserActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -40,10 +46,7 @@
             </intent-filter>
         </activity-alias>
 
-        <activity android:name="com.vnwarriors.tastyclarify.ui.activity.ResetPasswordActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name="com.vnwarriors.tastyclarify.ui.activity.ProfileActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".ui.activity.CreateDataActivity"></activity>
     </application>
 
 </manifest>
