@@ -106,6 +106,7 @@ public class BrowserActivity extends AppCompatActivity {
         setupRecyclerView();
 
         TextView textView = (TextView) findViewById(R.id.tvEmail);
+        TextView tvName = (TextView) findViewById(R.id.tvName);
         Button btn = (Button) findViewById(R.id.button);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,6 +115,7 @@ public class BrowserActivity extends AppCompatActivity {
             }
         });
         if (auth.getCurrentUser() != null) {
+            tvName.setText(auth.getCurrentUser().getDisplayName());
             textView.setText(auth.getCurrentUser().getEmail());
             userModel = new UserModel(auth.getCurrentUser().getDisplayName(), "", auth.getCurrentUser().getUid() );
             mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
