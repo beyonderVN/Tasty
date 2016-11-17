@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,8 +23,7 @@ public class CreateDataActivity extends AppCompatActivity implements ClickListen
 
     private DatabaseReference mFirebaseDatabaseReference;
     static final String POST_REFERENCE = "posts";
-    private LinearLayoutManager mLinearLayoutManager;
-    private RecyclerView rvListMessage;
+    private RecyclerView rvListPost;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,10 +33,18 @@ public class CreateDataActivity extends AppCompatActivity implements ClickListen
         bindViews();
         verificaUsuarioLogado();
     }
+    StaggeredGridLayoutManager staggeredGridLayoutManagerVertical;
     private void bindViews(){
-        rvListMessage = (RecyclerView)findViewById(R.id.messageRecyclerView);
-        mLinearLayoutManager = new LinearLayoutManager(this);
-        mLinearLayoutManager.setStackFromEnd(true);
+        rvListPost = (RecyclerView)findViewById(R.id.messageRecyclerView);
+        staggeredGridLayoutManagerVertical =
+                new StaggeredGridLayoutManager(
+                        2, //The number of Columns in the grid
+                        LinearLayoutManager.VERTICAL);
+        staggeredGridLayoutManagerVertical.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
+        rvListPost.setLayoutManager(staggeredGridLayoutManagerVertical);
+//        rvListPost.setHasFixedSize(true);
+//        staggeredGridLayoutManagerVertical.setReverseLayout(true);
+        staggeredGridLayoutManagerVertical.scrollToPosition(0);
     }
     private void verificaUsuarioLogado(){
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -57,16 +65,18 @@ public class CreateDataActivity extends AppCompatActivity implements ClickListen
             public void onItemRangeInserted(int positionStart, int itemCount) {
                 super.onItemRangeInserted(positionStart, itemCount);
                 int friendlyMessageCount = firebaseAdapter.getItemCount();
-                int lastVisiblePosition = mLinearLayoutManager.findLastCompletelyVisibleItemPosition();
+                int ints[] = new int[2];
+                ints = staggeredGridLayoutManagerVertical.findLastCompletelyVisibleItemPositions(ints);
+                int lastVisiblePosition = ints[0];
                 if (lastVisiblePosition == -1 ||
                         (positionStart >= (friendlyMessageCount - 1) &&
                                 lastVisiblePosition == (positionStart - 1))) {
-                    rvListMessage.scrollToPosition(positionStart);
+                    rvListPost.scrollToPosition(positionStart);
                 }
             }
         });
-        rvListMessage.setLayoutManager(mLinearLayoutManager);
-        rvListMessage.setAdapter(firebaseAdapter);
+        rvListPost.setLayoutManager(staggeredGridLayoutManagerVertical);
+        rvListPost.setAdapter(firebaseAdapter);
     }
 
     @Override
