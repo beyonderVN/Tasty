@@ -12,8 +12,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -40,10 +38,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.vnwarriors.tastyclarify.R;
-import com.vnwarriors.tastyclarify.ui.adapter.BaseAdapter;
-import com.vnwarriors.tastyclarify.ui.adapter.viewmodel.BaseVM;
-import com.vnwarriors.tastyclarify.ui.adapter.viewmodel.SectionVM;
-import com.vnwarriors.tastyclarify.ui.adapter.viewmodel.SimpleHorizontalVM;
 import com.vnwarriors.tastyclarify.ui.firebase.model.ChatModel;
 import com.vnwarriors.tastyclarify.ui.firebase.model.FileModel;
 import com.vnwarriors.tastyclarify.ui.firebase.model.MapModel;
@@ -51,11 +45,8 @@ import com.vnwarriors.tastyclarify.ui.firebase.model.UserModel;
 import com.vnwarriors.tastyclarify.ui.firebase.util.Util;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
-import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -74,11 +65,6 @@ public class BrowserActivity extends AppCompatActivity {
     CollapsingToolbarLayout mCollapsingToolbar;
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawer;
-    @BindView(R.id.rvItemList)
-    RecyclerView recyclerView;
-
-    List<BaseVM> sectionList = new ArrayList<>();
-    BaseAdapter baseAdapter ;
 
     private FirebaseAuth auth;
     FirebaseAuth.AuthStateListener authListener;
@@ -97,13 +83,11 @@ public class BrowserActivity extends AppCompatActivity {
         }
 
         setTheme(R.style.AppTheme_NoActionBar);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_browser);
         ButterKnife.bind(this);
 
         setupDrawable();
-        createData();
-        setupAdapter();
-        setupRecyclerView();
+
 
         TextView textView = (TextView) findViewById(R.id.tvEmail);
         TextView tvName = (TextView) findViewById(R.id.tvName);
@@ -136,43 +120,6 @@ public class BrowserActivity extends AppCompatActivity {
     }
 
 
-    private void createData() {
-        String[] sectionHeaders = {"MARTERIAL HIGHLIGHTS","ANDROID PATTERNS","BONUS"};
-        List<String[]> list = new ArrayList<>();
-
-        String[] titles1 = {"Toolbar","Marterial Tabs","Float Action Button", "Marterial Dailogs","Toolbar","Marterial Tabs","Float Action Button", "Marterial Dailogs"};
-        String[] titles2 = {"App Intro","Login","Swipeable Layout","Bubbles","Toolbar","Marterial Tabs","Float Action Button", "Marterial Dailogs"};
-        String[] titles3 = {"Sweet Sheet","Text Surface","Share View","Toolbar","Marterial Tabs","Float Action Button", "Marterial Dailogs"};
-        list.add( titles1);
-        list.add( titles2);
-        list.add( titles3);
-        for (int i = 0; i < sectionHeaders.length; i++) {
-            List<BaseVM> simpleVMs = new ArrayList<>();
-            for (int j = 0; j < list.get(i).length; j++) {
-                Random r = new Random();
-                int[] ints = {R.color.toan,
-                        R.color.ly,
-                        R.color.hoa,
-                        R.color.anh,
-                        R.color.BlueViolet,
-                        R.color.orange,
-                        R.color.Chocolate,
-                        R.color.Aquamarine,
-                        R.color.DarkGreen,
-                        R.color.DarkGoldenrod
-                };
-                int i1 = (r.nextInt(ints.length-1));
-                simpleVMs.add(new SimpleHorizontalVM(list.get(i)[j],ints[i1]));
-            }
-            sectionList.add(new SectionVM(sectionHeaders[i],simpleVMs));
-        }
-
-    }
-    private void setupAdapter() {
-        baseAdapter = new BaseAdapter(this,sectionList);
-    }
-
-
     private void setupDrawable() {
         setupToolbar(mDrawer);
     }
@@ -199,12 +146,6 @@ public class BrowserActivity extends AppCompatActivity {
         });
     }
     FrameLayout frameLayout;
-    private void setupRecyclerView() {
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        recyclerView.setAdapter(baseAdapter);
-    }
-
     @Override
     public void onBackPressed() {
 

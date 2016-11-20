@@ -13,13 +13,10 @@
 
     tools:showIn="@layout/app_bar_main">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvItemList"
+    <fragment
+        android:name="com.vnwarriors.tastyclarify.ui.fragment.AllPostFragment"
+        android:id="@+id/frmAllPost"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:paddingBottom="16dp">
-
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent" />
 </LinearLayout>
 

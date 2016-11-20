@@ -1,5 +1,6 @@
 package com.vnwarriors.tastyclarify.ui.firebase.adapter;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
@@ -15,6 +16,8 @@ import com.squareup.picasso.Picasso;
 import com.vnwarriors.advancedui.appcore.common.DynamicHeightImageView;
 import com.vnwarriors.tastyclarify.R;
 import com.vnwarriors.tastyclarify.model.PostModel;
+import com.vnwarriors.tastyclarify.ui.activity.ItemActivity;
+import com.vnwarriors.tastyclarify.ui.adapter.viewmodel.SimpleHorizontalVM;
 
 
 /**
@@ -28,7 +31,7 @@ public class PostListFirebaseAdapter extends FirebaseRecyclerAdapter<PostModel,P
 
 
     public PostListFirebaseAdapter(DatabaseReference ref, ClickListenerChatFirebase mClickListenerChatFirebase) {
-        super(PostModel.class, R.layout.layout_post_2, PostViewHolder.class, ref);
+        super(PostModel.class, R.layout.layout_post, PostViewHolder.class, ref);
         this.mClickListenerChatFirebase = mClickListenerChatFirebase;
     }
 
@@ -49,7 +52,7 @@ public class PostListFirebaseAdapter extends FirebaseRecyclerAdapter<PostModel,P
 //            return new PostViewHolder(view);
 //        }
         if (viewType == POST) {
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_post_2, parent, false);
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_post, parent, false);
             return new PostViewHolder(view);
         }
         return null;
@@ -86,11 +89,14 @@ public class PostListFirebaseAdapter extends FirebaseRecyclerAdapter<PostModel,P
             super(itemView);
             tvName = (TextView) itemView.findViewById(R.id.tvName);
             ivTipImage = (DynamicHeightImageView) itemView.findViewById(R.id.ivTipImage);
+            itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-
+            Intent intent = new Intent(itemView.getContext(), ItemActivity.class);
+            intent.putExtra("SimpleHorizontalVM", new SimpleHorizontalVM("Detail",R.color.aqua));
+            itemView.getContext().startActivity(intent);
         }
 
     }
