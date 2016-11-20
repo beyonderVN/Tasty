@@ -85,6 +85,7 @@ dependencies {
     compile 'com.google.android.gms:play-services-places:9.4.0'
 
     compile 'org.jsoup:jsoup:1.8.3'
+    compile 'de.hdodenhof:circleimageview:2.1.0'
 
 }
 
