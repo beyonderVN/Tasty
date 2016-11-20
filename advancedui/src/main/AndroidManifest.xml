@@ -19,7 +19,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.activity.BrowserActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.Translucent"/>
         <activity
             android:name=".ui.activity.ItemActivity"
             android:theme="@style/AppTheme.Translucent" />

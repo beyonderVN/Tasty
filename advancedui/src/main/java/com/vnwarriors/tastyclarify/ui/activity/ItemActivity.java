@@ -43,8 +43,8 @@ public class ItemActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_item);
-
+//        setContentView(R.layout.activity_item);
+        setContentView(R.layout.layout_item_detail);
         for (LifecycleDelegate lifecycleDelegate : lifecycleDelegates){
             lifecycleDelegate.onCreate(savedInstanceState);
         }
@@ -58,8 +58,8 @@ public class ItemActivity extends AppCompatActivity {
 
     private void setupUI() {
         SimpleHorizontalVM simpleHorizontalVM = (SimpleHorizontalVM) getIntent().getSerializableExtra("SimpleHorizontalVM");
-        tvHeaderSection.setText(simpleHorizontalVM.getTittle());
-        tvHeaderSection.setBackgroundColor(getResources().getColor(simpleHorizontalVM.getColor()));
+//        tvHeaderSection.setText(simpleHorizontalVM.getTittle());
+//        tvHeaderSection.setBackgroundColor(getResources().getColor(simpleHorizontalVM.getColor()));
 
         setupRecyclerView();
     }

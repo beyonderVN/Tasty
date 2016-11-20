@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="AppTheme.Translucent" parent="AppTheme.NoActionBar">
+
+        <item name="android:windowContentTransitions" tools:targetApi="lollipop">true</item>
+        <!-- using a semi-transparent window background for the drag-back gesture -->
+        <item name="android:windowBackground">@color/scrim</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds" tools:targetApi="lollipop">true</item>
+        <!--<item name="android:navigationBarColor">#00000000</item>-->
+        <!--<item name="android:statusBarColor">#00000000</item>-->
+    </style>
+</resources>
