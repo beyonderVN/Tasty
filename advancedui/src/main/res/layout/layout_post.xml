@@ -24,8 +24,8 @@
                 app:srcCompat="@drawable/ic_chef"
                 android:id="@+id/imageView5"
                 app:layout_constraintRight_toLeftOf="@+id/imageView4"
-                app:layout_constraintBottom_toBottomOf="@+id/textView2"
-                app:layout_constraintTop_toTopOf="@+id/textView2" />
+                app:layout_constraintBottom_toBottomOf="@+id/tvTime"
+                app:layout_constraintTop_toTopOf="@+id/tvTime" />
 
             <ImageView
                 android:layout_width="25dp"
@@ -50,7 +50,7 @@
                 android:text="85 min."
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView2"
+                android:id="@+id/tvTime"
                 app:layout_constraintLeft_toRightOf="@+id/imageView2"
                 app:layout_constraintTop_toTopOf="@+id/imageView2"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView2"

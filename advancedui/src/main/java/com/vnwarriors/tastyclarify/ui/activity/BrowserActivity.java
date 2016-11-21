@@ -17,10 +17,7 @@ import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -37,16 +34,23 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.vnwarriors.advancedui.appcore.common.viewpager.InkPageIndicator;
+import com.vnwarriors.advancedui.appcore.common.viewpager.ModelPagerAdapter;
+import com.vnwarriors.advancedui.appcore.common.viewpager.PagerModelManager;
+import com.vnwarriors.advancedui.appcore.common.viewpager.ScrollerViewPager;
 import com.vnwarriors.tastyclarify.R;
 import com.vnwarriors.tastyclarify.ui.firebase.model.ChatModel;
 import com.vnwarriors.tastyclarify.ui.firebase.model.FileModel;
 import com.vnwarriors.tastyclarify.ui.firebase.model.MapModel;
 import com.vnwarriors.tastyclarify.ui.firebase.model.UserModel;
 import com.vnwarriors.tastyclarify.ui.firebase.util.Util;
+import com.vnwarriors.tastyclarify.ui.fragment.GuideFragment;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -65,6 +69,9 @@ public class BrowserActivity extends AppCompatActivity {
     CollapsingToolbarLayout mCollapsingToolbar;
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawer;
+
+    @BindView(R.id.view_pager)
+    ScrollerViewPager viewPager;
 
     private FirebaseAuth auth;
     FirebaseAuth.AuthStateListener authListener;
@@ -89,18 +96,16 @@ public class BrowserActivity extends AppCompatActivity {
         setupDrawable();
 
 
-        TextView textView = (TextView) findViewById(R.id.tvEmail);
-        TextView tvName = (TextView) findViewById(R.id.tvName);
-        Button btn = (Button) findViewById(R.id.button);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(BrowserActivity.this,ProfileActivity.class));
-            }
-        });
+//        TextView textView = (TextView) findViewById(R.id.tvEmail);
+//        TextView tvName = (TextView) findViewById(R.id.tvName);
+//        Button btn = (Button) findViewById(R.id.button);
+//        btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(BrowserActivity.this,ProfileActivity.class));
+//            }
+//        });
         if (auth.getCurrentUser() != null) {
-            tvName.setText(auth.getCurrentUser().getDisplayName());
-            textView.setText(auth.getCurrentUser().getEmail());
             userModel = new UserModel(auth.getCurrentUser().getDisplayName(), "", auth.getCurrentUser().getUid() );
             mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
         }
@@ -117,8 +122,33 @@ public class BrowserActivity extends AppCompatActivity {
             }
         };
 
+        ////
+        ////
+        PagerModelManager manager = new PagerModelManager();
+        manager.addCommonFragment(GuideFragment.class, getBgRes(), getTitles());
+        ModelPagerAdapter adapter = new ModelPagerAdapter(getSupportFragmentManager(), manager);
+        viewPager.setAdapter(adapter);
+        viewPager.fixScrollSpeed();
+
+
+        InkPageIndicator springIndicator = (InkPageIndicator) findViewById(R.id.indicator);
+        // just set viewPager
+        springIndicator.setViewPager(viewPager);
+
+    }
+    private List<String> getTitles(){
+        ArrayList<String> list = new ArrayList<String>();
+        return list;
     }
 
+    private List<String> getBgRes(){
+        ArrayList<String> list = new ArrayList<>();
+        list.add("http://www.thepaintershandbook.com/wp-content/uploads/2016/10/Cute-Puppy-Wallpaper.jpg");
+        list.add("http://www.thepaintershandbook.com/wp-content/uploads/2016/10/Cute-Puppy-Wallpaper.jpg");
+        list.add("http://www.thepaintershandbook.com/wp-content/uploads/2016/10/Cute-Puppy-Wallpaper.jpg");
+        list.add("http://www.thepaintershandbook.com/wp-content/uploads/2016/10/Cute-Puppy-Wallpaper.jpg");
+        return list;
+    }
 
     private void setupDrawable() {
         setupToolbar(mDrawer);

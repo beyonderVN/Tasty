@@ -34,9 +34,34 @@
                 android:gravity="top"
                 android:orientation="vertical"
                 app:layout_collapseMode="parallax"
-                app:layout_collapseParallaxMultiplier="0.0">
+                app:layout_collapseParallaxMultiplier="0.6">
 
-                <include layout="@layout/layout_user_profile" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:gravity="center_horizontal"
+                    >
+
+                    <com.vnwarriors.advancedui.appcore.common.viewpager.ScrollerViewPager
+                        android:id="@+id/view_pager"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        android:layout_gravity="center"
+                        />
+
+                    <com.vnwarriors.advancedui.appcore.common.viewpager.InkPageIndicator
+                        android:id="@+id/indicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:padding="16dp"
+                        app:currentPageIndicatorColor="@color/page_indicator_dark_selected"
+                        app:pageIndicatorColor="@color/page_indicator_dark" />
+
+                </RelativeLayout>
 
             </LinearLayout>
 
