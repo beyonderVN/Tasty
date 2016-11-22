@@ -80,15 +80,28 @@ public class PostListFirebaseAdapter extends FirebaseRecyclerAdapter<PostModel,P
         ImageView imageView2;
         imageView2 = (ImageView) viewHolder.itemView.findViewById(R.id.imageView5);
         imageView2.setColorFilter(color);
+
+        String[] strings = model.getTipTime().split("(#tp)|(#tc)");
+        int sum=0;
+        for(String str:strings){
+            if(str.length()>0){
+                int i = Integer.parseInt(str.trim());
+                sum=+i;
+            }
+
+        }
+        viewHolder.tvTime.setText(String.valueOf(sum)+" min.");
     }
 
     public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView tvName;
         DynamicHeightImageView ivTipImage;
+        TextView tvTime;
         public PostViewHolder(View itemView) {
             super(itemView);
             tvName = (TextView) itemView.findViewById(R.id.tvName);
             ivTipImage = (DynamicHeightImageView) itemView.findViewById(R.id.ivTipImage);
+            tvTime = (TextView) itemView.findViewById(R.id.tvTime);
             itemView.setOnClickListener(this);
         }
 

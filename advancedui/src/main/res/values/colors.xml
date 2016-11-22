@@ -29,6 +29,8 @@
     <color name="hoa">@color/lavender</color>
     <color name="anh">@color/dustyrose</color>
 
-
+    <color name="page_indicator_dark">#80333333</color>
+    <color name="page_indicator_tran">#00333333</color>
+    <color name="page_indicator_dark_selected">#ff333333</color>
     <!--FireBase-->
 </resources>
