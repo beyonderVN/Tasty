@@ -3,11 +3,13 @@ package com.vnwarriors.tastyclarify.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by Long on 11/16/2016.
  */
 
-public class TipImage {
+public class TipImage implements Serializable{
 
     @SerializedName("__type")
     @Expose
