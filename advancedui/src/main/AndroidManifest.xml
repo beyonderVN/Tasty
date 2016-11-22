@@ -19,19 +19,19 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.activity.BrowserActivity"
-            android:theme="@style/AppTheme.Translucent"/>
+            android:theme="@style/AppTheme.Translucent" />
         <activity
             android:name=".ui.activity.ItemActivity"
             android:theme="@style/AppTheme.Translucent" />
         <activity
             android:name=".ui.activity.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.Translucent" />
         <activity
             android:name=".ui.activity.SignupActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.Translucent" />
         <activity
             android:name=".ui.activity.ResetPasswordActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.Translucent" />
         <activity
             android:name=".ui.activity.ProfileActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -46,7 +46,9 @@
             </intent-filter>
         </activity-alias>
 
-        <activity android:name=".ui.activity.CreateDataActivity"></activity>
+        <activity android:name=".ui.activity.CreateDataActivity" />
+        <activity android:name=".ui.activity.CreateRecipes"
+            android:theme="@style/ThemeApp"></activity>
     </application>
 
 </manifest>

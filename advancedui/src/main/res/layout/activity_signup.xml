@@ -13,7 +13,8 @@
         android:background="#ffffff"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="@dimen/activity_horizontal_margin">
+        android:padding="@dimen/activity_horizontal_margin"
+        android:fitsSystemWindows="true">
 
 
         <ImageView

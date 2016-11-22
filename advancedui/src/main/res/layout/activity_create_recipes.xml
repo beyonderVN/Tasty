@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_create_recipes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:orientation="vertical">
+
+
+        <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="#ffffff"-->
+        <!--android:padding="8dp">-->
+
+        <!--<ImageView-->
+        <!--android:id="@+id/ivRecipeName"-->
+        <!--android:layout_width="16dp"-->
+        <!--android:layout_height="16dp"-->
+        <!--android:src="@drawable/ic_chef" />-->
+
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignTop="@+id/ivRecipeName"-->
+        <!--android:layout_marginLeft="8dp"-->
+        <!--android:layout_toRightOf="@+id/ivRecipeName"-->
+        <!--android:text="RECIPE NAME"-->
+        <!--android:textColor="#af4034"-->
+        <!--android:textSize="16sp" />-->
+
+        <!--<EditText-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/ivRecipeName"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:backgroundTint="#d9a591"-->
+        <!--android:textColor="@color/black"-->
+        <!--android:textSize="16sp"-->
+        <!--tools:text="asdasdasd" />-->
+        <!--</RelativeLayout>-->
+
+        <!--<include layout="@layout/devider_item" />-->
+
+        <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="#ffffff"-->
+        <!--android:padding="8dp">-->
+
+        <!--<ImageView-->
+        <!--android:id="@+id/ivPictue"-->
+        <!--android:layout_width="16dp"-->
+        <!--android:layout_height="16dp"-->
+        <!--android:src="@drawable/ic_chef" />-->
+
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignTop="@+id/ivPictue"-->
+        <!--android:layout_marginLeft="8dp"-->
+        <!--android:layout_toRightOf="@+id/ivPictue"-->
+        <!--android:text="PICTURE"-->
+        <!--android:textColor="#af4034"-->
+        <!--android:textSize="16sp" />-->
+
+        <!--<ImageView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="200dp"-->
+        <!--android:layout_below="@+id/ivPictue"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:adjustViewBounds="true"-->
+        <!--android:scaleType="centerCrop"-->
+        <!--android:src="@drawable/vungtau" />-->
+        <!--</RelativeLayout>-->
+
+        <!--<include layout="@layout/devider_item" />-->
+
+        <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="#ffffff"-->
+        <!--android:padding="8dp">-->
+
+        <!--<ImageView-->
+        <!--android:id="@+id/ivCategories"-->
+        <!--android:layout_width="16dp"-->
+        <!--android:layout_height="16dp"-->
+        <!--android:src="@drawable/ic_chef" />-->
+
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignTop="@+id/ivCategories"-->
+        <!--android:layout_marginBottom="4dp"-->
+        <!--android:layout_marginLeft="8dp"-->
+        <!--android:layout_toRightOf="@+id/ivCategories"-->
+        <!--android:text="CATEGORIES"-->
+        <!--android:textColor="#af4034"-->
+        <!--android:textSize="16sp" />-->
+
+        <!--<android.support.v7.widget.AppCompatCheckBox-->
+        <!--android:id="@+id/cbAppetizer"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/ivCategories"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:buttonTint="#5e7680"-->
+        <!--android:text="Appetizer"-->
+        <!--android:textColor="#5e7680"-->
+        <!--android:textSize="16sp" />-->
+
+        <!--<android.support.v7.widget.AppCompatCheckBox-->
+        <!--android:id="@+id/cbDessert"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_below="@+id/ivCategories"-->
+        <!--android:layout_marginRight="80dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:buttonTint="#f09919"-->
+        <!--android:text="Dessert"-->
+        <!--android:textColor="#f09919"-->
+        <!--android:textSize="16sp" />-->
+
+        <!--<android.support.v7.widget.AppCompatCheckBox-->
+        <!--android:id="@+id/cbFirstCourse"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/cbAppetizer"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:buttonTint="#8dcbec"-->
+        <!--android:text="First Course"-->
+        <!--android:textColor="#8dcbec"-->
+        <!--android:textSize="16sp" />-->
+
+        <!--<android.support.v7.widget.AppCompatCheckBox-->
+        <!--android:id="@+id/cbVegetarian"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignLeft="@+id/cbDessert"-->
+        <!--android:layout_below="@+id/cbDessert"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:buttonTint="#4f9757"-->
+        <!--android:text="Vegetarian"-->
+        <!--android:textColor="#4f9757"-->
+        <!--android:textSize="16sp" />-->
+
+        <!--<android.support.v7.widget.AppCompatCheckBox-->
+        <!--android:id="@+id/cbMainCourse"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/cbFirstCourse"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:buttonTint="#d7593e"-->
+        <!--android:text="Main Course"-->
+        <!--android:textColor="#d7593e"-->
+        <!--android:textSize="16sp" />-->
+
+        <!--<android.support.v7.widget.AppCompatCheckBox-->
+        <!--android:id="@+id/cbCheap"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignLeft="@+id/cbVegetarian"-->
+        <!--android:layout_below="@+id/cbVegetarian"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:buttonTint="#8d3d99"-->
+        <!--android:text="Cheap"-->
+        <!--android:textColor="#8d3d99"-->
+        <!--android:textSize="16sp" />-->
+
+        <!--<android.support.v7.widget.AppCompatCheckBox-->
+        <!--android:id="@+id/cbSideDish"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/cbMainCourse"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:buttonTint="#f0bc31"-->
+        <!--android:text="Side Dish"-->
+        <!--android:textColor="#f0bc31"-->
+        <!--android:textSize="16sp" />-->
+
+        <!--<android.support.v7.widget.AppCompatCheckBox-->
+        <!--android:id="@+id/cbPizza"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignLeft="@+id/cbCheap"-->
+        <!--android:layout_below="@+id/cbCheap"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:buttonTint="#3e519d"-->
+        <!--android:text="Pizza"-->
+        <!--android:textColor="#3e519d"-->
+        <!--android:textSize="16sp" />-->
+        <!--</RelativeLayout>-->
+
+        <!--<include layout="@layout/devider_item" />-->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/ivServe"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_chef" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/ivServe"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@+id/ivServe"
+                android:text="PEOPLE SERVED"
+                android:textColor="#af4034"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ivServe"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvServe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3"
+                    android:textColor="#777777"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="people"
+                    android:textSize="16sp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="0" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="12" />
+                </RelativeLayout>
+
+                <android.support.v7.widget.AppCompatSeekBar
+                    android:id="@+id/sbServe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:max="12" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <include layout="@layout/devider_item" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:padding="8dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/ivDifficulty"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_chef" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/ivDifficulty"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@+id/ivDifficulty"
+                android:text="DIFFICULTY"
+                android:textColor="#af4034"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ivDifficulty"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#777777"
+                    android:textSize="24sp"
+                    tools:text="3" />
+
+                <TextView
+                    android:id="@+id/tvDifficultLevel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Medium"
+                    android:textSize="16sp" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="--------rating-------------" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <include layout="@layout/devider_item" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:padding="8dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/ivTime"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_chef" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/ivTime"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@+id/ivTime"
+                android:text="PEOPLE SERVED"
+                android:textColor="#af4034"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvPreparationTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ivTime"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="12dp"
+                android:buttonTint="#5e7680"
+                android:text="Preparation:"
+                android:textColor="#5e7680"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/etPreparationTime"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/ivTime"
+                android:backgroundTint="#d9a591"
+                android:hint="Set Time"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                tools:text="asdasdasd" />
+
+            <TextView
+                android:id="@+id/tvCookTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvPreparationTime"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="20dp"
+                android:buttonTint="#5e7680"
+                android:text="Cooking:"
+                android:textColor="#5e7680"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/etCookingTime"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/etPreparationTime"
+                android:backgroundTint="#d9a591"
+                android:hint="Set Time"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                tools:text="asdasdasd" />
+
+        </RelativeLayout>
+
+        <include layout="@layout/devider_item" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/ivIngredient"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_chef" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/ivIngredient"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@+id/ivIngredient"
+                android:text="INGREDIENT"
+                android:textColor="#af4034"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:id="@+id/llIngredient"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ivIngredient"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical">
+
+                <include layout="@layout/gredient_add"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <include layout="@layout/devider_item" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/ivPreparation"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_chef" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/ivPreparation"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@+id/ivPreparation"
+                android:text="PREPARATION"
+                android:textColor="#af4034"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/etPreparation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ivPreparation"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="12dp"
+                android:backgroundTint="#d9a591"
+                android:gravity="bottom"
+                android:hint="Add an exhaustive description on how to prepare your recipe"
+                android:minLines="4"
+                android:textColor="@color/black"
+                android:textColorHint="#d3d3d3"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+
+        <include layout="@layout/devider_item" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/ivTip"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_chef" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/ivTip"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@+id/ivTip"
+                android:text="TIP"
+                android:textColor="#af4034"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/etTip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ivTip"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="12dp"
+                android:backgroundTint="#d9a591"
+                android:gravity="bottom"
+                android:hint="Add tips on for other people which will try your recipe in order to make it look perfect!"
+                android:minLines="4"
+                android:textColor="@color/black"
+                android:textColorHint="#d3d3d3"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+
+        <include layout="@layout/devider_item" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/ivMan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:src="@drawable/man_avater" />
+
+                <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/cbMan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="#b54031" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/ivWoman"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/girl_avatar" />
+
+                <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/cbWoman"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="#b54031" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/etNickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:backgroundTint="#d9a591"
+            android:hint="Add your nickname *"
+            android:textColor="@color/black"
+            android:textColorHint="#d3d3d3"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="*All fields are mandatory"
+            android:textColor="#d3d3d3"
+            android:textStyle="italic" />
+
+        <include layout="@layout/devider_item" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="4dp"
+            android:text="Thank you for participation! We will read and try your recipe"
+            android:textColor="#9a9a9a"
+            android:textSize="16sp" />
+
+        <include layout="@layout/devider_max" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/cbTerm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:buttonTint="#64c960"
+            android:text='By sending this recipe I accept '
+            android:textColor="#9b9b9a"
+            android:textSize="16sp"
+            android:textStyle="italic" />
+
+        <Button
+            android:id="@+id/btnSendRecipe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:background="#64c960"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="SEND RECIPE"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+    </LinearLayout>
+</ScrollView>

@@ -21,7 +21,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -233,8 +232,10 @@ public class BrowserActivity extends AppCompatActivity {
     }
     @OnClick(R.id.fab)
     void showDailog(){
-        Toast.makeText(this, "fab", Toast.LENGTH_SHORT).show();
-        sendMessageFirebase();
+        Intent intent = new Intent(this, CreateRecipes.class);
+        startActivity(intent);
+//        Toast.makeText(this, "fab", Toast.LENGTH_SHORT).show();
+//        sendMessageFirebase();
     }
 
     @Override

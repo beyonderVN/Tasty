@@ -20,7 +20,7 @@
     android:layout_height="wrap_content"
     android:paddingBottom="24dp"
     android:background="@color/card_default_background"
-    >
+    android:fitsSystemWindows="true">
 
 
     <ImageView
