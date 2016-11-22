@@ -31,6 +31,18 @@ public class ItemActivity extends AppCompatActivity {
     List<BaseVM> sectionList = new ArrayList<>();
     BaseAdapter baseAdapter;
 
+    @BindView(R.id.tvName)
+    TextView tvName;
+
+    @BindView(R.id.tvPersons)
+    TextView tvPersons;
+    @BindView(R.id.tvDifficult)
+    TextView tvDifficult;
+    @BindView(R.id.tvCookTime)
+    TextView tvCookTime;
+    @BindView(R.id.tvPreparationTime)
+    TextView tvPreparationTime;
+
     List<LifecycleDelegate> lifecycleDelegates = new ArrayList<>();
 
     { // Initializer block
@@ -42,7 +54,7 @@ public class ItemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_item);
         setContentView(R.layout.activity_item);
-        for (LifecycleDelegate lifecycleDelegate : lifecycleDelegates){
+        for (LifecycleDelegate lifecycleDelegate : lifecycleDelegates) {
             lifecycleDelegate.onCreate(savedInstanceState);
         }
 
@@ -58,22 +70,47 @@ public class ItemActivity extends AppCompatActivity {
         Picasso.with(this)
                 .load(post.getTipImage().getUrl())
                 .placeholder(PlaceHolderDrawableHelper.getBackgroundDrawable())
-                .resize(400, (int) (400*post.getTipImageRatio()))
+                .resize(400, (int) (400 * post.getTipImageRatio()))
                 .into(ivCover);
-        tvIngredients.setText(post.getTipIngredients());
-        tvPreparation.setText(post.getTipDescription());
+        tvIngredients.setText(post.getTipIngredients().replace("#i","- "));
+        tvPreparation.setText(post.getTipDescription().replace("#p","- "));
 
+        tvName.setText(post.getTipName());
+        tvPersons.setText(post.getTipPersons()+" People");
+        switch (post.getTipDifficulty()){
+            case 1 :
+                tvDifficult.setText("Easy");
+                break;
+            case 2 :
+                tvDifficult.setText("Medium");
+                break;
+            case 3 :
+                tvDifficult.setText("Hard");
+                break;
+        }
+        String[] strings = post.getTipTime().split("(#tp)|(#tc)");
+        int[] ints = {0,0,0,0};
+        int i=0;
+        for(String str:strings){
+            if(str.length()>0){
+                int time = Integer.parseInt(str.trim());
+                ints[i]=time;
+            }
+            i++;
+
+        }
+        tvPreparationTime.setText(ints[1]+" min.");
+        tvCookTime.setText(ints[2]+" min.");
 //        createData();
 //        setupAdapter();
 //        setupRecyclerView();
     }
 
 
-
     @Override
     protected void onResume() {
         super.onResume();
-        for (LifecycleDelegate lifecycleDelegate : lifecycleDelegates){
+        for (LifecycleDelegate lifecycleDelegate : lifecycleDelegates) {
             lifecycleDelegate.onResume();
         }
 
@@ -82,7 +119,7 @@ public class ItemActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
 
-        for (LifecycleDelegate lifecycleDelegate : lifecycleDelegates){
+        for (LifecycleDelegate lifecycleDelegate : lifecycleDelegates) {
             lifecycleDelegate.onPause();
         }
         super.onPause();

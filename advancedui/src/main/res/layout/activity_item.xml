@@ -11,188 +11,217 @@
     app:dragDismissScale="0.95"
     tools:context=".ui.activity.ItemActivity">
 
-    <TextView
-        android:id="@+id/tvHeaderSection"
+
+
+    <ImageView
+        android:id="@+id/ivCover"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
+        android:layout_height="300dp"
+        android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:transitionName="@string/detail_image" />
+        android:src="@drawable/cover_image"
+        android:transitionName="@string/detail_image"/>
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolBar"
         android:layout_width="match_parent"
-        android:layout_height="475dp"
-        android:background="#cecece">
-
-        <ImageView
-            android:id="@+id/ivCover"
-            android:layout_width="match_parent"
-            android:layout_height="256dp"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/cover_image" />
-
-        <android.support.design.widget.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/ivCover"
-            android:layout_marginRight="25dp"
-            android:layout_marginTop="-25dp"
-            android:src="@drawable/ic_edit_white_24dp" />
-
-        <LinearLayout
-            android:id="@+id/llHeader"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/ivCover"
-            android:background="#dc3c28"
-            android:orientation="vertical"
-            android:padding="16dp"
-            android:paddingBottom="8dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="42dp"
-                android:textColor="#ffffff"
-                android:text="Roast bell peer chicken drik coca "
-                android:textSize="24dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:textColor="#ffffff"
-                android:text="Appetizer, side dishes" />
-
-            <include layout="@layout/devider_item" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:orientation="horizontal"
-                android:weightSum="4">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Portion"
-                    android:gravity="center"
-                    android:textColor="#ffffff"
-                    android:layout_weight="1"
-                    android:drawableTop="@drawable/portion_cover" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Portion"
-                    android:gravity="center"
-                    android:textColor="#ffffff"
-                    android:drawableTop="@drawable/portion_cover" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="#ffffff"
-                    android:text="Preparation"
-                    android:gravity="center"
-                    android:drawableTop="@drawable/preparation_cover" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="#ffffff"
-                    android:text="Cooking"
-                    android:gravity="center"
-                    android:drawableTop="@drawable/cooking_cover" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="4">
-
-                <TextView
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="#ffffff"
-                    android:gravity="center"
-                    android:text="4 People" />
-
-                <TextView
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="#ffffff"
-                    android:gravity="center"
-                    android:text="Easy" />
-
-                <TextView
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="#ffffff"
-                    android:gravity="center"
-                    android:text="35 min." />
-
-                <TextView
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="#ffffff"
-                    android:gravity="center"
-                    android:text="50 min." />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-
-    </RelativeLayout>
+        android:layout_height="?attr/actionBarSize"
+        android:fitsSystemWindows="true" />
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:fillViewport="true"
-        android:paddingBottom="0dp"
+
         android:paddingLeft="0dp"
         android:paddingRight="0dp"
-        android:paddingTop="475dp"
-        android:transitionName="@string/detail_image1">
+        android:paddingTop="300dp"
+        >
 
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rvItemList"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/white"
-            android:clipToPadding="false"
-            android:nestedScrollingEnabled="false"
-            android:paddingBottom="16dp" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#dddddd">
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="0dp">
+
+                <LinearLayout
+                    android:id="@+id/llHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#dc3c28"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:paddingBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/tvName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="42dp"
+                        android:text="Roast bell peer chicken drik coca "
+                        android:textColor="#ffffff"
+                        android:textSize="24dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:text="Appetizer, side dishes"
+                        android:textColor="#ffffff" />
+
+                    <include layout="@layout/devider_item" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:orientation="horizontal"
+                        android:weightSum="4">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:drawableTop="@drawable/portion_cover"
+                            android:gravity="center"
+                            android:text="Portion"
+                            android:textColor="#ffffff" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:drawableTop="@drawable/portion_cover"
+                            android:gravity="center"
+                            android:text="Portion"
+                            android:textColor="#ffffff" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:drawableTop="@drawable/preparation_cover"
+                            android:gravity="center"
+                            android:text="Preparation"
+                            android:textColor="#ffffff" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:drawableTop="@drawable/cooking_cover"
+                            android:gravity="center"
+                            android:text="Cooking"
+                            android:textColor="#ffffff" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="4">
+
+                        <TextView
+                            android:id="@+id/tvPersons"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="4 People"
+                            android:textColor="#ffffff" />
+
+                        <TextView
+                            android:id="@+id/tvDifficult"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="Easy"
+                            android:textColor="#ffffff" />
+
+                        <TextView
+                            android:id="@+id/tvPreparationTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="35 min."
+                            android:textColor="#ffffff" />
+
+                        <TextView
+                            android:id="@+id/tvCookTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="50 min."
+                            android:textColor="#ffffff" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <android.support.design.widget.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginTop="45dp"
+                    android:src="@drawable/ic_edit_white_24dp" />
+
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardUseCompatPadding="true"
+               app:cardBackgroundColor="@color/white">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_ingredients"
+                    android:layout_margin="16dp"
+                    />
+                <TextView
+                    android:layout_marginTop="56dp"
+                    android:id="@+id/tvIngredients"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:lineSpacingExtra="16sp"
+                    android:padding="16dp" />
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardUseCompatPadding="true"
+                app:cardBackgroundColor="@color/white">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_preparation"
+                    android:layout_margin="16dp"
+                    />
+                <TextView
+                    android:layout_marginTop="56dp"
+                    android:id="@+id/tvPreparation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:lineSpacingExtra="16sp"
+                    android:padding="16dp" />
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
 </com.vnwarriors.advancedui.appcore.common.ElasticDragDismissFrameLayout>

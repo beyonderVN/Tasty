@@ -1,9 +1,12 @@
 package com.vnwarriors.tastyclarify.ui.firebase.adapter;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +21,9 @@ import com.vnwarriors.advancedui.appcore.common.recyclerviewhelper.PlaceHolderDr
 import com.vnwarriors.tastyclarify.R;
 import com.vnwarriors.tastyclarify.model.PostModel;
 import com.vnwarriors.tastyclarify.ui.activity.ItemActivity;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 /**
@@ -64,11 +70,27 @@ public class PostListFirebaseAdapter extends FirebaseRecyclerAdapter<PostModel,P
                 .into(viewHolder.ivTipImage);
         ImageView imageView;
         imageView = (ImageView) viewHolder.itemView.findViewById(R.id.imageView2);
-        int color = Color.parseColor("#AE6118"); //The color u want
+        int color = Color.parseColor("#AE6118");
         imageView.setColorFilter(color);
         ImageView imageView2;
-        imageView2 = (ImageView) viewHolder.itemView.findViewById(R.id.imageView5);
+        imageView2 = (ImageView) viewHolder.itemView.findViewById(R.id.icChef1);
         imageView2.setColorFilter(color);
+
+
+        switch (model.getTipDifficulty()){
+            case 1:
+                viewHolder.icChef1.setColorFilter(color);
+                break;
+            case 2:
+                viewHolder.icChef1.setColorFilter(color);
+                viewHolder.icChef2.setColorFilter(color);
+                break;
+            case 3:
+                viewHolder.icChef1.setColorFilter(color);
+                viewHolder.icChef2.setColorFilter(color);
+                viewHolder.icChef3.setColorFilter(color);
+                break;
+        }
 
         String[] strings = model.getTipTime().split("(#tp)|(#tc)");
         int sum=0;
@@ -86,20 +108,41 @@ public class PostListFirebaseAdapter extends FirebaseRecyclerAdapter<PostModel,P
             public void onClick(View v) {
                 Intent intent = new Intent(viewHolder.itemView.getContext(), ItemActivity.class);
                 intent.putExtra("POST", model);
-                viewHolder.itemView.getContext().startActivity(intent);
+
+
+                ActivityOptions ops = ActivityOptions.makeSceneTransitionAnimation((Activity) viewHolder.itemView.getContext(),
+                        Pair.create(viewHolder.ivTipImage, viewHolder.itemView.getContext().getString(R.string.detail_image))
+                );
+                viewHolder.itemView.getContext().startActivity(intent,ops.toBundle());
             }
         });
     }
 
     public class PostViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.tvName)
         TextView tvName;
+        @BindView(R.id.ivTipImage)
         DynamicHeightImageView ivTipImage;
+        @BindView(R.id.tvTime)
         TextView tvTime;
+
+        @BindView(R.id.icChef1)
+        ImageView icChef1;
+
+        @BindView(R.id.icChef2)
+        ImageView icChef2;
+
+        @BindView(R.id.icChef3)
+        ImageView icChef3;
+
         public PostViewHolder(View itemView) {
             super(itemView);
-            tvName = (TextView) itemView.findViewById(R.id.tvName);
-            ivTipImage = (DynamicHeightImageView) itemView.findViewById(R.id.ivTipImage);
-            tvTime = (TextView) itemView.findViewById(R.id.tvTime);
+            ButterKnife.bind(this, itemView);
+
+            int color = Color.parseColor("#A1CACACA");
+            icChef1.setColorFilter(color);
+            icChef2.setColorFilter(color);
+            icChef3.setColorFilter(color);
         }
 
     }
