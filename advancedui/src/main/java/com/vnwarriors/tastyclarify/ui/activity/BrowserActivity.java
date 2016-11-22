@@ -18,11 +18,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
-<<<<<<< HEAD
-import android.widget.TextView;
-=======
-import android.widget.Toast;
->>>>>>> abf4532ec71a52088b68a057161f3a4df0ca5b06
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -61,7 +56,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-
 public class BrowserActivity extends AppCompatActivity {
     private static final String TAG = "BrowserActivity";
 
@@ -79,6 +73,7 @@ public class BrowserActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
     FirebaseAuth.AuthStateListener authListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,7 +83,7 @@ public class BrowserActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
 
         if (auth.getCurrentUser() == null) {
-            Log.d(TAG, "onCreate: "+"auth.getCurrentUser() is not null");
+            Log.d(TAG, "onCreate: " + "auth.getCurrentUser() is not null");
             startActivity(new Intent(this, LoginActivity.class));
             finish();
         }
@@ -110,7 +105,7 @@ public class BrowserActivity extends AppCompatActivity {
 //            }
 //        });
         if (auth.getCurrentUser() != null) {
-            userModel = new UserModel(auth.getCurrentUser().getDisplayName(), "", auth.getCurrentUser().getUid() );
+            userModel = new UserModel(auth.getCurrentUser().getDisplayName(), "", auth.getCurrentUser().getUid());
             mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
         }
         authListener = new FirebaseAuth.AuthStateListener() {
@@ -140,12 +135,13 @@ public class BrowserActivity extends AppCompatActivity {
         springIndicator.setViewPager(viewPager);
 
     }
-    private List<String> getTitles(){
+
+    private List<String> getTitles() {
         ArrayList<String> list = new ArrayList<String>();
         return list;
     }
 
-    private List<String> getBgRes(){
+    private List<String> getBgRes() {
         ArrayList<String> list = new ArrayList<>();
         list.add("http://www.thepaintershandbook.com/wp-content/uploads/2016/10/Cute-Puppy-Wallpaper.jpg");
         list.add("http://www.thepaintershandbook.com/wp-content/uploads/2016/10/Cute-Puppy-Wallpaper.jpg");
@@ -157,7 +153,9 @@ public class BrowserActivity extends AppCompatActivity {
     private void setupDrawable() {
         setupToolbar(mDrawer);
     }
+
     ActionBarDrawerToggle toggle;
+
     private void setupToolbar(DrawerLayout drawer) {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -168,18 +166,20 @@ public class BrowserActivity extends AppCompatActivity {
         frameLayout = (FrameLayout) findViewById(R.id.flCover);
 
         mAppBar.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
-            boolean showTitle = (mCollapsingToolbar.getHeight() + verticalOffset) <= (mToolbar.getHeight()*2) ;
-            Log.d(TAG, "verticalOffset: "+verticalOffset);
-            frameLayout.setPadding(-verticalOffset/10,-verticalOffset/10,-verticalOffset/10,-verticalOffset/10);
-            if(showTitle){
+            boolean showTitle = (mCollapsingToolbar.getHeight() + verticalOffset) <= (mToolbar.getHeight() * 2);
+            Log.d(TAG, "verticalOffset: " + verticalOffset);
+            frameLayout.setPadding(-verticalOffset / 10, -verticalOffset / 10, -verticalOffset / 10, -verticalOffset / 10);
+            if (showTitle) {
                 mCollapsingToolbar.setTitle("Twitter");
-            }else {
+            } else {
                 mCollapsingToolbar.setTitle("");
             }
 
         });
     }
+
     FrameLayout frameLayout;
+
     @Override
     public void onBackPressed() {
 
@@ -202,9 +202,9 @@ public class BrowserActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.createData:
-                startActivity(new Intent(this,CreateDataActivity.class));
+                startActivity(new Intent(this, CreateDataActivity.class));
                 break;
             case R.id.sendPhoto:
                 photoCameraIntent();
@@ -226,7 +226,7 @@ public class BrowserActivity extends AppCompatActivity {
     /**
      * Obter local do usuario
      */
-    private void locationPlacesIntent(){
+    private void locationPlacesIntent() {
         try {
             PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
             startActivityForResult(builder.build(this), PLACE_PICKER_REQUEST);
@@ -240,9 +240,10 @@ public class BrowserActivity extends AppCompatActivity {
      */
     //File
     private File filePathImageCamera;
-    private void photoCameraIntent(){
+
+    private void photoCameraIntent() {
         String nomeFoto = DateFormat.format("yyyy-MM-dd_hhmmss", new Date()).toString();
-        filePathImageCamera = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), nomeFoto+"camera.jpg");
+        filePathImageCamera = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), nomeFoto + "camera.jpg");
         Intent it = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         it.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(filePathImageCamera));
         startActivityForResult(it, IMAGE_CAMERA_REQUEST);
@@ -251,22 +252,25 @@ public class BrowserActivity extends AppCompatActivity {
     /**
      * Enviar foto pela galeria
      */
-    private void photoGalleryIntent(){
+    private void photoGalleryIntent() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, getString(R.string.select_picture_title)), IMAGE_GALLERY_REQUEST);
     }
+
     //CLass Model
     private UserModel userModel;
     private DatabaseReference mFirebaseDatabaseReference;
     static final String CHAT_REFERENCE = "chatmodel";
-    private void sendMessageFirebase(){
-        ChatModel model = new ChatModel(userModel,"new mess", Calendar.getInstance().getTime().getTime()+"",null);
+
+    private void sendMessageFirebase() {
+        ChatModel model = new ChatModel(userModel, "new mess", Calendar.getInstance().getTime().getTime() + "", null);
         mFirebaseDatabaseReference.child(CHAT_REFERENCE).push().setValue(model);
     }
+
     @OnClick(R.id.fab)
-    void showDailog(){
+    void showDailog() {
         Intent intent = new Intent(this, CreateRecipes.class);
         startActivity(intent);
 //        Toast.makeText(this, "fab", Toast.LENGTH_SHORT).show();
@@ -278,6 +282,7 @@ public class BrowserActivity extends AppCompatActivity {
         super.onStart();
         auth.addAuthStateListener(authListener);
     }
+
     @Override
     public void onStop() {
         super.onStop();
@@ -290,38 +295,39 @@ public class BrowserActivity extends AppCompatActivity {
     private static final int IMAGE_GALLERY_REQUEST = 1;
     private static final int IMAGE_CAMERA_REQUEST = 2;
     private static final int PLACE_PICKER_REQUEST = 3;
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         StorageReference storageRef = storage.getReferenceFromUrl(Util.URL_STORAGE_REFERENCE).child(Util.FOLDER_STORAGE_IMG);
 
-        if (requestCode == IMAGE_GALLERY_REQUEST){
-            if (resultCode == RESULT_OK){
+        if (requestCode == IMAGE_GALLERY_REQUEST) {
+            if (resultCode == RESULT_OK) {
                 Uri selectedImageUri = data.getData();
-                if (selectedImageUri != null){
-                    sendFileFirebase(storageRef,selectedImageUri);
-                }else{
+                if (selectedImageUri != null) {
+                    sendFileFirebase(storageRef, selectedImageUri);
+                } else {
                     //URI IS NULL
                 }
             }
-        }else if (requestCode == IMAGE_CAMERA_REQUEST){
-            if (resultCode == RESULT_OK){
-                if (filePathImageCamera != null && filePathImageCamera.exists()){
-                    StorageReference imageCameraRef = storageRef.child(filePathImageCamera.getName()+"_camera");
-                    sendFileFirebase(imageCameraRef,filePathImageCamera);
-                }else{
+        } else if (requestCode == IMAGE_CAMERA_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                if (filePathImageCamera != null && filePathImageCamera.exists()) {
+                    StorageReference imageCameraRef = storageRef.child(filePathImageCamera.getName() + "_camera");
+                    sendFileFirebase(imageCameraRef, filePathImageCamera);
+                } else {
                     //IS NULL
                 }
             }
-        }else if (requestCode == PLACE_PICKER_REQUEST){
+        } else if (requestCode == PLACE_PICKER_REQUEST) {
             if (resultCode == RESULT_OK) {
                 Place place = PlacePicker.getPlace(this, data);
-                if (place!=null){
+                if (place != null) {
                     LatLng latLng = place.getLatLng();
-                    MapModel mapModel = new MapModel(latLng.latitude+"",latLng.longitude+"");
-                    ChatModel chatModel = new ChatModel(userModel,Calendar.getInstance().getTime().getTime()+"",mapModel);
+                    MapModel mapModel = new MapModel(latLng.latitude + "", latLng.longitude + "");
+                    ChatModel chatModel = new ChatModel(userModel, Calendar.getInstance().getTime().getTime() + "", mapModel);
                     mFirebaseDatabaseReference.child(CHAT_REFERENCE).push().setValue(chatModel);
-                }else{
+                } else {
                     //PLACE IS NULL
                 }
             }
@@ -329,49 +335,50 @@ public class BrowserActivity extends AppCompatActivity {
 
     }
 
-    private void sendFileFirebase(StorageReference storageReference, final Uri file){
-        if (storageReference != null){
+    private void sendFileFirebase(StorageReference storageReference, final Uri file) {
+        if (storageReference != null) {
             final String name = DateFormat.format("yyyy-MM-dd_hhmmss", new Date()).toString();
-            StorageReference imageGalleryRef = storageReference.child(name+"_gallery");
+            StorageReference imageGalleryRef = storageReference.child(name + "_gallery");
             UploadTask uploadTask = imageGalleryRef.putFile(file);
             uploadTask.addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Log.e(TAG,"onFailure sendFileFirebase "+e.getMessage());
+                    Log.e(TAG, "onFailure sendFileFirebase " + e.getMessage());
                 }
             }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Log.i(TAG,"onSuccess sendFileFirebase");
+                    Log.i(TAG, "onSuccess sendFileFirebase");
                     Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                    FileModel fileModel = new FileModel("img",downloadUrl.toString(),name,"");
-                    ChatModel chatModel = new ChatModel(userModel,"",Calendar.getInstance().getTime().getTime()+"",fileModel);
+                    FileModel fileModel = new FileModel("img", downloadUrl.toString(), name, "");
+                    ChatModel chatModel = new ChatModel(userModel, "", Calendar.getInstance().getTime().getTime() + "", fileModel);
                     mFirebaseDatabaseReference.child(CHAT_REFERENCE).push().setValue(chatModel);
                 }
             });
-        }else{
+        } else {
             //IS NULL
         }
     }
-    private void sendFileFirebase(StorageReference storageReference, final File file){
-        if (storageReference != null){
+
+    private void sendFileFirebase(StorageReference storageReference, final File file) {
+        if (storageReference != null) {
             UploadTask uploadTask = storageReference.putFile(Uri.fromFile(file));
             uploadTask.addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Log.e(TAG,"onFailure sendFileFirebase "+e.getMessage());
+                    Log.e(TAG, "onFailure sendFileFirebase " + e.getMessage());
                 }
             }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Log.i(TAG,"onSuccess sendFileFirebase");
+                    Log.i(TAG, "onSuccess sendFileFirebase");
                     Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                    FileModel fileModel = new FileModel("img",downloadUrl.toString(),file.getName(),file.length()+"");
-                    ChatModel chatModel = new ChatModel(userModel,"",Calendar.getInstance().getTime().getTime()+"",fileModel);
+                    FileModel fileModel = new FileModel("img", downloadUrl.toString(), file.getName(), file.length() + "");
+                    ChatModel chatModel = new ChatModel(userModel, "", Calendar.getInstance().getTime().getTime() + "", fileModel);
                     mFirebaseDatabaseReference.child(CHAT_REFERENCE).push().setValue(chatModel);
                 }
             });
-        }else{
+        } else {
             //IS NULL
         }
 

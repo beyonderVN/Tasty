@@ -36,12 +36,7 @@
                 android:gravity="top"
                 android:orientation="vertical"
                 app:layout_collapseMode="parallax"
-<<<<<<< HEAD
-                android:fitsSystemWindows="true"
-                app:layout_collapseParallaxMultiplier="0.0">
-=======
                 app:layout_collapseParallaxMultiplier="0.6">
->>>>>>> abf4532ec71a52088b68a057161f3a4df0ca5b06
 
                 <RelativeLayout
                     android:layout_width="match_parent"
