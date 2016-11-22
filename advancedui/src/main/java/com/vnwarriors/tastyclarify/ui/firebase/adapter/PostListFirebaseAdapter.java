@@ -14,10 +14,10 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.squareup.picasso.Picasso;
 import com.vnwarriors.advancedui.appcore.common.DynamicHeightImageView;
+import com.vnwarriors.advancedui.appcore.common.recyclerviewhelper.PlaceHolderDrawableHelper;
 import com.vnwarriors.tastyclarify.R;
 import com.vnwarriors.tastyclarify.model.PostModel;
 import com.vnwarriors.tastyclarify.ui.activity.ItemActivity;
-import com.vnwarriors.tastyclarify.ui.adapter.viewmodel.SimpleHorizontalVM;
 
 
 /**
@@ -38,19 +38,7 @@ public class PostListFirebaseAdapter extends FirebaseRecyclerAdapter<PostModel,P
     @Override
     public PostViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
-//        if (viewType == RIGHT_MSG){
-//            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_message_right,parent,false);
-//            return new PostViewHolder(view);
-//        }else if (viewType == LEFT_MSG){
-//            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_message_left,parent,false);
-//            return new PostViewHolder(view);
-//        }else if (viewType == POST){
-//            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_message_right_img,parent,false);
-//            return new PostViewHolder(view);
-//        }else{
-//            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_message_left_img,parent,false);
-//            return new PostViewHolder(view);
-//        }
+
         if (viewType == POST) {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_post, parent, false);
             return new PostViewHolder(view);
@@ -71,6 +59,7 @@ public class PostListFirebaseAdapter extends FirebaseRecyclerAdapter<PostModel,P
         viewHolder.ivTipImage.setRatio(model.getTipImageRatio());
         Picasso.with(viewHolder.itemView.getContext())
                 .load(model.getTipImage().getUrl())
+                .placeholder(PlaceHolderDrawableHelper.getBackgroundDrawable(position))
                 .resize(200, (int) (200*model.getTipImageRatio()))
                 .into(viewHolder.ivTipImage);
         ImageView imageView;
@@ -91,9 +80,18 @@ public class PostListFirebaseAdapter extends FirebaseRecyclerAdapter<PostModel,P
 
         }
         viewHolder.tvTime.setText(String.valueOf(sum)+" min.");
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(viewHolder.itemView.getContext(), ItemActivity.class);
+                intent.putExtra("POST", model);
+                viewHolder.itemView.getContext().startActivity(intent);
+            }
+        });
     }
 
-    public class PostViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class PostViewHolder extends RecyclerView.ViewHolder {
         TextView tvName;
         DynamicHeightImageView ivTipImage;
         TextView tvTime;
@@ -102,14 +100,6 @@ public class PostListFirebaseAdapter extends FirebaseRecyclerAdapter<PostModel,P
             tvName = (TextView) itemView.findViewById(R.id.tvName);
             ivTipImage = (DynamicHeightImageView) itemView.findViewById(R.id.ivTipImage);
             tvTime = (TextView) itemView.findViewById(R.id.tvTime);
-            itemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
-            Intent intent = new Intent(itemView.getContext(), ItemActivity.class);
-            intent.putExtra("SimpleHorizontalVM", new SimpleHorizontalVM("Detail",R.color.aqua));
-            itemView.getContext().startActivity(intent);
         }
 
     }

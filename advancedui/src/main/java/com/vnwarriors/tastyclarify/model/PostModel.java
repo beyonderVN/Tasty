@@ -8,7 +8,9 @@ package com.vnwarriors.tastyclarify.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class PostModel {
+import java.io.Serializable;
+
+public class PostModel implements Serializable{
 
     @SerializedName("updatedAt")
     @Expose
