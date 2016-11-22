@@ -439,7 +439,8 @@
                 android:layout_marginTop="8dp"
                 android:orientation="vertical">
 
-                <include layout="@layout/gredient_add"/>
+                <include layout="@layout/gredient_add" />
+                <include layout="@layout/gredient_cancel"/>
             </LinearLayout>
 
         </RelativeLayout>
@@ -450,7 +451,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#ffffff"
-            android:padding="8dp">
+            android:padding="8dp"
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/ivPreparation"
