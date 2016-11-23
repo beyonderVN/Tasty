@@ -319,10 +319,13 @@
 
                 <android.support.v7.widget.AppCompatRatingBar
                     style="@style/foodRatingBar"
+                    android:id="@+id/rbDifficult"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:numStars="3" />
+                    android:numStars="3"
+                    android:stepSize="1"
+                    android:isIndicator="true"/>
 
                 <TextView
                     android:id="@+id/tvDifficultLevel"

@@ -7,16 +7,16 @@ show a unfilled cookie. -->
 
     <item android:state_pressed="true"
         android:state_window_focused="true"
-        android:drawable="@drawable/ingredient_cover" />
+        android:drawable="@drawable/ingredient_rating" />
 
     <item android:state_focused="true"
         android:state_window_focused="true"
-        android:drawable="@drawable/ingredient_cover" />
+        android:drawable="@drawable/ingredient_rating" />
 
     <item android:state_selected="true"
         android:state_window_focused="true"
-        android:drawable="@drawable/ingredient_cover" />
+        android:drawable="@drawable/ingredient_rating" />
 
-    <item android:drawable="@drawable/ingredient_cover" />
+    <item android:drawable="@drawable/ingredient_rating" />
 
 </selector>
