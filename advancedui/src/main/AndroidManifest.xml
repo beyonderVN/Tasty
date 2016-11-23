@@ -47,8 +47,10 @@
         </activity-alias>
 
         <activity android:name=".ui.activity.CreateDataActivity" />
-        <activity android:name=".ui.activity.CreateRecipes"
-            android:theme="@style/ThemeApp"></activity>
+        <activity
+            android:name=".ui.activity.CreateRecipes"
+            android:theme="@style/ThemeApp"
+            android:windowSoftInputMode="stateHidden"></activity>
     </application>
 
 </manifest>

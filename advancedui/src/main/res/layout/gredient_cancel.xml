@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="4dp"
-    android:padding="8dp">
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp">
 
     <TextView
-        android:padding="4dp"
-        android:textSize="16sp"
-        android:id="@+id/etGredient"
+        android:id="@+id/tvIngredient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_marginRight="4dp"
         android:layout_toLeftOf="@+id/ivAddGredient"
         android:hint="Add gredient"
-        />
+        android:padding="4dp"
+        android:textSize="16sp" />
 
     <ImageView
-        android:id="@+id/ivAddGredient"
+        android:id="@+id/ivCancelIngredient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/etGredient"
