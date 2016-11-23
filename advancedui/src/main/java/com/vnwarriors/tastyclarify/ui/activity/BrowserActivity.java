@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -18,6 +20,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -67,10 +70,12 @@ public class BrowserActivity extends AppCompatActivity {
     CollapsingToolbarLayout mCollapsingToolbar;
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawer;
-
+    @BindView(R.id.nav_view)
+    NavigationView mNavigationView;
     @BindView(R.id.view_pager)
     ScrollerViewPager viewPager;
 
+    private ActionBarDrawerToggle actionBarDrawerToggle;
     private FirebaseAuth auth;
     FirebaseAuth.AuthStateListener authListener;
 
@@ -159,23 +164,74 @@ public class BrowserActivity extends AppCompatActivity {
     private void setupToolbar(DrawerLayout drawer) {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        toggle = new ActionBarDrawerToggle(
-                this, drawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-        frameLayout = (FrameLayout) findViewById(R.id.flCover);
+//        toggle = new ActionBarDrawerToggle(
+//                this, drawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+//        drawer.addDrawerListener(toggle);
+//        toggle.syncState();
+//        frameLayout = (FrameLayout) findViewById(R.id.flCover);
+//
+        mAppBar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                boolean showTitle = (mCollapsingToolbar.getHeight() + verticalOffset) <= (mToolbar.getHeight() * 2);
+                Log.d(TAG, "verticalOffset: " + verticalOffset);
+//                frameLayout.setPadding(-verticalOffset / 10, -verticalOffset / 10, -verticalOffset / 10, -verticalOffset / 10);
+                if (showTitle) {
+                    mCollapsingToolbar.setTitle("Twitter");
+                } else {
+                    mCollapsingToolbar.setTitle("");
+                }
 
-        mAppBar.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
-            boolean showTitle = (mCollapsingToolbar.getHeight() + verticalOffset) <= (mToolbar.getHeight() * 2);
-            Log.d(TAG, "verticalOffset: " + verticalOffset);
-            frameLayout.setPadding(-verticalOffset / 10, -verticalOffset / 10, -verticalOffset / 10, -verticalOffset / 10);
-            if (showTitle) {
-                mCollapsingToolbar.setTitle("Twitter");
-            } else {
-                mCollapsingToolbar.setTitle("");
             }
-
         });
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                selectDrawerItem(item);
+                return true;
+            }
+        });
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawer, mToolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawer.addDrawerListener(actionBarDrawerToggle);
+    }
+
+    private void selectDrawerItem(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.your_profile:
+                break;
+            case R.id.home_home:
+                break;
+            case R.id.cookBook:
+                break;
+            case R.id.appetizer:
+                break;
+            case R.id.dessert:
+                break;
+            case R.id.first_course:
+                break;
+            case R.id.main_course:
+                break;
+            case R.id.side_dish:
+                break;
+            case R.id.vegetarian:
+                break;
+            case R.id.cheap:
+                break;
+            case R.id.pizza:
+                break;
+            default:
+                break;
+        }
+
+        Toast.makeText(this, "bla bla", Toast.LENGTH_SHORT).show();
+        mDrawer.closeDrawers();
+    }
+
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        actionBarDrawerToggle.syncState();
     }
 
     FrameLayout frameLayout;
@@ -217,6 +273,10 @@ public class BrowserActivity extends AppCompatActivity {
                 break;
             case R.id.sign_out:
                 auth.signOut();
+            case android.R.id.home:
+                mDrawer.openDrawer(GravityCompat.START);
+                break;
+            default:
                 break;
         }
 

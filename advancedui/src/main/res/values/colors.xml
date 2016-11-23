@@ -10,7 +10,7 @@
     <color name="scrim">#86323232</color>
     <color name="black">#000000</color>
 
-
+<color name="itemBackgroundToolBar">#729c9a9a</color>
     <color name="aqua">#6BBAA7</color>
     <color name="sunshine">#FBA100</color>
     <color name="lavender">#6C648B</color>

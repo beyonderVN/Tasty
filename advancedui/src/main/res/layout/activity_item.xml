@@ -12,7 +12,6 @@
     tools:context=".ui.activity.ItemActivity">
 
 
-
     <ImageView
         android:id="@+id/ivCover"
         android:layout_width="match_parent"
@@ -20,14 +19,8 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:src="@drawable/cover_image"
-        android:transitionName="@string/detail_image"/>
+        android:transitionName="@string/detail_image" />
 
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolBar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:fitsSystemWindows="true" />
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -36,14 +29,13 @@
 
         android:paddingLeft="0dp"
         android:paddingRight="0dp"
-        android:paddingTop="300dp"
-        >
+        android:paddingTop="300dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="#dddddd">
+            android:background="#dddddd"
+            android:orientation="vertical">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -168,6 +160,7 @@
                     </LinearLayout>
 
                 </LinearLayout>
+
                 <android.support.design.widget.FloatingActionButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -182,19 +175,20 @@
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardUseCompatPadding="true"
-                app:cardBackgroundColor="@color/white">
+                app:cardBackgroundColor="@color/white"
+                app:cardUseCompatPadding="true">
+
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/ic_ingredients"
                     android:layout_margin="16dp"
-                    />
+                    android:src="@drawable/ic_ingredients" />
+
                 <TextView
-                    android:layout_marginTop="56dp"
                     android:id="@+id/tvIngredients"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="56dp"
                     android:background="@color/white"
                     android:lineSpacingExtra="16sp"
                     android:padding="16dp" />
@@ -203,19 +197,20 @@
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardUseCompatPadding="true"
-                app:cardBackgroundColor="@color/white">
+                app:cardBackgroundColor="@color/white"
+                app:cardUseCompatPadding="true">
+
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/ic_preparation"
                     android:layout_margin="16dp"
-                    />
+                    android:src="@drawable/ic_preparation" />
+
                 <TextView
-                    android:layout_marginTop="56dp"
                     android:id="@+id/tvPreparation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="56dp"
                     android:background="@color/white"
                     android:lineSpacingExtra="16sp"
                     android:padding="16dp" />
@@ -224,4 +219,12 @@
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/action_bar"
+        android:fitsSystemWindows="true"
+        app:title="item detail" />
 </com.vnwarriors.advancedui.appcore.common.ElasticDragDismissFrameLayout>

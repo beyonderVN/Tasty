@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/your_profile"
+            android:title="Your Profile" />
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/home_home"
+            android:title="Home" />
+        <item
+            android:id="@+id/cookBook"
+            android:title="CookBook" />
+    </group>
+
+    <item android:title="Other">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/appetizer"
+                    android:title="Appetizer" />
+                <item
+                    android:id="@+id/dessert"
+                    android:title="Dessert" />
+                <item
+                    android:id="@+id/first_course"
+                    android:title="First Course" />
+                <item
+                    android:id="@+id/main_course"
+                    android:title="Main course" />
+                <item
+                    android:id="@+id/side_dish"
+                    android:title="Side Dish" />
+                <item
+                    android:id="@+id/vegetarian"
+                    android:title="Vegetarian" />
+                <item
+                    android:id="@+id/cheap"
+                    android:title="Cheap" />
+                <item
+                    android:id="@+id/pizza"
+                    android:title="Pizza" />
+
+            </group>
+        </menu>
+    </item>
+</menu>

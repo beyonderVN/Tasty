@@ -66,7 +66,7 @@ public class PostListFirebaseAdapter extends FirebaseRecyclerAdapter<PostModel,P
         Picasso.with(viewHolder.itemView.getContext())
                 .load(model.getTipImage().getUrl())
                 .placeholder(PlaceHolderDrawableHelper.getBackgroundDrawable(position))
-                .resize(200, (int) (200*model.getTipImageRatio()))
+                .resize(400, (int) (400*model.getTipImageRatio()))
                 .into(viewHolder.ivTipImage);
         ImageView imageView;
         imageView = (ImageView) viewHolder.itemView.findViewById(R.id.imageView2);

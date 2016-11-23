@@ -20,13 +20,14 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         android:background="@color/white"
+        app:itemTextColor="@color/black"
         android:nestedScrollingEnabled="true"
-         >
-        <fragment
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            class="com.vnwarriors.tastyclarify.ui.resume.ResumeFragment"
-            />
+        app:menu="@menu/menu_navigation" >
+        <!--<fragment-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--class="com.vnwarriors.tastyclarify.ui.resume.ResumeFragment"-->
+            <!--/>-->
     </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>
