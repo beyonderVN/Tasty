@@ -3,18 +3,24 @@ package com.vnwarriors.tastyclarify.ui.fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.vnwarriors.tastyclarify.R;
 import com.vnwarriors.tastyclarify.ui.firebase.adapter.ClickListenerChatFirebase;
 import com.vnwarriors.tastyclarify.ui.firebase.adapter.PostListFirebaseAdapter;
+import com.vnwarriors.tastyclarify.utils.ColorUtils;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -79,6 +85,10 @@ public class AllPostFragment extends Fragment implements ClickListenerChatFireba
         super.onViewCreated(view, savedInstanceState);
         bindViews(view);
         verificaUsuarioLogado();
+        bindViews2(view);
+
+
+
     }
 
     StaggeredGridLayoutManager staggeredGridLayoutManagerVertical;
@@ -91,6 +101,17 @@ public class AllPostFragment extends Fragment implements ClickListenerChatFireba
         staggeredGridLayoutManagerVertical.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
         rvListPost.setLayoutManager(staggeredGridLayoutManagerVertical);
     }
+    private void bindViews2(View v){
+        RecyclerView rvListCatalogue;
+        rvListCatalogue = (RecyclerView)v.findViewById(R.id.rvCatalogueList);
+        LinearLayoutManager linearLayoutManager;
+        linearLayoutManager =
+                new LinearLayoutManager(v.getContext(),LinearLayoutManager.HORIZONTAL,false);
+        rvListCatalogue.setLayoutManager(linearLayoutManager);
+
+        String[] mDataset= v.getContext().getResources().getStringArray(R.array.catalogues);
+        rvListCatalogue.setAdapter(new CatalogueAdapter(mDataset));
+    }
     private void verificaUsuarioLogado(){
             lerMessagensFirebase();
     }
@@ -101,15 +122,6 @@ public class AllPostFragment extends Fragment implements ClickListenerChatFireba
             @Override
             public void onItemRangeInserted(int positionStart, int itemCount) {
                 super.onItemRangeInserted(positionStart, itemCount);
-//                int friendlyMessageCount = firebaseAdapter.getItemCount();
-//                int ints[] = new int[2];
-//                ints = staggeredGridLayoutManagerVertical.findLastCompletelyVisibleItemPositions(ints);
-//                int lastVisiblePosition = ints[0];
-//                if (lastVisiblePosition == -1 ||
-//                        (positionStart >= (friendlyMessageCount - 1) &&
-//                                lastVisiblePosition == (positionStart - 1))) {
-//                    rvListPost.scrollToPosition(positionStart);
-//                }
             }
         });
         rvListPost.setLayoutManager(staggeredGridLayoutManagerVertical);
@@ -124,6 +136,46 @@ public class AllPostFragment extends Fragment implements ClickListenerChatFireba
 
     @Override
     public void clickImageMapChat(View view, int position, String latitude, String longitude) {
+
+    }
+
+    public static class CatalogueAdapter extends RecyclerView.Adapter<CatalogueAdapter.ViewHolder>{
+        private String[] mDataset;
+        public CatalogueAdapter() {
+        }
+        public CatalogueAdapter(String[] myDataset) {
+            mDataset = myDataset;
+        }
+        @Override
+        public CatalogueAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View v = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.layout_catalogue_item_horizontal, parent, false);
+            ViewHolder vh = new ViewHolder(v);
+            return vh;
+        }
+
+        @Override
+        public void onBindViewHolder(CatalogueAdapter.ViewHolder holder, int position) {
+            holder.cvWrap.setCardBackgroundColor(ColorUtils.getColorByCatalogue(position));
+            holder.tvCatalogue.setText(mDataset[position]);
+        }
+
+        @Override
+        public int getItemCount() {
+            return mDataset.length;
+        }
+
+        public static class ViewHolder extends RecyclerView.ViewHolder{
+            @BindView(R.id.cvWrap)
+            CardView cvWrap;
+            @BindView(R.id.tvCatalogue)
+            TextView tvCatalogue;
+            public ViewHolder(View itemView) {
+                super(itemView);
+                ButterKnife.bind(this, itemView);
+            }
+        }
+
 
     }
 }

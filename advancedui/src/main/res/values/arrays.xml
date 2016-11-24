@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="catalogues">
+        <item>Appetizer</item>
+        <item>Dessert</item>
+        <item>First Course</item>
+        <item>Main Course</item>
+        <item>Side Dish</item>
+        <item>Vegetarian</item>
+        <item>Cheap</item>
+        <item>Pizza</item>
+    </string-array>
+    
+    <array name="catalogue_colors">
+        <item>#5e7680</item>
+        <item>#f09919</item>
+        <item>#8dcbec</item>
+        <item>#d7593e</item>
+        <item>#f0bc31</item>
+        <item>#4f9757</item>
+        <item>#8d3d99</item>
+        <item>#3e519d</item>
+    </array>
+</resources>

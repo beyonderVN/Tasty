@@ -19,7 +19,6 @@ import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -100,15 +99,6 @@ public class BrowserActivity extends AppCompatActivity {
         setupDrawable();
 
 
-//        TextView textView = (TextView) findViewById(R.id.tvEmail);
-//        TextView tvName = (TextView) findViewById(R.id.tvName);
-//        Button btn = (Button) findViewById(R.id.button);
-//        btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(BrowserActivity.this,ProfileActivity.class));
-//            }
-//        });
         if (auth.getCurrentUser() != null) {
             userModel = new UserModel(auth.getCurrentUser().getDisplayName(), "", auth.getCurrentUser().getUid());
             mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
@@ -118,16 +108,13 @@ public class BrowserActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user == null) {
-                    // user auth state is changed - user is null
-                    // launch login activity
                     startActivity(new Intent(BrowserActivity.this, LoginActivity.class));
                     finish();
                 }
             }
         };
 
-        ////
-        ////
+
         PagerModelManager manager = new PagerModelManager();
         manager.addCommonFragment(GuideFragment.class, getBgRes(), getTitles());
         ModelPagerAdapter adapter = new ModelPagerAdapter(getSupportFragmentManager(), manager);
@@ -159,23 +146,17 @@ public class BrowserActivity extends AppCompatActivity {
         setupToolbar(mDrawer);
     }
 
-    ActionBarDrawerToggle toggle;
 
     private void setupToolbar(DrawerLayout drawer) {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-//        toggle = new ActionBarDrawerToggle(
-//                this, drawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-//        drawer.addDrawerListener(toggle);
-//        toggle.syncState();
-//        frameLayout = (FrameLayout) findViewById(R.id.flCover);
-//
+
         mAppBar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
                 boolean showTitle = (mCollapsingToolbar.getHeight() + verticalOffset) <= (mToolbar.getHeight() * 2);
                 Log.d(TAG, "verticalOffset: " + verticalOffset);
-//                frameLayout.setPadding(-verticalOffset / 10, -verticalOffset / 10, -verticalOffset / 10, -verticalOffset / 10);
+
                 if (showTitle) {
                     mCollapsingToolbar.setTitle("Twitter");
                 } else {
@@ -234,7 +215,6 @@ public class BrowserActivity extends AppCompatActivity {
         actionBarDrawerToggle.syncState();
     }
 
-    FrameLayout frameLayout;
 
     @Override
     public void onBackPressed() {
