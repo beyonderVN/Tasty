@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="0dp"
-    android:transitionGroup="false"
+    android:transitionGroup="true"
     app:dragDismissDistance="168dp"
     app:dragDismissScale="0.95"
     tools:context=".ui.activity.ItemActivity">
@@ -177,7 +177,9 @@
                 android:layout_height="wrap_content"
                 app:cardBackgroundColor="@color/white"
                 app:cardUseCompatPadding="true"
-                app:contentPadding="8dp">
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -189,23 +191,25 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_marginRight="16dp"
-                        android:src="@drawable/ic_preparation" />
+                        android:src="@drawable/ic_ingredients" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="INGREDIENT"
-                        android:layout_toRightOf="@+id/ivIngredientSpan"
+                        android:layout_alignBottom="@+id/ivIngredientSpan"
                         android:layout_alignTop="@+id/ivIngredientSpan"
+                        android:layout_toRightOf="@+id/ivIngredientSpan"
                         android:gravity="center"
-                        android:textSize="24sp"
-                        android:layout_alignBottom="@+id/ivIngredientSpan"/>
+                        android:text="INGREDIENT"
+                        android:textColor="#e1431c"
+                        android:textSize="24sp" />
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/rvIngredientList"
                         android:layout_width="wrap_content"
-                        android:layout_height="200dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_below="@+id/ivIngredientSpan"/>
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ivIngredientSpan"
+                        android:layout_marginTop="16dp" />
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
 
@@ -213,7 +217,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardBackgroundColor="@color/white"
-                app:cardUseCompatPadding="true">
+                app:cardUseCompatPadding="true"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -226,22 +233,24 @@
                         android:layout_height="40dp"
                         android:layout_marginRight="16dp"
                         android:src="@drawable/ic_preparation" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="INGREDIENT"
-                        android:layout_toRightOf="@+id/ivPreparationSpan"
+                        android:layout_alignBottom="@+id/ivPreparationSpan"
                         android:layout_alignTop="@+id/ivPreparationSpan"
+                        android:layout_toRightOf="@+id/ivPreparationSpan"
                         android:gravity="center"
-                        android:textSize="24sp"
-                        android:layout_alignBottom="@+id/ivPreparationSpan"/>
+                        android:text="PREPARE"
+                        android:textColor="#e1431c"
+                        android:textSize="24sp" />
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/rvPreparationList"
                         android:layout_width="wrap_content"
-                        android:layout_height="150dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_below="@+id/ivPreparationSpan"/>
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ivPreparationSpan"
+                        android:layout_marginTop="16dp" />
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
 

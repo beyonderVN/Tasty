@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/tvIngredient"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/cbStatus"
+        android:layout_marginRight="8dp"
+        android:layout_toLeftOf="@+id/cbStatus"
+        android:paddingLeft="8dp"
+        android:paddingTop="4dp"
+        android:textSize="16sp"
+        tools:text="ckajdsjaskdajsjdkajsdkajwaaaaaaaaaaaaaaaaaaasdkjaskdajskdjaksd" />
+
+    <android.support.v7.widget.AppCompatCheckBox
+        android:id="@+id/cbStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        app:buttonTint="#e1431c" />
+
+    <View
+        android:id="@+id/vDevider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/tvIngredient"
+        android:layout_marginTop="16dp"
+        android:background="#3ba6a0a0"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp" />
+</RelativeLayout>
