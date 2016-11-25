@@ -200,6 +200,8 @@ public class BrowserActivity extends AppCompatActivity {
                 break;
             case R.id.pizza:
                 break;
+            case R.id.sign_out:
+                break;
             default:
                 break;
         }
@@ -240,7 +242,7 @@ public class BrowserActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.createData:
 //                startActivity(new Intent(this, CreateDataActivity.class));
-                CloneDataUtils.getRateList("recipes.json",this);
+                CloneDataUtils.getRateList("recipes.json", this);
                 break;
             case R.id.sendPhoto:
                 photoCameraIntent();
