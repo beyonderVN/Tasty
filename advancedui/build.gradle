@@ -71,16 +71,16 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     // Google
-    compile 'com.google.android.gms:play-services-auth:9.8.0'
+    compile 'com.google.android.gms:play-services-auth:9.4.0'
     //DATABASE FIREBASE,UI
-    compile 'com.google.firebase:firebase-auth:9.8.0'
-    compile 'com.google.firebase:firebase-database:9.8.0'
+    compile 'com.google.firebase:firebase-auth:9.4.0'
+    compile 'com.google.firebase:firebase-database:9.4.0'
     compile 'com.firebaseui:firebase-ui-database:0.4.1'
     //STORAGE FIREBASE
-    compile 'com.google.firebase:firebase-storage:9.8.0'
+    compile 'com.google.firebase:firebase-storage:9.4.0'
     //Places SERVICES
 
-    compile 'com.google.android.gms:play-services-places:9.8.0'
+    compile 'com.google.android.gms:play-services-places:9.4.0'
     apt 'com.jakewharton:butterknife-compiler:8.1.0'
     apt 'com.google.dagger:dagger-compiler:2.5'
 }

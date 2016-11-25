@@ -21,6 +21,7 @@ import com.vnwarriors.advancedui.appcore.common.recyclerviewhelper.PlaceHolderDr
 import com.vnwarriors.tastyclarify.R;
 import com.vnwarriors.tastyclarify.model.PostModel;
 import com.vnwarriors.tastyclarify.ui.activity.ItemActivity;
+import com.vnwarriors.tastyclarify.utils.ColorUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -52,8 +53,6 @@ public class PostListFirebaseAdapter extends FirebaseRecyclerAdapter<PostModel,P
         return null;
     }
 
-
-
     @Override
     public int getItemViewType(int position) {
         return POST;
@@ -70,7 +69,7 @@ public class PostListFirebaseAdapter extends FirebaseRecyclerAdapter<PostModel,P
                 .into(viewHolder.ivTipImage);
         ImageView imageView;
         imageView = (ImageView) viewHolder.itemView.findViewById(R.id.imageView2);
-        int color = Color.parseColor("#AE6118");
+        int color = ColorUtils.getColorByCatalogue(Integer.valueOf((model.getTipCategories().substring(0,1))));
         imageView.setColorFilter(color);
         ImageView imageView2;
         imageView2 = (ImageView) viewHolder.itemView.findViewById(R.id.icChef1);
@@ -108,8 +107,6 @@ public class PostListFirebaseAdapter extends FirebaseRecyclerAdapter<PostModel,P
             public void onClick(View v) {
                 Intent intent = new Intent(viewHolder.itemView.getContext(), ItemActivity.class);
                 intent.putExtra("POST", model);
-
-
                 ActivityOptions ops = ActivityOptions.makeSceneTransitionAnimation((Activity) viewHolder.itemView.getContext(),
                         Pair.create(viewHolder.ivTipImage, viewHolder.itemView.getContext().getString(R.string.detail_image))
                 );
