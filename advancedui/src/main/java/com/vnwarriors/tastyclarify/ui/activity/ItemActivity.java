@@ -24,10 +24,10 @@ public class ItemActivity extends AppCompatActivity {
 
     @BindView(R.id.ivCover)
     ImageView ivCover;
-    @BindView(R.id.tvIngredients)
-    TextView tvIngredients;
-    @BindView(R.id.tvPreparation)
-    TextView tvPreparation;
+//    @BindView(R.id.tvIngredients)
+//    TextView tvIngredients;
+//    @BindView(R.id.tvPreparation)
+//    TextView tvPreparation;
     List<BaseVM> sectionList = new ArrayList<>();
     BaseAdapter baseAdapter;
 
@@ -72,8 +72,8 @@ public class ItemActivity extends AppCompatActivity {
                 .placeholder(PlaceHolderDrawableHelper.getBackgroundDrawable())
                 .resize(400, (int) (400 * post.getTipImageRatio()))
                 .into(ivCover);
-        tvIngredients.setText(post.getTipIngredients().replace("#i","- "));
-        tvPreparation.setText(post.getTipDescription().replace("#p","- "));
+//        tvIngredients.setText(post.getTipIngredients().replace("#i","- "));
+//        tvPreparation.setText(post.getTipDescription().replace("#p","- "));
 
         tvName.setText(post.getTipName());
         tvPersons.setText(post.getTipPersons()+" People");
