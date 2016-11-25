@@ -73,6 +73,14 @@ public class PostModel implements Serializable{
     @Expose
     private Integer tipPersons;
 
+
+    public PostModel() {
+    }
+
+    public PostModel(String tipName) {
+        this.tipName = tipName;
+    }
+
     /**
      * @return The updatedAt
      */

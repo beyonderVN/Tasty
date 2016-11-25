@@ -14,9 +14,9 @@ import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.vnwarriors.tastyclarify.R;
-import com.vnwarriors.tastyclarify.ui.firebase.adapter.ClickListenerChatFirebase;
-import com.vnwarriors.tastyclarify.ui.firebase.adapter.PostListFirebaseAdapter;
+import com.vnwarriors.tastyclarify.ui.firebase.adapter.PostListAdapter;
 import com.vnwarriors.tastyclarify.utils.ColorUtils;
 
 import butterknife.BindView;
@@ -27,7 +27,8 @@ import butterknife.ButterKnife;
  * Use the {@link AllPostFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AllPostFragment extends Fragment implements ClickListenerChatFirebase {
+public class AllPostFragment extends Fragment implements CatalogueAdapterItemClick {
+    private static final String TAG = "AllPostFragment";
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -110,41 +111,49 @@ public class AllPostFragment extends Fragment implements ClickListenerChatFireba
         rvListCatalogue.setLayoutManager(linearLayoutManager);
 
         String[] mDataset= v.getContext().getResources().getStringArray(R.array.catalogues);
-        rvListCatalogue.setAdapter(new CatalogueAdapter(mDataset));
+        rvListCatalogue.setAdapter(new CatalogueAdapter(mDataset,this));
     }
     private void verificaUsuarioLogado(){
             lerMessagensFirebase();
     }
     private void lerMessagensFirebase(){
+
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
-        final PostListFirebaseAdapter firebaseAdapter = new PostListFirebaseAdapter(mFirebaseDatabaseReference.child(POST_REFERENCE),this);
-        firebaseAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
-            @Override
-            public void onItemRangeInserted(int positionStart, int itemCount) {
-                super.onItemRangeInserted(positionStart, itemCount);
-            }
-        });
+//        final PostListFirebaseAdapter firebaseAdapter
+//                = new PostListFirebaseAdapter(
+//                mFirebaseDatabaseReference.child(POST_REFERENCE)
+//                ,
+//                this);
+//        firebaseAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+//            @Override
+//            public void onItemRangeInserted(int positionStart, int itemCount) {
+//                super.onItemRangeInserted(positionStart, itemCount);
+//            }
+//        });
+
         rvListPost.setLayoutManager(staggeredGridLayoutManagerVertical);
-        rvListPost.setAdapter(firebaseAdapter);
+        Query query = mFirebaseDatabaseReference.child(POST_REFERENCE);
+        postListAdapter = new PostListAdapter(query);
+        rvListPost.setAdapter(postListAdapter);
+
     }
+    PostListAdapter postListAdapter;
 
 
     @Override
-    public void clickImageChat(View view, int position, String nameUser, String urlPhotoUser, String urlPhotoClick) {
-
-    }
-
-    @Override
-    public void clickImageMapChat(View view, int position, String latitude, String longitude) {
-
+    public void onClick(int position) {
+        Query query = mFirebaseDatabaseReference.child(POST_REFERENCE).orderByChild("tipCategories").equalTo(String.valueOf(position));
+        postListAdapter.setQuery(query);
     }
 
     public static class CatalogueAdapter extends RecyclerView.Adapter<CatalogueAdapter.ViewHolder>{
         private String[] mDataset;
+        CatalogueAdapterItemClick catalogueAdapterItemClick;
         public CatalogueAdapter() {
         }
-        public CatalogueAdapter(String[] myDataset) {
+        public CatalogueAdapter(String[] myDataset,CatalogueAdapterItemClick catalogueAdapterItemClick) {
             mDataset = myDataset;
+            this.catalogueAdapterItemClick = catalogueAdapterItemClick;
         }
         @Override
         public CatalogueAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -158,6 +167,12 @@ public class AllPostFragment extends Fragment implements ClickListenerChatFireba
         public void onBindViewHolder(CatalogueAdapter.ViewHolder holder, int position) {
             holder.cvWrap.setCardBackgroundColor(ColorUtils.getColorByCatalogue(position));
             holder.tvCatalogue.setText(mDataset[position]);
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    catalogueAdapterItemClick.onClick(position);
+                }
+            });
         }
 
         @Override
@@ -175,6 +190,7 @@ public class AllPostFragment extends Fragment implements ClickListenerChatFireba
                 ButterKnife.bind(this, itemView);
             }
         }
+
 
 
     }
