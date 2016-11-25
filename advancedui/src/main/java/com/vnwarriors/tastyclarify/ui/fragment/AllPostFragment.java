@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -88,10 +89,44 @@ public class AllPostFragment extends Fragment implements CatalogueAdapterItemCli
         verificaUsuarioLogado();
         bindViews2(view);
 
-
+        View.OnTouchListener onTouchListener = new View.OnTouchListener() {
+            float yD=0, yU=0;
+            boolean onMove = false;
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.getAction() == MotionEvent.ACTION_MOVE && onMove==false) {
+                    yD = motionEvent.getY();
+                    onMove = true;
+                }
+                if (motionEvent.getAction() == MotionEvent.ACTION_UP && onMove==true) {
+                    onMove = false;
+                }
+                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN ) {
+                    yD = motionEvent.getY();
+                }
+                yU = motionEvent.getY();
+                if (yU - yD > 5) {
+                    showCatalogue();
+                }
+                if (yU - yD < -10) {
+                    hideCatalogue();
+                }
+                return false;
+            }
+        };
+        rvListPost.setOnTouchListener(onTouchListener);
 
     }
-
+    private void hideCatalogue() {
+        if(rvListCatalogue.getVisibility()!= View.GONE){
+            rvListCatalogue.setVisibility(View.GONE);
+        }
+    }
+    private void showCatalogue() {
+        if(rvListCatalogue.getVisibility()!= View.VISIBLE){
+            rvListCatalogue.setVisibility(View.VISIBLE);
+        }
+    }
     StaggeredGridLayoutManager staggeredGridLayoutManagerVertical;
     private void bindViews(View v){
         rvListPost = (RecyclerView)v.findViewById(R.id.rvPostList);
@@ -102,8 +137,9 @@ public class AllPostFragment extends Fragment implements CatalogueAdapterItemCli
         staggeredGridLayoutManagerVertical.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
         rvListPost.setLayoutManager(staggeredGridLayoutManagerVertical);
     }
+    RecyclerView rvListCatalogue;
     private void bindViews2(View v){
-        RecyclerView rvListCatalogue;
+
         rvListCatalogue = (RecyclerView)v.findViewById(R.id.rvCatalogueList);
         LinearLayoutManager linearLayoutManager;
         linearLayoutManager =

@@ -225,10 +225,17 @@ public class ItemActivity extends AppCompatActivity {
         rvIngredientList.setLayoutManager(mLayoutManagerVerticalIngredient);
         rvIngredientList.setAdapter(ingredientAdapter);
 
+
         mLayoutManagerVerticalPrepare = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         prepareAdapter = new PrepareAdapter(prepareList);
         rvPreparationList.setLayoutManager(mLayoutManagerVerticalPrepare);
+
         rvPreparationList.setAdapter(prepareAdapter);
+
+
+//      fix bug layout auto scroll up
+        rvIngredientList.setFocusable(false);
+        rvIngredientList.setFocusable(false);
     }
 
 

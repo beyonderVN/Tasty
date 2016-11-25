@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     android:background="@color/card_default_background"
     tools:context="com.vnwarriors.tastyclarify.ui.fragment.AllPostFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:animateLayoutChanges="true">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -15,7 +16,8 @@
         android:scrollbars="none"
         android:paddingTop="50dp"
         android:paddingBottom="50dp"
-        android:clipToPadding="false"/>
+        android:clipToPadding="false"
+        />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvCatalogueList"
         android:layout_width="match_parent"
