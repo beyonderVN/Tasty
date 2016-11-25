@@ -15,6 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.vnwarriors.tastyclarify.R;
 
 import java.util.HashMap;
@@ -24,11 +26,10 @@ import java.util.Random;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class CreateRecipes extends AppCompatActivity {
+public class CreateRecipesActivity extends AppCompatActivity {
     @BindView(R.id.cbTerm)
     AppCompatCheckBox cbTerm;
-    //    @BindView(R.id.rbServe)
-//    RangeBar rbServe;
+
     @BindView(R.id.tvServe)
     TextView tvServe;
     @BindView(R.id.sbServe)
@@ -65,7 +66,7 @@ public class CreateRecipes extends AppCompatActivity {
 
         initView();
     }
-
+    private DatabaseReference mFirebaseDatabaseReference;
     private void initView() {
 //        init serve
         tvServe.setText(String.valueOf(3));
@@ -86,6 +87,17 @@ public class CreateRecipes extends AppCompatActivity {
 
 //        init gender
         onGenderClick();
+        mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
+        findViewById(R.id.btnSendRecipe).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                for (PostModel postModel: CloneDataUtils.getRateList("recipes.json",CreateRecipesActivity.this)
+//                     ) {
+//                    mFirebaseDatabaseReference.child("posts").push().setValue(postModel);
+//                }
+
+            }
+        });
     }
 
     private void onSeekBarChange() {

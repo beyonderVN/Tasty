@@ -46,6 +46,7 @@ import com.vnwarriors.tastyclarify.ui.firebase.model.MapModel;
 import com.vnwarriors.tastyclarify.ui.firebase.model.UserModel;
 import com.vnwarriors.tastyclarify.ui.firebase.util.Util;
 import com.vnwarriors.tastyclarify.ui.fragment.GuideFragment;
+import com.vnwarriors.tastyclarify.utils.CloneDataUtils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -238,7 +239,8 @@ public class BrowserActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.createData:
-                startActivity(new Intent(this, CreateDataActivity.class));
+//                startActivity(new Intent(this, CreateDataActivity.class));
+                CloneDataUtils.getRateList("recipes.json",this);
                 break;
             case R.id.sendPhoto:
                 photoCameraIntent();
@@ -309,7 +311,7 @@ public class BrowserActivity extends AppCompatActivity {
 
     @OnClick(R.id.fab)
     void showDailog() {
-        Intent intent = new Intent(this, CreateRecipes.class);
+        Intent intent = new Intent(this, CreateRecipesActivity.class);
         startActivity(intent);
 //        Toast.makeText(this, "fab", Toast.LENGTH_SHORT).show();
 //        sendMessageFirebase();

@@ -20,12 +20,14 @@
 
             <ImageView
                 android:id="@+id/ivRecipeName"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:layout_marginTop="4dp"
-                android:src="@drawable/ic_chef" />
+                android:src="@drawable/ic_chef"
+                />
 
             <TextView
+                android:layout_marginTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/ivRecipeName"
@@ -33,7 +35,8 @@
                 android:layout_toRightOf="@+id/ivRecipeName"
                 android:text="RECIPE NAME"
                 android:textColor="#af4034"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                />
 
             <EditText
                 android:id="@+id/idRecipeName"
@@ -57,12 +60,13 @@
 
             <ImageView
                 android:id="@+id/ivPictue"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:layout_marginTop="4dp"
                 android:src="@drawable/ic_chef" />
 
             <TextView
+                android:layout_marginTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/ivPictue"
@@ -92,11 +96,12 @@
 
             <ImageView
                 android:id="@+id/ivCategories"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:src="@drawable/ic_chef" />
 
             <TextView
+                android:layout_marginTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/ivCategories"
@@ -211,11 +216,12 @@
 
             <ImageView
                 android:id="@+id/ivServe"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:src="@drawable/ic_chef" />
 
             <TextView
+                android:layout_marginTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/ivServe"
@@ -287,11 +293,12 @@
 
             <ImageView
                 android:id="@+id/ivDifficulty"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:src="@drawable/ic_chef" />
 
             <TextView
+                android:layout_marginTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/ivDifficulty"
@@ -356,11 +363,12 @@
 
             <ImageView
                 android:id="@+id/ivTime"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:src="@drawable/ic_chef" />
 
             <TextView
+                android:layout_marginTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/ivTime"
@@ -439,11 +447,12 @@
 
             <ImageView
                 android:id="@+id/ivIngredient"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:src="@drawable/ic_chef" />
 
             <TextView
+                android:layout_marginTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/ivIngredient"
@@ -477,11 +486,12 @@
 
             <ImageView
                 android:id="@+id/ivPreparation"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:src="@drawable/ic_chef" />
 
             <TextView
+                android:layout_marginTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/ivPreparation"
@@ -520,11 +530,12 @@
 
             <ImageView
                 android:id="@+id/ivTip"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:src="@drawable/ic_chef" />
 
             <TextView
+                android:layout_marginTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/ivTip"

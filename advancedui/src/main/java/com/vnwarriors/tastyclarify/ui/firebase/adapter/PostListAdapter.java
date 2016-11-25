@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
-import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,7 +53,6 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.PostVi
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 PostModel model = dataSnapshot.getValue(PostModel.class);
                 postModels.add(model);
-                Log.d("postModels.size()", "postModels.size(): "+postModels.size());
                 notifyDataSetChanged();
             }
 
