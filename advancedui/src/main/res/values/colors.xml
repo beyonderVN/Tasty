@@ -4,6 +4,9 @@
     <color name="colorPrimary">#F44336</color>
     <color name="colorPrimaryDark">#D32F2F</color>
 
+    <color name="colorTextNavigation">#cc5b5858</color>
+    <color name="colorTextPrimaryNavigation">#000000</color>
+    <color name="colorDividerNavigation">#DEBF8B8B</color>
     <color name="gray">#cacaca</color>
     <color name="white">#ffffff</color>
 

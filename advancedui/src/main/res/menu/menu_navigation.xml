@@ -3,14 +3,17 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/your_profile"
+            android:icon="@drawable/ic_chef"
             android:title="Your Profile" />
     </group>
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/home_home"
+            android:icon="@drawable/ic_chef"
             android:title="Home" />
         <item
             android:id="@+id/cookBook"
+            android:icon="@drawable/ic_chef"
             android:title="CookBook" />
     </group>
 
@@ -19,30 +22,45 @@
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/appetizer"
+                    android:icon="@drawable/ic_chef"
                     android:title="Appetizer" />
                 <item
                     android:id="@+id/dessert"
+                    android:icon="@drawable/ic_chef"
                     android:title="Dessert" />
                 <item
                     android:id="@+id/first_course"
+                    android:icon="@drawable/ic_chef"
                     android:title="First Course" />
                 <item
                     android:id="@+id/main_course"
+                    android:icon="@drawable/ic_chef"
                     android:title="Main course" />
                 <item
                     android:id="@+id/side_dish"
+                    android:icon="@drawable/ic_chef"
                     android:title="Side Dish" />
                 <item
                     android:id="@+id/vegetarian"
+                    android:icon="@drawable/ic_chef"
                     android:title="Vegetarian" />
                 <item
                     android:id="@+id/cheap"
+                    android:icon="@drawable/ic_chef"
                     android:title="Cheap" />
                 <item
                     android:id="@+id/pizza"
+                    android:icon="@drawable/ic_chef"
                     android:title="Pizza" />
 
             </group>
         </menu>
     </item>
+    <group android:checkableBehavior="single"
+        >
+        <item
+            android:id="@+id/sign_out"
+            android:icon="@drawable/ic_chef"
+            android:title="Sign out" />
+    </group>
 </menu>
