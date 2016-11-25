@@ -127,6 +127,7 @@ public class BrowserActivity extends AppCompatActivity {
         // just set viewPager
         springIndicator.setViewPager(viewPager);
 
+
     }
 
     private List<String> getTitles() {
