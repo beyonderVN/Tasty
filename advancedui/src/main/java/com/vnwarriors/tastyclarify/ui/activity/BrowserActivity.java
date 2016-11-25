@@ -155,8 +155,6 @@ public class BrowserActivity extends AppCompatActivity {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
                 boolean showTitle = (mCollapsingToolbar.getHeight() + verticalOffset) <= (mToolbar.getHeight() * 2);
-                Log.d(TAG, "verticalOffset: " + verticalOffset);
-
                 if (showTitle) {
                     mCollapsingToolbar.setTitle("Twitter");
                 } else {
