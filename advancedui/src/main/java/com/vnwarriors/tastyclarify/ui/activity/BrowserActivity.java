@@ -182,7 +182,6 @@ public class BrowserActivity extends AppCompatActivity {
         Menu menu = mNavigationView.getMenu();
 
         MenuItem appetizeMenu = menu.findItem(R.id.appetizer);
-        appetizeMenu.set
     }
 
     private String convertEmailToName(String email) {
