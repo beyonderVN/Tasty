@@ -1,6 +1,7 @@
 package com.vnwarriors.tastyclarify.ui.activity;
 
 import android.os.Bundle;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -53,6 +54,9 @@ public class ItemActivity extends AppCompatActivity {
     RecyclerView rvIngredientList;
     @BindView(R.id.rvPreparationList)
     RecyclerView rvPreparationList;
+
+    @BindView(R.id.nsScrollView)
+    NestedScrollView nsScrollView;
 
     private PostModel mPost;
 

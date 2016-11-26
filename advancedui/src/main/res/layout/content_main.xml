@@ -7,16 +7,24 @@
     android:id="@+id/content_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    android:background="@color/white"
 
     tools:showIn="@layout/app_bar_main">
 
     <fragment
-        android:name="com.vnwarriors.tastyclarify.ui.fragment.AllPostFragment"
         android:id="@+id/frmAllPost"
+        android:name="com.vnwarriors.tastyclarify.ui.fragment.AllPostFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" >
+        <ProgressBar
+            android:id="@+id/pbLoading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"/>
+    </fragment>
+
+
 </LinearLayout>
 

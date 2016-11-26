@@ -19,6 +19,10 @@ import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -74,6 +78,14 @@ public class BrowserActivity extends AppCompatActivity {
     NavigationView mNavigationView;
     @BindView(R.id.view_pager)
     ScrollerViewPager viewPager;
+    @BindView(R.id.pbLoading)
+    ProgressBar pbLoading;
+
+    ImageView ivAvatar;
+    TextView tvNavigationHeader;
+    TextView tvName;
+    TextView tvEmail;
+    TextView tvDes;
 
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private FirebaseAuth auth;
@@ -146,6 +158,35 @@ public class BrowserActivity extends AppCompatActivity {
 
     private void setupDrawable() {
         setupToolbar(mDrawer);
+        setupNavigationMenu();
+    }
+
+    private void setupNavigationMenu() {
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        View headerLayout = mNavigationView.getHeaderView(0);
+        ivAvatar = (ImageView) headerLayout.findViewById(R.id.ivAvatar);
+        tvNavigationHeader = (TextView) headerLayout.findViewById(R.id.tvNavigationHeader);
+        tvName = (TextView) headerLayout.findViewById(R.id.tvName);
+        tvName.setText(convertEmailToName(user.getEmail()));
+        tvEmail = (TextView) headerLayout.findViewById(R.id.tvEmail);
+        tvEmail.setText(user.getEmail());
+        tvDes = (TextView) headerLayout.findViewById(R.id.tvDes);
+        tvDes.setText("Today is good for cooking");
+
+        configureMenuColor();
+    }
+
+    private void configureMenuColor() {
+        Menu menu = mNavigationView.getMenu();
+
+        MenuItem appetizeMenu = menu.findItem(R.id.appetizer);
+    }
+
+    private String convertEmailToName(String email) {
+        int pos = email.indexOf("@gmail");
+        return email.substring(0, pos);
     }
 
 
@@ -175,6 +216,7 @@ public class BrowserActivity extends AppCompatActivity {
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawer, mToolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawer.addDrawerListener(actionBarDrawerToggle);
+
     }
 
     private void selectDrawerItem(MenuItem item) {
@@ -200,6 +242,8 @@ public class BrowserActivity extends AppCompatActivity {
             case R.id.cheap:
                 break;
             case R.id.pizza:
+                break;
+            case R.id.sign_out:
                 break;
             default:
                 break;
@@ -241,7 +285,7 @@ public class BrowserActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.createData:
 //                startActivity(new Intent(this, CreateDataActivity.class));
-                CloneDataUtils.getRateList("recipes.json",this);
+                CloneDataUtils.getRateList("recipes.json", this);
                 break;
             case R.id.sendPhoto:
                 photoCameraIntent();
