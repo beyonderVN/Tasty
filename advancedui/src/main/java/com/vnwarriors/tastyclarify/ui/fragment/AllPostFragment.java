@@ -7,8 +7,8 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -42,6 +42,7 @@ public class AllPostFragment extends Fragment implements CatalogueAdapterItemCli
     private DatabaseReference mFirebaseDatabaseReference;
     static final String POST_REFERENCE = "posts";
     private RecyclerView rvListPost;
+
     public AllPostFragment() {
         // Required empty public constructor
     }
@@ -88,48 +89,44 @@ public class AllPostFragment extends Fragment implements CatalogueAdapterItemCli
         bindViews(view);
         verificaUsuarioLogado();
         bindViews2(view);
-
-        View.OnTouchListener onTouchListener = new View.OnTouchListener() {
-            float yD=0, yU=0;
-            boolean onMove = false;
+        rvListPost.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (motionEvent.getAction() == MotionEvent.ACTION_MOVE && onMove==false) {
-                    yD = motionEvent.getY();
-                    onMove = true;
-                }
-                if (motionEvent.getAction() == MotionEvent.ACTION_UP && onMove==true) {
-                    onMove = false;
-                }
-                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN ) {
-                    yD = motionEvent.getY();
-                }
-                yU = motionEvent.getY();
-                if (yU - yD > 5) {
-                    showCatalogue();
-                }
-                if (yU - yD < -10) {
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                Log.d(TAG, "onScrolled: " + dy);
+                if (dy > 5) {
                     hideCatalogue();
                 }
-                return false;
+                if (dy < -10) {
+                    showCatalogue();
+                }
             }
-        };
-        rvListPost.setOnTouchListener(onTouchListener);
+        });
 
     }
+
     private void hideCatalogue() {
-        if(rvListCatalogue.getVisibility()!= View.GONE){
-            rvListCatalogue.setVisibility(View.GONE);
+        if (rvListCatalogue.getVisibility() != View.INVISIBLE) {
+            rvListCatalogue.setVisibility(View.INVISIBLE);
         }
     }
+
     private void showCatalogue() {
-        if(rvListCatalogue.getVisibility()!= View.VISIBLE){
+        if (rvListCatalogue.getVisibility() != View.VISIBLE) {
             rvListCatalogue.setVisibility(View.VISIBLE);
         }
     }
+
     StaggeredGridLayoutManager staggeredGridLayoutManagerVertical;
-    private void bindViews(View v){
-        rvListPost = (RecyclerView)v.findViewById(R.id.rvPostList);
+
+    private void bindViews(View v) {
+        rvListPost = (RecyclerView) v.findViewById(R.id.rvPostList);
         staggeredGridLayoutManagerVertical =
                 new StaggeredGridLayoutManager(
                         2, //The number of Columns in the grid
@@ -137,22 +134,26 @@ public class AllPostFragment extends Fragment implements CatalogueAdapterItemCli
         staggeredGridLayoutManagerVertical.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
         rvListPost.setLayoutManager(staggeredGridLayoutManagerVertical);
     }
-    RecyclerView rvListCatalogue;
-    private void bindViews2(View v){
 
-        rvListCatalogue = (RecyclerView)v.findViewById(R.id.rvCatalogueList);
+    RecyclerView rvListCatalogue;
+
+    private void bindViews2(View v) {
+
+        rvListCatalogue = (RecyclerView) v.findViewById(R.id.rvCatalogueList);
         LinearLayoutManager linearLayoutManager;
         linearLayoutManager =
-                new LinearLayoutManager(v.getContext(),LinearLayoutManager.HORIZONTAL,false);
+                new LinearLayoutManager(v.getContext(), LinearLayoutManager.HORIZONTAL, false);
         rvListCatalogue.setLayoutManager(linearLayoutManager);
 
-        String[] mDataset= v.getContext().getResources().getStringArray(R.array.catalogues);
-        rvListCatalogue.setAdapter(new CatalogueAdapter(mDataset,this));
+        String[] mDataset = v.getContext().getResources().getStringArray(R.array.catalogues);
+        rvListCatalogue.setAdapter(new CatalogueAdapter(mDataset, this));
     }
-    private void verificaUsuarioLogado(){
-            lerMessagensFirebase();
+
+    private void verificaUsuarioLogado() {
+        lerMessagensFirebase();
     }
-    private void lerMessagensFirebase(){
+
+    private void lerMessagensFirebase() {
 
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
 //        final PostListFirebaseAdapter firebaseAdapter
@@ -173,24 +174,33 @@ public class AllPostFragment extends Fragment implements CatalogueAdapterItemCli
         rvListPost.setAdapter(postListAdapter);
 
     }
+
     PostListAdapter postListAdapter;
 
 
     @Override
     public void onClick(int position) {
-        Query query = mFirebaseDatabaseReference.child(POST_REFERENCE).orderByChild("tipCategories").equalTo(String.valueOf(position));
-        postListAdapter.setQuery(query);
+        if (position==0) {
+            Query query = mFirebaseDatabaseReference.child(POST_REFERENCE);
+            postListAdapter.setQuery(query);
+        } else {
+            Query query = mFirebaseDatabaseReference.child(POST_REFERENCE).orderByChild("tipCategories").equalTo(String.valueOf(position - 1));
+            postListAdapter.setQuery(query);
+        }
     }
 
-    public static class CatalogueAdapter extends RecyclerView.Adapter<CatalogueAdapter.ViewHolder>{
+    public static class CatalogueAdapter extends RecyclerView.Adapter<CatalogueAdapter.ViewHolder> {
         private String[] mDataset;
         CatalogueAdapterItemClick catalogueAdapterItemClick;
+
         public CatalogueAdapter() {
         }
-        public CatalogueAdapter(String[] myDataset,CatalogueAdapterItemClick catalogueAdapterItemClick) {
+
+        public CatalogueAdapter(String[] myDataset, CatalogueAdapterItemClick catalogueAdapterItemClick) {
             mDataset = myDataset;
             this.catalogueAdapterItemClick = catalogueAdapterItemClick;
         }
+
         @Override
         public CatalogueAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View v = LayoutInflater.from(parent.getContext())
@@ -216,17 +226,17 @@ public class AllPostFragment extends Fragment implements CatalogueAdapterItemCli
             return mDataset.length;
         }
 
-        public static class ViewHolder extends RecyclerView.ViewHolder{
+        public static class ViewHolder extends RecyclerView.ViewHolder {
             @BindView(R.id.cvWrap)
             CardView cvWrap;
             @BindView(R.id.tvCatalogue)
             TextView tvCatalogue;
+
             public ViewHolder(View itemView) {
                 super(itemView);
                 ButterKnife.bind(this, itemView);
             }
         }
-
 
 
     }
