@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
@@ -75,17 +74,12 @@ public class AllPostFragment extends Fragment implements CatalogueAdapterItemCli
         }
     }
 
-    @BindView(R.id.pbLoading)
-    ProgressBar pbLoading;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_all_post, container, false);
-        ButterKnife.bind(this, view);
-//        pbLoading = ButterKnife.findById(view, R.id.pbLoading);
-//        pbLoading = (ProgressBar) view.findViewById(R.id.pbLoading);
+
         return view;
     }
 
@@ -102,30 +96,12 @@ public class AllPostFragment extends Fragment implements CatalogueAdapterItemCli
 
             }
 
-<<<<<<< HEAD
-        View.OnTouchListener onTouchListener = new View.OnTouchListener() {
-            float yD = 0, yU = 0;
-            boolean onMove = false;
-
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (motionEvent.getAction() == MotionEvent.ACTION_MOVE && onMove == false) {
-                    yD = motionEvent.getY();
-                    onMove = true;
-                }
-                if (motionEvent.getAction() == MotionEvent.ACTION_UP && onMove == true) {
-                    onMove = false;
-                }
-                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                    yD = motionEvent.getY();
-=======
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 Log.d(TAG, "onScrolled: " + dy);
                 if (dy > 5) {
                     hideCatalogue();
->>>>>>> 26a3a6c64f2a23d94939986d4cea64153437142d
                 }
                 if (dy < -10) {
                     showCatalogue();
@@ -136,13 +112,8 @@ public class AllPostFragment extends Fragment implements CatalogueAdapterItemCli
     }
 
     private void hideCatalogue() {
-<<<<<<< HEAD
-        if (rvListCatalogue.getVisibility() != View.GONE) {
-            rvListCatalogue.setVisibility(View.GONE);
-=======
         if (rvListCatalogue.getVisibility() != View.INVISIBLE) {
             rvListCatalogue.setVisibility(View.INVISIBLE);
->>>>>>> 26a3a6c64f2a23d94939986d4cea64153437142d
         }
     }
 
@@ -181,14 +152,9 @@ public class AllPostFragment extends Fragment implements CatalogueAdapterItemCli
     private void verificaUsuarioLogado() {
         lerMessagensFirebase();
     }
-<<<<<<< HEAD
-=======
 
     private void lerMessagensFirebase() {
->>>>>>> 26a3a6c64f2a23d94939986d4cea64153437142d
 
-    private void lerMessagensFirebase() {
-        pbLoading.setVisibility(View.VISIBLE);
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
 //        final PostListFirebaseAdapter firebaseAdapter
 //                = new PostListFirebaseAdapter(
@@ -206,7 +172,7 @@ public class AllPostFragment extends Fragment implements CatalogueAdapterItemCli
         Query query = mFirebaseDatabaseReference.child(POST_REFERENCE);
         postListAdapter = new PostListAdapter(query);
         rvListPost.setAdapter(postListAdapter);
-        pbLoading.setVisibility(View.GONE);
+
     }
 
     PostListAdapter postListAdapter;
@@ -271,10 +237,7 @@ public class AllPostFragment extends Fragment implements CatalogueAdapterItemCli
                 ButterKnife.bind(this, itemView);
             }
         }
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 26a3a6c64f2a23d94939986d4cea64153437142d
     }
 }
