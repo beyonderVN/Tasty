@@ -11,7 +11,7 @@ public class ColorUtils {
     static int[] catalogueColors = MainApplication.mContext.getResources().getIntArray(R.array.catalogue_colors);
     static String[] catalogues = MainApplication.mContext.getResources().getStringArray(R.array.catalogues);
 
-    public static int getColorByCatalogue(int position) {
+    synchronized  public static int getColorByCatalogue(int position) {
         return catalogueColors[position];
     }
 
