@@ -20,10 +20,10 @@ import com.google.firebase.database.Query;
 import com.squareup.picasso.Picasso;
 import com.vnwarriors.advancedui.appcore.common.DynamicHeightImageView;
 import com.vnwarriors.advancedui.appcore.common.recyclerviewhelper.PlaceHolderDrawableHelper;
+import com.vnwarriors.tastyclarify.MainApplication;
 import com.vnwarriors.tastyclarify.R;
 import com.vnwarriors.tastyclarify.model.PostModel;
 import com.vnwarriors.tastyclarify.ui.activity.ItemActivity;
-import com.vnwarriors.tastyclarify.utils.ColorUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -113,7 +113,11 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.PostVi
                 .into(viewHolder.ivTipImage);
         ImageView imageView;
         imageView = (ImageView) viewHolder.itemView.findViewById(R.id.imageView2);
-        int color = ColorUtils.getColorByCatalogue(Integer.valueOf((model.getTipCategories().substring(0, 1)))+1);
+
+        int[] catalogueColors = MainApplication.mContext.getResources().getIntArray(R.array.catalogue_colors);
+        String[] catalogues = MainApplication.mContext.getResources().getStringArray(R.array.catalogues);
+        int color = catalogueColors[Integer.valueOf((model.getTipCategories().substring(0, 1)))+1];
+//        int color = ColorUtils.getColorByCatalogue(Integer.valueOf((model.getTipCategories().substring(0, 1)))+1);
         imageView.setColorFilter(color);
         ImageView imageView2;
         imageView2 = (ImageView) viewHolder.itemView.findViewById(R.id.icChef1);
