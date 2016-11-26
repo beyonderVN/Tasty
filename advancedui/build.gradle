@@ -16,7 +16,8 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
-
+// Enabling multidex support.
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
@@ -46,9 +47,6 @@ dependencies {
     compile "com.android.support:customtabs:$rootProject.ext.supportLibraryVersion"
     compile files('libs/YouTubeAndroidPlayerApi.jar')
     compile project(path: ':libs')
-
-
-
     compile 'com.jakewharton:butterknife:8.1.0'
     compile 'com.google.code.gson:gson:2.7'
     compile 'io.reactivex:rxjava:1.0.14'
@@ -64,12 +62,9 @@ dependencies {
     compile 'jp.wasabeef:picasso-transformations:2.1.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
     compile 'com.android.support:support-v4:24.2.1'
-
     compile 'com.appyvet:materialrangebar:1.3'
-
     compile 'org.jsoup:jsoup:1.8.3'
     testCompile 'junit:junit:4.12'
-
     // Google
     compile 'com.google.android.gms:play-services-auth:9.4.0'
     //DATABASE FIREBASE,UI
@@ -79,10 +74,10 @@ dependencies {
     //STORAGE FIREBASE
     compile 'com.google.firebase:firebase-storage:9.4.0'
     //Places SERVICES
-
     compile 'com.google.android.gms:play-services-places:9.4.0'
     apt 'com.jakewharton:butterknife-compiler:8.1.0'
     apt 'com.google.dagger:dagger-compiler:2.5'
+    compile 'com.facebook.android:facebook-android-sdk:4.17.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

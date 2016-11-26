@@ -25,6 +25,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.share.Sharer;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareDialog;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
@@ -91,10 +97,31 @@ public class BrowserActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     FirebaseAuth.AuthStateListener authListener;
 
+    CallbackManager callbackManager;
+    ShareDialog shareDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        callbackManager = CallbackManager.Factory.create();
+        shareDialog = new ShareDialog(this);
+        // this part is optional
+        shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
+            @Override
+            public void onSuccess(Sharer.Result result) {
 
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+
+            }
+        });
 
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
@@ -222,6 +249,7 @@ public class BrowserActivity extends AppCompatActivity {
     private void selectDrawerItem(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.your_profile:
+                sharePostToFacebook();
                 break;
             case R.id.home_home:
                 break;
@@ -251,6 +279,19 @@ public class BrowserActivity extends AppCompatActivity {
 
         Toast.makeText(this, "bla bla", Toast.LENGTH_SHORT).show();
         mDrawer.closeDrawers();
+    }
+
+    private void sharePostToFacebook() {
+        String image = "https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAccAAAAJGY2MDk4NjI3LWMyZmMtNGFlZC05NzBlLTQ4MWNlZWVjZjMwMw.png";
+        ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                .setContentUrl(Uri.parse("https://developers.facebook.com"))
+                .setImageUrl(Uri.parse(image))
+                .setContentTitle("Flavor")
+                .setContentDescription("Best cook ever")
+                .build();
+        if (ShareDialog.canShow(ShareLinkContent.class)) {
+            shareDialog.show(linkContent);
+        }
     }
 
     @Override
@@ -307,6 +348,7 @@ public class BrowserActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 
     /**
      * Obter local do usuario
@@ -417,7 +459,7 @@ public class BrowserActivity extends AppCompatActivity {
                 }
             }
         }
-
+        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
     private void sendFileFirebase(StorageReference storageReference, final Uri file) {

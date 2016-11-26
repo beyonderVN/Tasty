@@ -51,6 +51,14 @@
             android:name=".ui.activity.CreateRecipesActivity"
             android:theme="@style/ThemeApp"
             android:windowSoftInputMode="stateHidden"></activity>
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider1809612309277769"
+            android:exported="true" />
     </application>
 
 </manifest>

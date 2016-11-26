@@ -3,6 +3,8 @@ package com.vnwarriors.tastyclarify;
 import android.app.Application;
 import android.content.Context;
 
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 import com.vnwarriors.tastyclarify.di.DaggerMainComponent;
 import com.vnwarriors.tastyclarify.di.MainComponent;
 
@@ -26,6 +28,10 @@ public class MainApplication extends Application {
         Realm.init(this);
         mContext = getApplicationContext();
         setupGraph();
+        // Initialize the SDK before executing any other operations,
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        AppEventsLogger.activateApp(this);
+
     }
 
     void setupGraph(){
