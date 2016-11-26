@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="catalogues">
+        <item>All</item>
         <item>Appetizer</item>
         <item>Dessert</item>
         <item>First Course</item>
@@ -12,6 +13,7 @@
     </string-array>
     
     <array name="catalogue_colors">
+        <item>@color/gray</item>
         <item>#5e7680</item>
         <item>#f09919</item>
         <item>#8dcbec</item>

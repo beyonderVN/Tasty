@@ -3,9 +3,9 @@ package com.vnwarriors.tastyclarify.ui.firebase.adapter;
 import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
+import android.util.DisplayMetrics;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -102,14 +102,18 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.PostVi
         PostModel model = postModels.get(position);
         viewHolder.tvName.setText(model.getTipName());
         viewHolder.ivTipImage.setRatio(model.getTipImageRatio());
+
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        ((Activity)viewHolder.itemView.getContext()).getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        int width = displaymetrics.widthPixels;
         Picasso.with(viewHolder.itemView.getContext())
                 .load(model.getTipImage().getUrl())
                 .placeholder(PlaceHolderDrawableHelper.getBackgroundDrawable(position))
-                .resize(400, (int) (400 * model.getTipImageRatio()))
+                .resize(width, (int) (width * model.getTipImageRatio()))
                 .into(viewHolder.ivTipImage);
         ImageView imageView;
         imageView = (ImageView) viewHolder.itemView.findViewById(R.id.imageView2);
-        int color = ColorUtils.getColorByCatalogue(Integer.valueOf((model.getTipCategories().substring(0, 1))));
+        int color = ColorUtils.getColorByCatalogue(Integer.valueOf((model.getTipCategories().substring(0, 1)))+1);
         imageView.setColorFilter(color);
         ImageView imageView2;
         imageView2 = (ImageView) viewHolder.itemView.findViewById(R.id.icChef1);
@@ -180,11 +184,6 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.PostVi
         public PostViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-
-            int color = Color.parseColor("#A1CACACA");
-            icChef1.setColorFilter(color);
-            icChef2.setColorFilter(color);
-            icChef3.setColorFilter(color);
         }
 
     }

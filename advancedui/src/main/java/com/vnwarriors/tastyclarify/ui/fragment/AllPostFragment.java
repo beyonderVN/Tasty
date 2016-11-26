@@ -7,8 +7,8 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
@@ -95,7 +95,14 @@ public class AllPostFragment extends Fragment implements CatalogueAdapterItemCli
         bindViews(view);
         verificaUsuarioLogado();
         bindViews2(view);
+        rvListPost.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
 
+            }
+
+<<<<<<< HEAD
         View.OnTouchListener onTouchListener = new View.OnTouchListener() {
             float yD = 0, yU = 0;
             boolean onMove = false;
@@ -111,24 +118,31 @@ public class AllPostFragment extends Fragment implements CatalogueAdapterItemCli
                 }
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                     yD = motionEvent.getY();
+=======
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                Log.d(TAG, "onScrolled: " + dy);
+                if (dy > 5) {
+                    hideCatalogue();
+>>>>>>> 26a3a6c64f2a23d94939986d4cea64153437142d
                 }
-                yU = motionEvent.getY();
-                if (yU - yD > 5) {
+                if (dy < -10) {
                     showCatalogue();
                 }
-                if (yU - yD < -10) {
-                    hideCatalogue();
-                }
-                return false;
             }
-        };
-        rvListPost.setOnTouchListener(onTouchListener);
+        });
 
     }
 
     private void hideCatalogue() {
+<<<<<<< HEAD
         if (rvListCatalogue.getVisibility() != View.GONE) {
             rvListCatalogue.setVisibility(View.GONE);
+=======
+        if (rvListCatalogue.getVisibility() != View.INVISIBLE) {
+            rvListCatalogue.setVisibility(View.INVISIBLE);
+>>>>>>> 26a3a6c64f2a23d94939986d4cea64153437142d
         }
     }
 
@@ -167,6 +181,11 @@ public class AllPostFragment extends Fragment implements CatalogueAdapterItemCli
     private void verificaUsuarioLogado() {
         lerMessagensFirebase();
     }
+<<<<<<< HEAD
+=======
+
+    private void lerMessagensFirebase() {
+>>>>>>> 26a3a6c64f2a23d94939986d4cea64153437142d
 
     private void lerMessagensFirebase() {
         pbLoading.setVisibility(View.VISIBLE);
@@ -195,8 +214,13 @@ public class AllPostFragment extends Fragment implements CatalogueAdapterItemCli
 
     @Override
     public void onClick(int position) {
-        Query query = mFirebaseDatabaseReference.child(POST_REFERENCE).orderByChild("tipCategories").equalTo(String.valueOf(position));
-        postListAdapter.setQuery(query);
+        if (position==0) {
+            Query query = mFirebaseDatabaseReference.child(POST_REFERENCE);
+            postListAdapter.setQuery(query);
+        } else {
+            Query query = mFirebaseDatabaseReference.child(POST_REFERENCE).orderByChild("tipCategories").equalTo(String.valueOf(position - 1));
+            postListAdapter.setQuery(query);
+        }
     }
 
     public static class CatalogueAdapter extends RecyclerView.Adapter<CatalogueAdapter.ViewHolder> {
@@ -247,5 +271,10 @@ public class AllPostFragment extends Fragment implements CatalogueAdapterItemCli
                 ButterKnife.bind(this, itemView);
             }
         }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 26a3a6c64f2a23d94939986d4cea64153437142d
     }
 }

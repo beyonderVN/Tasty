@@ -5,6 +5,7 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -91,11 +92,13 @@ public class ItemActivity extends AppCompatActivity {
 
     private void setupUI() {
         mPost = (PostModel) getIntent().getSerializableExtra("POST");
-
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        this.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        int width = displaymetrics.widthPixels;
         Picasso.with(this)
                 .load(mPost.getTipImage().getUrl())
                 .placeholder(PlaceHolderDrawableHelper.getBackgroundDrawable())
-                .resize(400, (int) (400 * mPost.getTipImageRatio()))
+                .resize(width, (int) (width * mPost.getTipImageRatio()))
                 .into(ivCover);
 //        tvIngredients.setText(post.getTipIngredients().replace("#i","- "));
 //        tvPreparation.setText(post.getTipDescription().replace("#p","- "));
@@ -128,7 +131,6 @@ public class ItemActivity extends AppCompatActivity {
         tvCookTime.setText(ints[2] + " min.");
         createData();
         setupAdapter();
-//        setupRecyclerView();
     }
 
     private void createData() {
