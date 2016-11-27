@@ -201,14 +201,8 @@ public class BrowserActivity extends AppCompatActivity {
         tvDes = (TextView) headerLayout.findViewById(R.id.tvDes);
         tvDes.setText("Today is good for cooking");
 
-        configureMenuColor();
     }
 
-    private void configureMenuColor() {
-        Menu menu = mNavigationView.getMenu();
-
-        MenuItem appetizeMenu = menu.findItem(R.id.appetizer);
-    }
 
     private String convertEmailToName(String email) {
         int pos = email.indexOf("@gmail");
