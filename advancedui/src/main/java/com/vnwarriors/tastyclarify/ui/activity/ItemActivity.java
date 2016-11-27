@@ -137,7 +137,7 @@ public class ItemActivity extends AppCompatActivity {
         Picasso.with(this)
                 .load(mPost.getTipImage().getUrl())
                 .placeholder(PlaceHolderDrawableHelper.getBackgroundDrawable())
-                .resize(width, (int) (width * mPost.getTipImageRatio()))
+                .resize(400, (int) (400 * mPost.getTipImageRatio()))
                 .into(ivCover);
 //        tvIngredients.setText(post.getTipIngredients().replace("#i","- "));
 //        tvPreparation.setText(post.getTipDescription().replace("#p","- "));
