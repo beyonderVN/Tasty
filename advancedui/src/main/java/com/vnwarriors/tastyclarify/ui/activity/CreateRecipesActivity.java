@@ -193,7 +193,7 @@ public class CreateRecipesActivity extends AppCompatActivity {
                             if (databaseError != null) {
                                 Log.d(TAG, "DatabaseReference.CompletionListener: "+databaseError.getMessage());
                             }
-
+                            Toast.makeText(CreateRecipesActivity.this, "Your recipe has been shared!\nThanks for your contribution", Toast.LENGTH_LONG).show();
                         }
                     };
                     mFirebaseDatabaseReference.child("posts").push().setValue(postModel,completionListener);
@@ -211,9 +211,11 @@ public class CreateRecipesActivity extends AppCompatActivity {
     private boolean validate() {
         if (idRecipeName.getText().equals("")) {
             Toast.makeText(this, "Recipe Name is null", Toast.LENGTH_SHORT).show();
+            return false;
         }
-        if (selectedImageUri!=null) {
+        if (selectedImageUri==null) {
             Toast.makeText(this, "selected Image is null", Toast.LENGTH_SHORT).show();
+            return false;
         }
         return true;
     }
