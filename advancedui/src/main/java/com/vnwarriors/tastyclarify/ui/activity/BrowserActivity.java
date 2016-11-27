@@ -23,7 +23,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -90,7 +89,6 @@ public class BrowserActivity extends AppCompatActivity {
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private FirebaseAuth auth;
     FirebaseAuth.AuthStateListener authListener;
-
 
 
     @Override
@@ -218,6 +216,8 @@ public class BrowserActivity extends AppCompatActivity {
     private void selectDrawerItem(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.your_profile:
+                Intent intent = new Intent(this, ProfileActivity.class);
+                startActivity(intent);
                 break;
             case R.id.favorite:
                 break;
@@ -240,15 +240,14 @@ public class BrowserActivity extends AppCompatActivity {
             case R.id.pizza:
                 break;
             case R.id.sign_out:
+                auth.signOut();
                 break;
             default:
                 break;
         }
 
-        Toast.makeText(this, "bla bla", Toast.LENGTH_SHORT).show();
         mDrawer.closeDrawers();
     }
-
 
 
     @Override
