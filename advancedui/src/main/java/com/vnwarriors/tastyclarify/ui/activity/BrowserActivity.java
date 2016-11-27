@@ -87,6 +87,7 @@ public class BrowserActivity extends AppCompatActivity {
     @BindView(R.id.pbLoading)
     ProgressBar pbLoading;
 
+
     ImageView ivAvatar;
     TextView tvNavigationHeader;
     TextView tvName;
@@ -356,9 +357,7 @@ public class BrowserActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Enviar foto tirada pela camera
-     */
+
     //File
     private File filePathImageCamera;
 
@@ -370,9 +369,7 @@ public class BrowserActivity extends AppCompatActivity {
         startActivityForResult(it, IMAGE_CAMERA_REQUEST);
     }
 
-    /**
-     * Enviar foto pela galeria
-     */
+
     private void photoGalleryIntent() {
         Intent intent = new Intent();
         intent.setType("image/*");

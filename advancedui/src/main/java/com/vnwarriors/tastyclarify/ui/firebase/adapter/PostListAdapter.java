@@ -109,7 +109,7 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.PostVi
         Picasso.with(viewHolder.itemView.getContext())
                 .load(model.getTipImage().getUrl())
                 .placeholder(PlaceHolderDrawableHelper.getBackgroundDrawable(position))
-                .resize(width, (int) (width * model.getTipImageRatio()))
+                .resize(400, (int) (400 * model.getTipImageRatio()))
                 .into(viewHolder.ivTipImage);
         ImageView imageView;
         imageView = (ImageView) viewHolder.itemView.findViewById(R.id.imageView2);

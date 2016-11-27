@@ -77,8 +77,9 @@
                 android:textSize="16sp" />
 
             <ImageView
+                android:id="@+id/ivDish"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/ivPictue"
                 android:layout_marginTop="16dp"
                 android:adjustViewBounds="true"
@@ -332,7 +333,8 @@
                     android:layout_marginTop="4dp"
                     android:numStars="3"
                     android:stepSize="1"
-                    android:isIndicator="true"/>
+                    android:isIndicator="true"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/tvDifficultLevel"
@@ -381,12 +383,12 @@
 
             <EditText
                 android:id="@+id/etPreparationTime"
-                android:layout_width="220dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/ivTime"
                 android:layout_marginTop="18dp"
-
+                android:inputType="numberSigned"
                 android:backgroundTint="#d9a591"
                 android:hint="Set Time"
                 android:textColor="@color/black"
@@ -403,16 +405,16 @@
                 android:layout_marginLeft="8dp"
                 android:buttonTint="#5e7680"
                 android:gravity="center"
-                android:text="Preparation:"
+                android:text="Preparation(minute):"
                 android:textColor="#5e7680"
                 android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/etCookingTime"
-                android:layout_width="220dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-
+                android:inputType="numberSigned"
                 android:layout_below="@+id/etPreparationTime"
                 android:backgroundTint="#d9a591"
                 android:hint="Set Time"
@@ -429,7 +431,7 @@
                 android:layout_marginLeft="8dp"
                 android:buttonTint="#5e7680"
                 android:gravity="center"
-                android:text="Cooking:"
+                android:text="Cooking(minute):"
                 android:textColor="#5e7680"
                 android:textSize="16sp" />
 

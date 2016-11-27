@@ -21,6 +21,15 @@ public class TipImage implements Serializable{
     @Expose
     private String url;
 
+    public TipImage() {
+    }
+
+    public TipImage(String __type, String name, String url) {
+        this.__type = __type;
+        this.name = name;
+        this.url = url;
+    }
+
     /**
      * @return The __type
      */
