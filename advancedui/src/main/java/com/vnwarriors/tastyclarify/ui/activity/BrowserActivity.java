@@ -66,6 +66,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 public class BrowserActivity extends AppCompatActivity {
@@ -389,13 +390,13 @@ public class BrowserActivity extends AppCompatActivity {
         mFirebaseDatabaseReference.child(CHAT_REFERENCE).push().setValue(model);
     }
 
-//    @OnClick(R.id.fab)
-//    void showDailog() {
-//        Intent intent = new Intent(this, CreateRecipesActivity.class);
-//        startActivity(intent);
-////        Toast.makeText(this, "fab", Toast.LENGTH_SHORT).show();
-////        sendMessageFirebase();
-//    }
+    @OnClick(R.id.fab)
+    void showDailog() {
+        Intent intent = new Intent(this, CreateRecipesActivity.class);
+        startActivity(intent);
+//        Toast.makeText(this, "fab", Toast.LENGTH_SHORT).show();
+//        sendMessageFirebase();
+    }
 
     @Override
     protected void onStart() {
