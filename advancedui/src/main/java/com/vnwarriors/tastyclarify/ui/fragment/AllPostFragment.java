@@ -112,8 +112,8 @@ public class AllPostFragment extends Fragment implements CatalogueAdapterItemCli
     }
 
     private void hideCatalogue() {
-        if (rvListCatalogue.getVisibility() != View.INVISIBLE) {
-            rvListCatalogue.setVisibility(View.INVISIBLE);
+        if (rvListCatalogue.getVisibility() != View.GONE) {
+            rvListCatalogue.setVisibility(View.GONE);
         }
     }
 
