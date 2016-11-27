@@ -1,14 +1,25 @@
 package com.vnwarriors.tastyclarify.ui.activity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.share.Sharer;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareDialog;
 import com.google.android.gms.dynamic.LifecycleDelegate;
 import com.squareup.picasso.Picasso;
 import com.vnwarriors.advancedui.appcore.common.recyclerviewhelper.PlaceHolderDrawableHelper;
@@ -40,6 +51,8 @@ public class ItemActivity extends AppCompatActivity {
 
     @BindView(R.id.tvName)
     TextView tvName;
+    @BindView(R.id.toolBar)
+    Toolbar toolBar;
 
     @BindView(R.id.tvPersons)
     TextView tvPersons;
@@ -66,6 +79,9 @@ public class ItemActivity extends AppCompatActivity {
     private List<ItemDetailViewModel> ingredientList;
     private List<ItemDetailViewModel> prepareList;
 
+    CallbackManager callbackManager;
+    ShareDialog shareDialog;
+
     LinearLayoutManager mLayoutManagerVerticalIngredient;
     LinearLayoutManager mLayoutManagerVerticalPrepare;
 
@@ -83,8 +99,31 @@ public class ItemActivity extends AppCompatActivity {
         for (LifecycleDelegate lifecycleDelegate : lifecycleDelegates) {
             lifecycleDelegate.onCreate(savedInstanceState);
         }
+        callbackManager = CallbackManager.Factory.create();
+        shareDialog = new ShareDialog(this);
+        // this part is optional
+        shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
+            @Override
+            public void onSuccess(Sharer.Result result) {
+
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+
+            }
+        });
 
         ButterKnife.bind(this);
+
+        setSupportActionBar(toolBar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         setupUI();
 
@@ -131,6 +170,73 @@ public class ItemActivity extends AppCompatActivity {
         tvCookTime.setText(ints[2] + " min.");
         createData();
         setupAdapter();
+    }
+
+    private void sharePostToFacebook() {
+        ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                .setContentUrl(Uri.parse("https://developers.facebook.com"))
+                .setImageUrl(Uri.parse(mPost.getTipImage().getUrl()))
+                .setContentTitle(mPost.getTipName())
+                .build();
+//        ShareOpenGraphObject object = new ShareOpenGraphObject.Builder()
+//                .putString("og:type", "fitness.course")
+//                .putString("og:title", "Sample Course")
+//                .putString("og:description", "This is a sample course.")
+//                .putString("og:image", "This is a sample course.")
+//                .putInt("fitness:duration:value", 100)
+//                .putString("fitness:duration:units", "s")
+//                .putInt("fitness:distance:value", 12)
+//                .putString("fitness:distance:units", "km")
+//                .putInt("fitness:speed:value", 5)
+//                .putString("fitness:speed:units", "m/s")
+//                .build();
+//        ShareOpenGraphAction action = new ShareOpenGraphAction.Builder()
+//                .setActionType("fitness.runs")
+//                .putObject("fitness:course", object)
+//                .build();
+//        ShareOpenGraphContent content = new ShareOpenGraphContent.Builder()
+//                .setPreviewPropertyName("fitness:course")
+//                .setAction(action)
+//                .build();
+
+        // Create OG object
+//        ShareOpenGraphObject object2 = new ShareOpenGraphObject.Builder()
+//                .putString("og:type", "books.book")
+//                .putString("og:title", "A Game of Thrones")
+//                .putString("og:description", "In the frozen wastes to the north of Winterfell, " +
+//                        "sinister and supernatural forces are mustering.")
+//                .putString("books:isbn", "0-553-57340-3")
+//                .build();
+//
+//        SharePhoto photo = new SharePhoto.Builder()
+//                .setImageUrl(Uri.parse(mPost.getTipImage().getUrl()))
+//                .setUserGenerated(true)
+//                .build();
+//
+//        // Create an action
+//        ShareOpenGraphAction action2 = new ShareOpenGraphAction.Builder()
+//                .setActionType("books.reads")
+//                .putObject("book", object2)
+//                .putPhoto("image", photo)
+//                .putPhoto("image", photo)
+//                .build();
+//
+//        // Create the content
+//        ShareOpenGraphContent content2 = new ShareOpenGraphContent.Builder()
+//                .setPreviewPropertyName("book")
+//                .setAction(action2)
+//                .build();
+
+        if (ShareDialog.canShow(ShareLinkContent.class)) {
+            ShareDialog.show(ItemActivity.this, linkContent);
+//            shareDialog.show(ItemActivity, object);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
     private void createData() {
@@ -244,6 +350,23 @@ public class ItemActivity extends AppCompatActivity {
         rvIngredientList.setFocusable(false);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_item_detail, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.share:
+                sharePostToFacebook();
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onResume() {
@@ -263,3 +386,9 @@ public class ItemActivity extends AppCompatActivity {
         super.onPause();
     }
 }
+//https://developers.facebook.com/docs/sharing/android
+//        https://developers.facebook.com/docs/sharing/opengraph/android
+//        https://developers.facebook.com/docs/reference/opengraph#object-type
+//        http://stackoverflow.com/questions/31040901/attach-picture-to-action-using-facebook-open-graph-stories-v4
+//
+//        http://stackoverflow.com/questions/21580766/upload-multiple-photos-as-a-single-post-like-timeline-photos-not-like-album-in-f

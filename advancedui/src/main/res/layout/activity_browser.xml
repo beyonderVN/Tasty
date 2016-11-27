@@ -23,7 +23,6 @@
         android:nestedScrollingEnabled="true"
         android:theme="@style/AppTheme.NavigationView"
         app:headerLayout="@layout/navigation_header"
-        app:itemIconTint="@color/red"
         app:menu="@menu/menu_navigation">
         <!--<fragment-->
         <!--android:layout_width="match_parent"-->
