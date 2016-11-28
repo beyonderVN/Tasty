@@ -1,6 +1,7 @@
 package com.vnwarriors.tastyclarify.ui.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.vnwarriors.tastyclarify.R;
 
 
@@ -78,6 +80,7 @@ public class SignupActivity extends AppCompatActivity {
 
                 progressBar.setVisibility(View.VISIBLE);
                 //create user
+
                 auth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
@@ -91,6 +94,12 @@ public class SignupActivity extends AppCompatActivity {
                                     Toast.makeText(SignupActivity.this, "Authentication failed." + task.getException(),
                                             Toast.LENGTH_SHORT).show();
                                 } else {
+                                    UserProfileChangeRequest.Builder builder = new UserProfileChangeRequest.Builder();
+                                    auth.zza(auth.getCurrentUser(),
+                                            builder.setDisplayName(auth.getCurrentUser()
+                                                    .getEmail())
+                                                    .setPhotoUri(Uri.parse("https://s-media-cache-ak0.pinimg.com/564x/09/ca/f4/09caf44deecf255eebd31e8e6966611e.jpg"))
+                                                    .build());
                                     startActivity(new Intent(SignupActivity.this, BrowserActivity.class));
                                     finish();
                                     Log.d("signup", "isSuccessful");
