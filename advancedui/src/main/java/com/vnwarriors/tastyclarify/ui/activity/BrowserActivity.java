@@ -48,8 +48,12 @@ import com.vnwarriors.tastyclarify.ui.firebase.model.FileModel;
 import com.vnwarriors.tastyclarify.ui.firebase.model.MapModel;
 import com.vnwarriors.tastyclarify.ui.firebase.model.UserModel;
 import com.vnwarriors.tastyclarify.ui.firebase.util.Util;
+import com.vnwarriors.tastyclarify.ui.fragment.AllPostFragment;
 import com.vnwarriors.tastyclarify.ui.fragment.GuideFragment;
 import com.vnwarriors.tastyclarify.utils.CloneDataUtils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -221,6 +225,7 @@ public class BrowserActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.favorite:
+                EventBus.getDefault().post(new NavigationViewItemClickEvent(findCatalogueIdPosition(item.getItemId())));
                 break;
             case R.id.cookBook:
                 break;
@@ -248,6 +253,15 @@ public class BrowserActivity extends AppCompatActivity {
         }
 
         mDrawer.closeDrawers();
+    }
+
+    private int findCatalogueIdPosition(int itemId) {
+        for (int i = 0; i < catalogueIds.length; i++) {
+            if(catalogueIds[i]==itemId){
+                return i;
+            }
+        }
+        return -1;
     }
 
 
@@ -361,14 +375,26 @@ public class BrowserActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         auth.addAuthStateListener(authListener);
+        EventBus.getDefault().register(this);
     }
 
     @Override
     public void onStop() {
-        super.onStop();
         if (authListener != null) {
             auth.removeAuthStateListener(authListener);
         }
+        EventBus.getDefault().unregister(this);
+        super.onStop();
+    }
+
+    static int[] catalogueIds = {R.id.appetizer,R.id.dessert,R.id.first_course,R.id.main_course,R.id.side_dish,R.id.vegetarian,R.id.cheap,R.id.pizza};
+
+
+    @Subscribe
+    public void onMessageEvent(AllPostFragment.CatalogueAdapterItemClickEvent event) {
+        Log.d(TAG, "onMessageEvent: "+R.id.appetizer);
+        Log.d(TAG, "onMessageEvent: "+catalogueIds[event.position]);
+        mNavigationView.setCheckedItem(catalogueIds[event.position]);
     }
 
     FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -462,5 +488,13 @@ public class BrowserActivity extends AppCompatActivity {
             //IS NULL
         }
 
+    }
+
+
+    public static class NavigationViewItemClickEvent {
+        public final int  position;
+        NavigationViewItemClickEvent(int position){
+            this.position = position;
+        }
     }
 }

@@ -269,6 +269,6 @@
         android:layout_height="75dp"
         android:background="@drawable/action_bar"
         android:fitsSystemWindows="true"
-        app:title=""
+        app:title=" "
         />
 </com.vnwarriors.advancedui.appcore.common.ElasticDragDismissFrameLayout>

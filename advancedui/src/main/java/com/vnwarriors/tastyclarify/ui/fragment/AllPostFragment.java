@@ -20,6 +20,8 @@ import com.vnwarriors.tastyclarify.R;
 import com.vnwarriors.tastyclarify.ui.firebase.adapter.PostListAdapter;
 import com.vnwarriors.tastyclarify.utils.ColorUtils;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -179,13 +181,22 @@ public class AllPostFragment extends Fragment implements CatalogueAdapterItemCli
 
 
     @Override
-    public void onClick(int position) {
-        if (position==0) {
+    public void onCatalogueAdapterItemClick(int position) {
+        if (position == 0) {
             Query query = mFirebaseDatabaseReference.child(POST_REFERENCE);
             postListAdapter.setQuery(query);
         } else {
             Query query = mFirebaseDatabaseReference.child(POST_REFERENCE).orderByChild("tipCategories").equalTo(String.valueOf(position - 1));
             postListAdapter.setQuery(query);
+            EventBus.getDefault().post(new CatalogueAdapterItemClickEvent(position-1));
+        }
+
+    }
+
+    public static class CatalogueAdapterItemClickEvent {
+        public final int  position;
+        CatalogueAdapterItemClickEvent(int position){
+            this.position = position;
         }
     }
 
@@ -216,7 +227,7 @@ public class AllPostFragment extends Fragment implements CatalogueAdapterItemCli
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    catalogueAdapterItemClick.onClick(position);
+                    catalogueAdapterItemClick.onCatalogueAdapterItemClick(position);
                 }
             });
         }

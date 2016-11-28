@@ -5,5 +5,5 @@ package com.vnwarriors.tastyclarify.ui.fragment;
  */
 
 public interface CatalogueAdapterItemClick {
-    void onClick(int position);
+    void onCatalogueAdapterItemClick(int position);
 }

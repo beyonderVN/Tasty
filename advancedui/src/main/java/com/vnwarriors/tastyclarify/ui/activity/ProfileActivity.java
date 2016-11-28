@@ -91,7 +91,7 @@ public class ProfileActivity extends AppCompatActivity {
 
 //        btnChangeEmail.setOnClickListener(new View.OnClickListener() {
 //            @Override
-//            public void onClick(View v) {
+//            public void onCatalogueAdapterItemClick(View v) {
 //                oldEmail.setVisibility(View.GONE);
 //                newEmail.setVisibility(View.VISIBLE);
 //                password.setVisibility(View.GONE);
@@ -131,7 +131,7 @@ public class ProfileActivity extends AppCompatActivity {
 
 //        btnChangePassword.setOnClickListener(new View.OnClickListener() {
 //            @Override
-//            public void onClick(View v) {
+//            public void onCatalogueAdapterItemClick(View v) {
 //                oldEmail.setVisibility(View.GONE);
 //                newEmail.setVisibility(View.GONE);
 //                password.setVisibility(View.GONE);
@@ -176,7 +176,7 @@ public class ProfileActivity extends AppCompatActivity {
 
 //        btnSendResetEmail.setOnClickListener(new View.OnClickListener() {
 //            @Override
-//            public void onClick(View v) {
+//            public void onCatalogueAdapterItemClick(View v) {
 //                oldEmail.setVisibility(View.VISIBLE);
 //                newEmail.setVisibility(View.GONE);
 //                password.setVisibility(View.GONE);
@@ -215,7 +215,7 @@ public class ProfileActivity extends AppCompatActivity {
 
 //        btnRemoveUser.setOnClickListener(new View.OnClickListener() {
 //            @Override
-//            public void onClick(View v) {
+//            public void onCatalogueAdapterItemClick(View v) {
 //                progressBar.setVisibility(View.VISIBLE);
 //                if (user != null) {
 //                    user.delete()

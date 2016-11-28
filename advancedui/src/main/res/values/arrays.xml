@@ -23,4 +23,15 @@
         <item>#8d3d99</item>
         <item>#3e519d</item>
     </array>
+
+    <integer-array name="catalogue_ids">
+        <item>@id/appetizer</item>
+        <item>@id/dessert</item>
+        <item>@id/first_course</item>
+        <item>@id/main_course</item>
+        <item>@id/side_dish</item>
+        <item>@id/vegetarian</item>
+        <item>@id/cheap</item>
+        <item>@id/pizza</item>
+    </integer-array>
 </resources>
