@@ -38,6 +38,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
+import com.vnwarriors.advancedui.appcore.common.recyclerviewhelper.PlaceHolderDrawableHelper;
 import com.vnwarriors.tastyclarify.R;
 import com.vnwarriors.tastyclarify.model.Comment;
 import com.vnwarriors.tastyclarify.model.ItemDetailViewModel;
@@ -183,11 +185,11 @@ public class ItemActivity extends AppCompatActivity {
         DisplayMetrics displaymetrics = new DisplayMetrics();
         this.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         int width = displaymetrics.widthPixels;
-//        Picasso.with(this)
-//                .load(mPost.getTipImage().getUrl())
-//                .placeholder(PlaceHolderDrawableHelper.getBackgroundDrawable())
-//                .resize(400, (int) (400 * mPost.getTipImageRatio()))
-//                .into(ivCover);
+        Picasso.with(this)
+                .load(mPost.getTipImage().getUrl())
+                .placeholder(PlaceHolderDrawableHelper.getBackgroundDrawable())
+                .resize(400, (int) (400 * mPost.getTipImageRatio()))
+                .into(ivCover);
 //        tvIngredients.setText(post.getTipIngredients().replace("#i","- "));
 //        tvPreparation.setText(post.getTipDescription().replace("#p","- "));
 

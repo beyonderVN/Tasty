@@ -4,11 +4,14 @@
     android:id="@+id/parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:background="@color/white"
+    >
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        >
 
 
         <LinearLayout xmlns:tools="http://schemas.android.com/tools"
@@ -18,7 +21,16 @@
             android:background="#ffffff"
             android:orientation="vertical">
 
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/ivRecipeName"
+                android:padding="16dp"
+                android:layout_toRightOf="@+id/ivRecipeName"
+                android:text="CREATE RECIPE"
+                android:textAlignment="center"
+                android:textColor="#af4034"
+                android:textSize="20sp" />
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

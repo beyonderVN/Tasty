@@ -194,7 +194,19 @@ public class CreateRecipesActivity extends AppCompatActivity {
 //                        }
 //                    });
 //                }
-                onPost();
+
+//                List<PostModel> postModels = CloneDataUtils.getRateListWithComments("recipes.json", CreateRecipesActivity.this);
+//                for (PostModel postModel : postModels
+//                        ) {
+//
+//                    mFirebaseDatabaseReference.child("posts").push().setValue(postModel, new DatabaseReference.CompletionListener() {
+//                        @Override
+//                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+//                            Log.d(TAG, "onComplete: " + (databaseError == null ? "" : databaseError.getMessage()));
+//                        }
+//                    });
+//                }
+                 onPost();
             }
 
 

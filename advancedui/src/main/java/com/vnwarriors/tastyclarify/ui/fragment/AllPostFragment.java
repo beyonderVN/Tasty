@@ -18,10 +18,8 @@ import android.widget.TextView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.vnwarriors.tastyclarify.MainApplication;
 import com.vnwarriors.tastyclarify.R;
 import com.vnwarriors.tastyclarify.ui.firebase.adapter.PostListAdapter;
-import com.vnwarriors.tastyclarify.utils.CloneDataUtils;
 import com.vnwarriors.tastyclarify.utils.ColorUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -107,10 +105,10 @@ public class AllPostFragment extends Fragment  {
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 Log.d(TAG, "onScrolled: " + dy);
-                if (dy > 5) {
+                if (dy > 20) {
                     hideCatalogue();
                 }
-                if (dy < -10) {
+                if (dy < -20) {
                     showCatalogue();
                 }
             }
@@ -179,8 +177,8 @@ public class AllPostFragment extends Fragment  {
 
         rvListPost.setLayoutManager(staggeredGridLayoutManagerVertical);
         Query query = mFirebaseDatabaseReference.child(POST_REFERENCE);
-//        postListAdapter = new PostListAdapter(query);
-        postListAdapter = new PostListAdapter(CloneDataUtils.getRateListWithComments("recipes.json", MainApplication.mContext));
+        postListAdapter = new PostListAdapter(query);
+//        postListAdapter = new PostListAdapter(CloneDataUtils.getRateListWithComments("recipes.json", MainApplication.mContext));
         rvListPost.setAdapter(postListAdapter);
 
     }
@@ -211,7 +209,7 @@ public class AllPostFragment extends Fragment  {
     public void onCatalogueAdapterItemClickEvent(AllPostFragment.CatalogueAdapterItemClickEvent event) {
         int position = event.position;
         Log.d(TAG, "onCatalogueAdapterItemClickEvent: position: "+position);
-        if (position == 0) {
+        if (position == -1) {
             Query query = mFirebaseDatabaseReference.child(POST_REFERENCE);
             postListAdapter.setQuery(query);
 
