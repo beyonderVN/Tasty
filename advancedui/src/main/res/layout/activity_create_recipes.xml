@@ -84,7 +84,7 @@
                 android:layout_marginTop="16dp"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/vungtau" />
+                android:src="@drawable/placeholder" />
         </RelativeLayout>
 
         <include layout="@layout/devider_item" />

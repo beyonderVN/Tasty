@@ -16,11 +16,13 @@ import android.support.v7.widget.Toolbar;
 import android.text.format.DateFormat;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.facebook.CallbackManager;
@@ -90,6 +92,8 @@ public class ItemActivity extends AppCompatActivity {
     NestedScrollView nsScrollView;
     @BindView(R.id.pbLoading)
     ProgressBar pbLoading;
+    @BindView(R.id.rlProgressLoading)
+    RelativeLayout rlProgressLoading;
 
     private PostModel mPost;
 
@@ -195,7 +199,7 @@ public class ItemActivity extends AppCompatActivity {
         nestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                int distance = oldScrollY-scrollY;
+                int distance = oldScrollY - scrollY;
                 if (distance > 5) {
                     hideToolbar();
                 }
@@ -257,7 +261,7 @@ public class ItemActivity extends AppCompatActivity {
                 .build();
 
         if (ShareDialog.canShow(ShareLinkContent.class)) {
-            pbLoading.setVisibility(View.GONE);
+            finishBackgroundTranfer();
             ShareDialog.show(ItemActivity.this, linkContent);
         }
     }
@@ -274,8 +278,6 @@ public class ItemActivity extends AppCompatActivity {
             ShareDialog.show(ItemActivity.this, linkContent);
         }
     }
-
-
 
 
     private void createData() {
@@ -439,16 +441,21 @@ public class ItemActivity extends AppCompatActivity {
         });
         builder.show();
     }
-//    AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-//    // ...Irrelevant code for customizing the buttons and title
-//    LayoutInflater inflater = this.getLayoutInflater();
-//    View dialogView = inflater.inflate(R.layout.alert_label_editor, null);
-//    dialogBuilder.setView(dialogView);
-//
-//    EditText editText = (EditText) dialogView.findViewById(R.id.label_field);
-//    editText.setText("test label");
-//    AlertDialog alertDialog = dialogBuilder.create();
-//    alertDialog.show();
+
+    @OnClick(R.id.btnShareRecipe)
+    public void customDialog() {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        // ...Irrelevant code for customizing the buttons and title
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.option_photo_layout, null);
+        dialogBuilder.setView(dialogView);
+
+        TextView editText = (TextView) dialogView.findViewById(R.id.textext);
+        editText.setText("test label");
+        AlertDialog alertDialog = dialogBuilder.create();
+        alertDialog.show();
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -501,20 +508,21 @@ public class ItemActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 selectedImageUri = data.getData();
                 sharePostToFacebook();
-                pbLoading.setVisibility(View.VISIBLE);
+                startBackgroundTranfer();
             }
         } else if (requestCode == IMAGE_CAMERA_REQUEST) {
             if (resultCode == RESULT_OK) {
                 if (filePathImageCamera != null && filePathImageCamera.exists()) {
                     StorageReference imageCameraRef = storageRef.child(filePathImageCamera.getName() + "_camera");
                     sendFileFirebase(imageCameraRef, filePathImageCamera);
-                    pbLoading.setVisibility(View.VISIBLE);
+                    startBackgroundTranfer();
                 } else {
                     //IS NULL
                 }
             }
         }
     }
+
     private void sendFileFirebase(StorageReference storageReference, final File file) {
         if (storageReference != null) {
             UploadTask uploadTask = storageReference.putFile(Uri.fromFile(file));
@@ -535,6 +543,16 @@ public class ItemActivity extends AppCompatActivity {
             //IS NULL
         }
 
+    }
+
+    private void startBackgroundTranfer() {
+        rlProgressLoading.setClickable(true);
+        pbLoading.setVisibility(View.VISIBLE);
+    }
+
+    private void finishBackgroundTranfer() {
+        rlProgressLoading.setClickable(false);
+        pbLoading.setVisibility(View.GONE);
     }
 
 }

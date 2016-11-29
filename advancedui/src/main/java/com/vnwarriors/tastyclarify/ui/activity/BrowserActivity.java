@@ -192,10 +192,10 @@ public class BrowserActivity extends AppCompatActivity {
 
     private List<String> getBgRes() {
         ArrayList<String> list = new ArrayList<>();
-        list.add("http://www.thepaintershandbook.com/wp-content/uploads/2016/10/Cute-Puppy-Wallpaper.jpg");
-        list.add("http://www.thepaintershandbook.com/wp-content/uploads/2016/10/Cute-Puppy-Wallpaper.jpg");
-        list.add("http://www.thepaintershandbook.com/wp-content/uploads/2016/10/Cute-Puppy-Wallpaper.jpg");
-        list.add("http://www.thepaintershandbook.com/wp-content/uploads/2016/10/Cute-Puppy-Wallpaper.jpg");
+        list.add("http://mav.vn/wp-content/uploads/menu-bun-bo-hue-8.jpg");
+        list.add("https://i.ytimg.com/vi/TuocHpG9pmk/maxresdefault.jpg");
+        list.add("http://www.saga.co.uk/contentlibrary/saga/publishing/verticals/food/recipes/baking/chestnut-chocolate-souffle-shutterstock.jpg");
+        list.add("http://www.wagamama.com/~/media/WagamamaMainsite/hero-pod-images/ramen.jpg");
         return list;
     }
 

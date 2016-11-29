@@ -51,7 +51,7 @@
                         android:layout_gravity="center"
                         android:padding="16dp"
                         app:currentPageIndicatorColor="@color/page_indicator_dark_selected"
-                        app:pageIndicatorColor="@color/page_indicator_dark" />
+                        app:pageIndicatorColor="@color/white" />
 
                     <View
                         android:layout_width="match_parent"
