@@ -114,9 +114,6 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.PostVi
         ImageView imageView;
         imageView = (ImageView) viewHolder.itemView.findViewById(R.id.imageView2);
 
-//        int[] catalogueColors = MainApplication.mContext.getResources().getIntArray(R.array.catalogue_colors);
-//        String[] catalogues = MainApplication.mContext.getResources().getStringArray(R.array.catalogues);
-//        int color = catalogueColors[Integer.valueOf((model.getTipCategories().substring(0, 1)))+1];
         int color = ColorUtils.getColorByCatalogue(Integer.valueOf((model.getTipCategories().substring(0, 1)))+1);
         imageView.setColorFilter(color);
         ImageView imageView2;
@@ -125,22 +122,17 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.PostVi
         viewHolder.icChef1.setColorFilter(color);
         viewHolder.icChef2.setColorFilter(color);
         viewHolder.icChef3.setColorFilter(color);
-        viewHolder.icChef1.setAlpha(0.5f);
-        viewHolder.icChef2.setAlpha(0.5f);
-        viewHolder.icChef3.setAlpha(0.5f);
+
 
         switch (model.getTipDifficulty()) {
-            case 1:
-                viewHolder.icChef1.setAlpha(1f);
+            case 3:
                 break;
             case 2:
-                viewHolder.icChef1.setAlpha(1f);
-                viewHolder.icChef2.setAlpha(1f);
+                viewHolder.icChef3.setAlpha(0.5f);
                 break;
-            case 3:
-                viewHolder.icChef1.setAlpha(1f);
-                viewHolder.icChef2.setAlpha(1f);
-                viewHolder.icChef3.setAlpha(1f);
+            case 1:
+                viewHolder.icChef2.setAlpha(0.5f);
+                viewHolder.icChef3.setAlpha(0.5f);
                 break;
         }
 

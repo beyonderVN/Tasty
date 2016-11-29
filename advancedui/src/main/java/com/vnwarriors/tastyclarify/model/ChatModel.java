@@ -1,4 +1,4 @@
-package com.vnwarriors.tastyclarify.ui.firebase.model;
+package com.vnwarriors.tastyclarify.model;
 
 
 /**

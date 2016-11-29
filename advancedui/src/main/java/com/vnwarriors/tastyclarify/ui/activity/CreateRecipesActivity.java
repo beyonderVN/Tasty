@@ -30,15 +30,20 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 import com.vnwarriors.tastyclarify.R;
+import com.vnwarriors.tastyclarify.model.Comment;
+import com.vnwarriors.tastyclarify.model.FileModel;
 import com.vnwarriors.tastyclarify.model.PostModel;
 import com.vnwarriors.tastyclarify.model.TipImage;
-import com.vnwarriors.tastyclarify.ui.firebase.model.FileModel;
+import com.vnwarriors.tastyclarify.model.UserModel;
 import com.vnwarriors.tastyclarify.ui.firebase.util.Util;
+import com.vnwarriors.tastyclarify.utils.CloneDataUtils;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -76,6 +81,7 @@ public class CreateRecipesActivity extends AppCompatActivity {
     TextView tvDifficultLevel;
     @BindView(R.id.ivDish)
     ImageView ivDish;
+
     @OnClick(R.id.ivDish)
     void chooseImage(View v) {
         photoGalleryIntent();
@@ -120,11 +126,32 @@ public class CreateRecipesActivity extends AppCompatActivity {
         findViewById(R.id.btnSendRecipe).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                for (PostModel postModel: CloneDataUtils.getRateList("recipes.json",CreateRecipesActivity.this)
-//                     ) {
-//                    mFirebaseDatabaseReference.child("posts").push().setValue(postModel);
-//                }
-                onPost();
+                for (PostModel postModel : CloneDataUtils.getRateList("recipes.json", CreateRecipesActivity.this)
+                        ) {
+
+                    Log.d(TAG, "onClick: " + postModel.getTipName());
+                    List<Comment> comments = new ArrayList<Comment>();
+                    UserModel userModel = new UserModel();
+                    userModel.setId("gSUNZWLvLmS5vdu7YTcQlXEDX5p1");
+                    userModel.setName("who");
+                    userModel.setPhoto_profile("http://fanexpodallas.com/wp-content/uploads/550w_soaps_silhouettesm2.jpg");
+                    Comment comment = new Comment();
+                    comment.userModel = userModel;
+                    comment.message = "Yummy!";
+                    comment.createAt = "" + Calendar.getInstance().getTime().getTime();
+                    comment.updateAt = "" + Calendar.getInstance().getTime().getTime();
+                    comments.add(comment);
+                    comment.message = "Delicious!";
+                    comments.add(comment);
+                    postModel.setTipComments(comments);
+                    mFirebaseDatabaseReference.child("posts").push().setValue(postModel, new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                            Log.d(TAG, "onComplete: " + (databaseError == null ? "" : databaseError.getMessage()));
+                        }
+                    });
+                }
+//                onPost();
             }
 
 
@@ -150,16 +177,16 @@ public class CreateRecipesActivity extends AppCompatActivity {
                     Log.i(TAG, "onSuccess sendFileFirebase");
                     Uri downloadUrl = taskSnapshot.getDownloadUrl();
                     FileModel fileModel = new FileModel("img", downloadUrl.toString(), name, "");
-                    TipImage tipImage =  new TipImage("File","image name",downloadUrl.toString());
+                    TipImage tipImage = new TipImage("File", "image name", downloadUrl.toString());
                     PostModel postModel = new PostModel();
                     postModel.setTipName(idRecipeName.getText().toString());
                     postModel.setTipImage(tipImage);
                     postModel.setCreatedAt(Calendar.getInstance().getTime().getTime() + "");
-                    int[] checkedCatelogues = {R.id.cbAppetizer,R.id.cbDessert,R.id.cbFirstCourse,R.id.cbMainCourse,R.id.cbSideDish,
-                    R.id.cbVegetarian,R.id.cbCheap,R.id.cbPizza};
+                    int[] checkedCatelogues = {R.id.cbAppetizer, R.id.cbDessert, R.id.cbFirstCourse, R.id.cbMainCourse, R.id.cbSideDish,
+                            R.id.cbVegetarian, R.id.cbCheap, R.id.cbPizza};
                     postModel.setTipCategories("");
                     for (int i = 0; i < checkedCatelogues.length; i++) {
-                        if(((AppCompatCheckBox) findViewById(checkedCatelogues[i])).isChecked()){
+                        if (((AppCompatCheckBox) findViewById(checkedCatelogues[i])).isChecked()) {
                             postModel.setTipCategories(String.valueOf(i));
                         }
                     }
@@ -167,10 +194,10 @@ public class CreateRecipesActivity extends AppCompatActivity {
                     postModel.setTipDifficulty(sbDifficult.getProgress());
                     EditText etPreparationTime = (EditText) findViewById(R.id.etPreparationTime);
                     EditText etCookingTime = (EditText) findViewById(R.id.etCookingTime);
-                    postModel.setTipTime("#tp"+etPreparationTime.getText().toString()+"#tc"+etCookingTime.getText().toString()+"");
-                    String ingredients ="";
-                    for (String key: ingredient.keySet()
-                         ) {
+                    postModel.setTipTime("#tp" + etPreparationTime.getText().toString() + "#tc" + etCookingTime.getText().toString() + "");
+                    String ingredients = "";
+                    for (String key : ingredient.keySet()
+                            ) {
                         ingredients = ingredients + ingredient.get(key) + "\n";
                     }
                     postModel.setTipIngredients(ingredients);
@@ -179,7 +206,7 @@ public class CreateRecipesActivity extends AppCompatActivity {
                     postModel.setObjectId("");
                     postModel.setTipDairy(false);
                     postModel.setTipHot(false);
-                    postModel.setTipImageRatio((double)ivDish.getMeasuredHeight()/(double)ivDish.getMeasuredWidth());
+                    postModel.setTipImageRatio((double) ivDish.getMeasuredHeight() / (double) ivDish.getMeasuredWidth());
                     postModel.setTipOven(false);
                     postModel.setTipPortion("");
                     postModel.setTipPublished(1);
@@ -191,12 +218,12 @@ public class CreateRecipesActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                             if (databaseError != null) {
-                                Log.d(TAG, "DatabaseReference.CompletionListener: "+databaseError.getMessage());
+                                Log.d(TAG, "DatabaseReference.CompletionListener: " + databaseError.getMessage());
                             }
                             Toast.makeText(CreateRecipesActivity.this, "Your recipe has been shared!\nThanks for your contribution", Toast.LENGTH_LONG).show();
                         }
                     };
-                    mFirebaseDatabaseReference.child("posts").push().setValue(postModel,completionListener);
+                    mFirebaseDatabaseReference.child("posts").push().setValue(postModel, completionListener);
                 }
             });
         } else {
@@ -213,7 +240,7 @@ public class CreateRecipesActivity extends AppCompatActivity {
             Toast.makeText(this, "Recipe Name is null", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if (selectedImageUri==null) {
+        if (selectedImageUri == null) {
             Toast.makeText(this, "selected Image is null", Toast.LENGTH_SHORT).show();
             return false;
         }

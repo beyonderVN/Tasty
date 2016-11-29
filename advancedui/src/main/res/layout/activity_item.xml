@@ -5,12 +5,13 @@
     android:id="@+id/activity_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:animateLayoutChanges="true"
     android:padding="0dp"
     android:transitionGroup="true"
+    android:animateLayoutChanges="true"
     app:dragDismissDistance="260dp"
     app:dragDismissScale="0.8"
     tools:context=".ui.activity.ItemActivity">
+
 
     <ImageView
         android:id="@+id/ivCover"
@@ -167,8 +168,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="25dp"
                     android:layout_marginTop="45dp"
-                    android:src="@drawable/ic_edit_white_24dp"
-                    android:visibility="gone" />
+                    android:visibility="gone"
+                    android:src="@drawable/ic_edit_white_24dp" />
 
 
             </RelativeLayout>
@@ -257,7 +258,6 @@
                         android:paddingBottom="50dp" />
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
-
             <Button
                 android:id="@+id/btnShareRecipe"
                 android:layout_width="match_parent"
@@ -274,6 +274,47 @@
                 android:shadowDx="0"
                 android:shadowDy="4"
                 android:shadowRadius="0"/>
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginTop="4dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardUseCompatPadding="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:id="@+id/ivCommentSpan"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="16dp"
+                        android:src="@drawable/ic_ingredients" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/ivCommentSpan"
+                        android:layout_alignTop="@+id/ivCommentSpan"
+                        android:layout_toRightOf="@+id/ivCommentSpan"
+                        android:gravity="center"
+                        android:text="COMMENTS"
+                        android:textColor="#e1431c"
+                        android:textSize="24sp" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rvCommentList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:nestedScrollingEnabled="false"
+                        android:layout_below="@+id/ivCommentSpan"/>
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
@@ -284,8 +325,46 @@
         android:layout_height="75dp"
         android:background="@drawable/action_bar"
         android:fitsSystemWindows="true"
-        app:title=" " />
-
+        app:title=" "
+        />
+    <RelativeLayout
+        android:background="@color/tran_gray"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        android:layout_gravity="bottom"
+        android:elevation="8dp"
+        >
+        <ImageView
+            android:id="@+id/buttonEmoji"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="4dp"
+            android:src="@drawable/ic_camera_alt_24dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignBottom="@+id/editTextMessage"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editTextMessage"
+            android:layout_toStartOf="@+id/buttonMessage"
+            android:layout_toRightOf="@+id/buttonEmoji"
+            android:layout_toEndOf="@+id/buttonEmoji"
+            android:textColor="@color/black_54p"
+            />
+        <ImageView
+            android:id="@+id/buttonMessage"
+            android:src="@android:drawable/ic_menu_send"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="4dp"
+            android:layout_alignBottom="@+id/editTextMessage"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            />
+    </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

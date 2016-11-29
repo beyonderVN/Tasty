@@ -1,11 +1,11 @@
-package com.vnwarriors.tastyclarify.ui.firebase.model;
+package com.vnwarriors.tastyclarify.model;
 
-import com.google.firebase.database.Exclude;
+import java.io.Serializable;
 
 /**
  * Created by Alessandro Barreto on 22/06/2016.
  */
-public class UserModel {
+public class UserModel implements Serializable {
 
     private String id;
     private String name;
@@ -36,7 +36,6 @@ public class UserModel {
         this.photo_profile = photo_profile;
     }
 
-    @Exclude
     public String getId() {
         return id;
     }

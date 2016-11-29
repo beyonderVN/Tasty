@@ -9,6 +9,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class PostModel implements Serializable{
 
@@ -73,6 +74,28 @@ public class PostModel implements Serializable{
     @Expose
     private Integer tipPersons;
 
+    @SerializedName("tipUserId")
+    @Expose
+    private String tipUserId;
+    public String getTipUserId() {
+        return tipUserId;
+    }
+
+    @SerializedName("tipComments")
+    @Expose
+    private List<Comment> tipComments;
+
+    public void setTipUserId(String tipUserId) {
+        this.tipUserId = tipUserId;
+    }
+
+    public List<Comment> getTipComments() {
+        return tipComments;
+    }
+
+    public void setTipComments(List<Comment> tipComments) {
+        this.tipComments = tipComments;
+    }
 
     public PostModel() {
     }

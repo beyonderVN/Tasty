@@ -18,7 +18,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.vnwarriors.tastyclarify.R;
+import com.vnwarriors.tastyclarify.model.UserModel;
+
+import static com.vnwarriors.tastyclarify.ui.activity.BrowserActivity.USER_REFERENCE;
 
 
 public class SignupActivity extends AppCompatActivity {
@@ -96,13 +102,28 @@ public class SignupActivity extends AppCompatActivity {
                                 } else {
                                     UserProfileChangeRequest.Builder builder = new UserProfileChangeRequest.Builder();
                                     auth.zza(auth.getCurrentUser(),
-                                            builder.setDisplayName(auth.getCurrentUser()
-                                                    .getEmail())
-                                                    .setPhotoUri(Uri.parse("https://s-media-cache-ak0.pinimg.com/564x/09/ca/f4/09caf44deecf255eebd31e8e6966611e.jpg"))
+                                            builder.setDisplayName(convertEmailToName(auth.getCurrentUser().getEmail()))
+                                                    .setPhotoUri(Uri.parse("http://fanexpodallas.com/wp-content/uploads/550w_soaps_silhouettesm2.jpg"))
                                                     .build());
-                                    startActivity(new Intent(SignupActivity.this, BrowserActivity.class));
-                                    finish();
-                                    Log.d("signup", "isSuccessful");
+                                    UserModel userModel = new UserModel(convertEmailToName(auth.getCurrentUser().getEmail()),
+                                            auth.getCurrentUser().getPhotoUrl()!=null?auth.getCurrentUser().getPhotoUrl().toString():"http://fanexpodallas.com/wp-content/uploads/550w_soaps_silhouettesm2.jpg",
+                                            auth.getCurrentUser().getUid());
+                                    DatabaseReference mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
+                                    mFirebaseDatabaseReference.child(USER_REFERENCE).child(auth.getCurrentUser().getUid()).setValue(userModel, new DatabaseReference.CompletionListener() {
+                                        @Override
+                                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                            if(databaseError==null){
+                                                Log.d("signup", "isSuccessful");
+                                                startActivity(new Intent(SignupActivity.this, BrowserActivity.class));
+                                                finish();
+                                            }else{
+                                                Log.d("signup", "isFailed: "+databaseError);
+                                                startActivity(new Intent(SignupActivity.this, LoginActivity.class));
+                                            }
+
+                                        }
+                                    });
+
                                 }
                             }
                         });
@@ -115,5 +136,9 @@ public class SignupActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         progressBar.setVisibility(View.GONE);
+    }
+    private String convertEmailToName(String email) {
+        String[] s = email.split("@");
+        return  s.length>0? s[0]:email;
     }
 }

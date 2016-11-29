@@ -40,9 +40,11 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 import com.vnwarriors.advancedui.appcore.common.recyclerviewhelper.PlaceHolderDrawableHelper;
 import com.vnwarriors.tastyclarify.R;
+import com.vnwarriors.tastyclarify.model.Comment;
 import com.vnwarriors.tastyclarify.model.ItemDetailViewModel;
 import com.vnwarriors.tastyclarify.model.PostModel;
 import com.vnwarriors.tastyclarify.ui.adapter.BaseAdapter;
+import com.vnwarriors.tastyclarify.ui.adapter.CommentAdapter;
 import com.vnwarriors.tastyclarify.ui.adapter.IngredientAdapter;
 import com.vnwarriors.tastyclarify.ui.adapter.PrepareAdapter;
 import com.vnwarriors.tastyclarify.ui.adapter.viewmodel.BaseVM;
@@ -87,6 +89,8 @@ public class ItemActivity extends AppCompatActivity {
     RecyclerView rvIngredientList;
     @BindView(R.id.rvPreparationList)
     RecyclerView rvPreparationList;
+    @BindView(R.id.rvCommentList)
+    RecyclerView rvCommentList;
 
     @BindView(R.id.nsScrollView)
     NestedScrollView nsScrollView;
@@ -102,6 +106,7 @@ public class ItemActivity extends AppCompatActivity {
 
     private List<ItemDetailViewModel> ingredientList;
     private List<ItemDetailViewModel> prepareList;
+    private List<Comment> commentList;
 
     CallbackManager callbackManager;
     ShareDialog shareDialog;
@@ -283,6 +288,7 @@ public class ItemActivity extends AppCompatActivity {
     private void createData() {
         prepareIngredientList();
         preparePrepareList();
+        prepareCommentList();
     }
 
     private void preparePrepareList() {
@@ -353,6 +359,9 @@ public class ItemActivity extends AppCompatActivity {
                 ingredientList.add(itemDetailViewModel);
             }
         }
+    }private void prepareCommentList() {
+        commentList = new ArrayList<>();
+        if(mPost.getTipComments()!=null&&mPost.getTipComments().size()>0)commentList.addAll(mPost.getTipComments());
     }
 
     private String clearString(String string) {
@@ -385,10 +394,12 @@ public class ItemActivity extends AppCompatActivity {
 
         rvPreparationList.setAdapter(prepareAdapter);
 
-
+        rvCommentList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        rvCommentList.setAdapter(new CommentAdapter(commentList));
 //      fix bug layout auto scroll up
         rvIngredientList.setFocusable(false);
         rvIngredientList.setFocusable(false);
+        rvCommentList.setFocusable(false);
     }
 
     @Override
