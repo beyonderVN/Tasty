@@ -22,7 +22,8 @@
             android:theme="@style/AppTheme.Translucent" />
         <activity
             android:name=".ui.activity.ItemActivity"
-            android:theme="@style/AppTheme.Translucent" />
+            android:theme="@style/AppTheme.Translucent"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".ui.activity.LoginActivity"
             android:theme="@style/AppTheme.Translucent" />

@@ -4,6 +4,7 @@ import android.text.format.DateUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 /**
@@ -27,5 +28,19 @@ public class ParseRelativeDate {
         }
 //        Log.d(TAG, rawJsonDate+": "+relativeDate);
         return relativeDate;
+    }
+    public static String getRelativeTimeAgo(long dateMillis) {
+        String relativeDate = "";
+            relativeDate = DateUtils.getRelativeTimeSpanString(dateMillis,
+                    System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS).toString();
+        return relativeDate;
+    }public static String getTimeFromDateMillis(long dateMillis) {
+        String format = "EEE MMM dd HH:mm";
+        SimpleDateFormat sf = new SimpleDateFormat(format, Locale.ENGLISH);
+        Date date = new Date(dateMillis);
+
+        String dateString = sf.format(date);
+
+        return dateString;
     }
 }

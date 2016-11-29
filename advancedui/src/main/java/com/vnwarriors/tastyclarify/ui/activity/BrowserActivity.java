@@ -33,9 +33,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -46,10 +43,10 @@ import com.vnwarriors.advancedui.appcore.common.viewpager.ModelPagerAdapter;
 import com.vnwarriors.advancedui.appcore.common.viewpager.PagerModelManager;
 import com.vnwarriors.advancedui.appcore.common.viewpager.ScrollerViewPager;
 import com.vnwarriors.tastyclarify.R;
-import com.vnwarriors.tastyclarify.ui.firebase.model.ChatModel;
-import com.vnwarriors.tastyclarify.ui.firebase.model.FileModel;
-import com.vnwarriors.tastyclarify.ui.firebase.model.MapModel;
-import com.vnwarriors.tastyclarify.ui.firebase.model.UserModel;
+import com.vnwarriors.tastyclarify.model.ChatModel;
+import com.vnwarriors.tastyclarify.model.FileModel;
+import com.vnwarriors.tastyclarify.model.MapModel;
+import com.vnwarriors.tastyclarify.model.UserModel;
 import com.vnwarriors.tastyclarify.ui.firebase.util.Util;
 import com.vnwarriors.tastyclarify.ui.fragment.AllPostFragment;
 import com.vnwarriors.tastyclarify.ui.fragment.GuideFragment;
@@ -110,9 +107,12 @@ public class BrowserActivity extends AppCompatActivity {
             startActivity(new Intent(this, LoginActivity.class));
             finish();
         } else {
-            Log.d(TAG, "onCreateBrowserActivity: ");
 
 
+            userModel = new UserModel(auth.getCurrentUser().getDisplayName(),
+                    auth.getCurrentUser().getPhotoUrl()!=null?auth.getCurrentUser().getPhotoUrl().toString():"http://fanexpodallas.com/wp-content/uploads/550w_soaps_silhouettesm2.jpg",
+                    auth.getCurrentUser().getUid());
+            mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
 
             setTheme(R.style.AppTheme_NoActionBar);
             setContentView(R.layout.activity_browser);
@@ -120,42 +120,7 @@ public class BrowserActivity extends AppCompatActivity {
 
             setupDrawable();
 
-//            userModel = new UserModel(auth.getCurrentUser().getDisplayName(),
-//                    auth.getCurrentUser().getPhotoUrl().toString(),
-//                    auth.getCurrentUser().getUid());
-            userModel = new UserModel(auth.getCurrentUser().getDisplayName(),
-                    "",
-                    auth.getCurrentUser().getUid());
-            mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
-            Log.d(TAG, "auth.getCurrentUser().getUid(): "+userModel.getId());
-//            Log.d(TAG, "auth.getCurrentUser().getPhotoUrl().toString(): "+auth.getCurrentUser().getPhotoUrl().toString());
-            mFirebaseDatabaseReference.child(USER_REFERENCE).child(auth.getCurrentUser().getUid()).setValue(userModel);
-            mFirebaseDatabaseReference.child(USER_REFERENCE).child(auth.getCurrentUser().getUid()).addChildEventListener(new ChildEventListener() {
-                @Override
-                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                    Log.d(TAG, "onChildAdded: "+dataSnapshot.toString());
-                }
 
-                @Override
-                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-                }
-
-                @Override
-                public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-                }
-
-                @Override
-                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
 
             authListener = new FirebaseAuth.AuthStateListener() {
                 @Override
@@ -192,10 +157,10 @@ public class BrowserActivity extends AppCompatActivity {
 
     private List<String> getBgRes() {
         ArrayList<String> list = new ArrayList<>();
-        list.add("http://mav.vn/wp-content/uploads/menu-bun-bo-hue-8.jpg");
-        list.add("https://i.ytimg.com/vi/TuocHpG9pmk/maxresdefault.jpg");
-        list.add("http://www.saga.co.uk/contentlibrary/saga/publishing/verticals/food/recipes/baking/chestnut-chocolate-souffle-shutterstock.jpg");
-        list.add("http://www.wagamama.com/~/media/WagamamaMainsite/hero-pod-images/ramen.jpg");
+        list.add("https://a2milk.co.uk/wp-content/uploads/foodtip01-copy205kb.png");
+        list.add("https://a2milk.co.uk/wp-content/uploads/foodtip04-copy250kb.png");
+        list.add("https://a2milk.co.uk/wp-content/uploads/foodtip03-copy147kb.png");
+        list.add("https://a2milk.co.uk/wp-content/uploads/foodtip02-copy203kb.png" );
         return list;
     }
 
@@ -222,15 +187,14 @@ public class BrowserActivity extends AppCompatActivity {
 
 
     private String convertEmailToName(String email) {
-        int pos = email.indexOf("@gmail");
-        return email.substring(0, pos);
+        String[] s = email.split("@");
+        return s[0];
     }
 
 
     private void setupToolbar(DrawerLayout drawer) {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
         mAppBar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
@@ -253,7 +217,6 @@ public class BrowserActivity extends AppCompatActivity {
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawer, mToolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawer.addDrawerListener(actionBarDrawerToggle);
-
     }
 
     private void selectDrawerItem(MenuItem item) {
@@ -289,7 +252,6 @@ public class BrowserActivity extends AppCompatActivity {
             default:
                 break;
         }
-
         mDrawer.closeDrawers();
     }
 
@@ -312,7 +274,6 @@ public class BrowserActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
