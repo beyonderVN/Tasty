@@ -1,14 +1,21 @@
 package com.vnwarriors.tastyclarify.ui.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.widget.NestedScrollView;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.format.DateFormat;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -21,6 +28,11 @@ import com.facebook.share.Sharer;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
 import com.google.android.gms.dynamic.LifecycleDelegate;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 import com.vnwarriors.advancedui.appcore.common.recyclerviewhelper.PlaceHolderDrawableHelper;
 import com.vnwarriors.tastyclarify.R;
@@ -31,8 +43,11 @@ import com.vnwarriors.tastyclarify.ui.adapter.IngredientAdapter;
 import com.vnwarriors.tastyclarify.ui.adapter.PrepareAdapter;
 import com.vnwarriors.tastyclarify.ui.adapter.viewmodel.BaseVM;
 import com.vnwarriors.tastyclarify.ui.delegate.DragDismissDelegate;
+import com.vnwarriors.tastyclarify.ui.firebase.util.Util;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -173,71 +188,49 @@ public class ItemActivity extends AppCompatActivity {
     }
 
     private void sharePostToFacebook() {
-        ShareLinkContent linkContent = new ShareLinkContent.Builder()
-                .setContentUrl(Uri.parse("https://developers.facebook.com"))
-                .setImageUrl(Uri.parse(mPost.getTipImage().getUrl()))
-                .setContentTitle(mPost.getTipName())
-                .build();
-//        ShareOpenGraphObject object = new ShareOpenGraphObject.Builder()
-//                .putString("og:type", "fitness.course")
-//                .putString("og:title", "Sample Course")
-//                .putString("og:description", "This is a sample course.")
-//                .putString("og:image", "This is a sample course.")
-//                .putInt("fitness:duration:value", 100)
-//                .putString("fitness:duration:units", "s")
-//                .putInt("fitness:distance:value", 12)
-//                .putString("fitness:distance:units", "km")
-//                .putInt("fitness:speed:value", 5)
-//                .putString("fitness:speed:units", "m/s")
-//                .build();
-//        ShareOpenGraphAction action = new ShareOpenGraphAction.Builder()
-//                .setActionType("fitness.runs")
-//                .putObject("fitness:course", object)
-//                .build();
-//        ShareOpenGraphContent content = new ShareOpenGraphContent.Builder()
-//                .setPreviewPropertyName("fitness:course")
-//                .setAction(action)
-//                .build();
+        if (selectedImageUri == null) return;
+        StorageReference storageRef = storage.getReferenceFromUrl(Util.URL_STORAGE_REFERENCE).child(Util.FOLDER_STORAGE_IMG);
+        if (storageRef != null) {
+            final String name = DateFormat.format("yyyy-MM-dd_hhmmss", new Date()).toString();
+            StorageReference imageGalleryRef = storageRef.child(name + "_gallery");
+            UploadTask uploadTask = imageGalleryRef.putFile(selectedImageUri);
+            uploadTask.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.i("imageFacebook", "onFailure sendFileFirebase " + e.getMessage());
+                    return;
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Log.i("imageFacebook", "onSuccess sendFileFirebase");
+                    Uri downloadUrl = taskSnapshot.getDownloadUrl();
 
-        // Create OG object
-//        ShareOpenGraphObject object2 = new ShareOpenGraphObject.Builder()
-//                .putString("og:type", "books.book")
-//                .putString("og:title", "A Game of Thrones")
-//                .putString("og:description", "In the frozen wastes to the north of Winterfell, " +
-//                        "sinister and supernatural forces are mustering.")
-//                .putString("books:isbn", "0-553-57340-3")
-//                .build();
-//
-//        SharePhoto photo = new SharePhoto.Builder()
-//                .setImageUrl(Uri.parse(mPost.getTipImage().getUrl()))
-//                .setUserGenerated(true)
-//                .build();
-//
-//        // Create an action
-//        ShareOpenGraphAction action2 = new ShareOpenGraphAction.Builder()
-//                .setActionType("books.reads")
-//                .putObject("book", object2)
-//                .putPhoto("image", photo)
-//                .putPhoto("image", photo)
-//                .build();
-//
-//        // Create the content
-//        ShareOpenGraphContent content2 = new ShareOpenGraphContent.Builder()
-//                .setPreviewPropertyName("book")
-//                .setAction(action2)
-//                .build();
+                    shareFacebook(downloadUrl);
+                }
+            });
+        } else {
+            //IS NULL
+        }
+
+
+    }
+
+    private void shareFacebook(Uri downloadUrl) {
+        ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                .setContentUrl(Uri.parse("http://www.101cookbooks.com/"))
+                .setImageUrl(downloadUrl)
+                .setContentTitle(mPost.getTipName())
+                .setContentDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a lobortis....")
+                .build();
 
         if (ShareDialog.canShow(ShareLinkContent.class)) {
             ShareDialog.show(ItemActivity.this, linkContent);
-//            shareDialog.show(ItemActivity, object);
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-    }
+
+
 
     private void createData() {
         prepareIngredientList();
@@ -360,7 +353,7 @@ public class ItemActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.share:
-                sharePostToFacebook();
+                onDialogChooseImageType();
                 break;
             default:
                 break;
@@ -368,6 +361,39 @@ public class ItemActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void onDialogChooseImageType() {
+        CharSequence colors[] = new CharSequence[]{"Choose photo gallery", "Take a picture"};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Photo type");
+        builder.setItems(colors, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Log.d("dialogNumber", String.valueOf(which));
+                switch (which) {
+                    case 0:
+                        photoGalleryIntent();
+                        break;
+                    case 1:
+                        photoCameraIntent();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+        builder.show();
+    }
+//    AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+//    // ...Irrelevant code for customizing the buttons and title
+//    LayoutInflater inflater = this.getLayoutInflater();
+//    View dialogView = inflater.inflate(R.layout.alert_label_editor, null);
+//    dialogBuilder.setView(dialogView);
+//
+//    EditText editText = (EditText) dialogView.findViewById(R.id.label_field);
+//    editText.setText("test label");
+//    AlertDialog alertDialog = dialogBuilder.create();
+//    alertDialog.show();
     @Override
     protected void onResume() {
         super.onResume();
@@ -385,6 +411,75 @@ public class ItemActivity extends AppCompatActivity {
         }
         super.onPause();
     }
+
+    private static final int IMAGE_GALLERY_REQUEST = 1;
+
+    private void photoGalleryIntent() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, getString(R.string.select_picture_title)), IMAGE_GALLERY_REQUEST);
+    }
+
+    //File
+    private File filePathImageCamera;
+    private static final int IMAGE_CAMERA_REQUEST = 2;
+
+    private void photoCameraIntent() {
+        String nomeFoto = DateFormat.format("yyyy-MM-dd_hhmmss", new Date()).toString();
+        filePathImageCamera = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), nomeFoto + "camera.jpg");
+        Intent it = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        it.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(filePathImageCamera));
+        startActivityForResult(it, IMAGE_CAMERA_REQUEST);
+    }
+
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    Uri selectedImageUri;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+        StorageReference storageRef = storage.getReferenceFromUrl(Util.URL_STORAGE_REFERENCE).child(Util.FOLDER_STORAGE_IMG);
+
+        if (requestCode == IMAGE_GALLERY_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                selectedImageUri = data.getData();
+                sharePostToFacebook();
+            }
+        } else if (requestCode == IMAGE_CAMERA_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                if (filePathImageCamera != null && filePathImageCamera.exists()) {
+                    StorageReference imageCameraRef = storageRef.child(filePathImageCamera.getName() + "_camera");
+                    sendFileFirebase(imageCameraRef, filePathImageCamera);
+                } else {
+                    //IS NULL
+                }
+            }
+        }
+    }
+    private void sendFileFirebase(StorageReference storageReference, final File file) {
+        if (storageReference != null) {
+            UploadTask uploadTask = storageReference.putFile(Uri.fromFile(file));
+            uploadTask.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.e("imageFacebook", "onFailure sendFileFirebase " + e.getMessage());
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Log.i("imageFacebook", "onSuccess sendFileFirebase");
+                    Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                    shareFacebook(downloadUrl);
+                }
+            });
+        } else {
+            //IS NULL
+        }
+
+    }
+
 }
 //https://developers.facebook.com/docs/sharing/android
 //        https://developers.facebook.com/docs/sharing/opengraph/android
