@@ -157,10 +157,10 @@ public class BrowserActivity extends AppCompatActivity {
 
     private List<String> getBgRes() {
         ArrayList<String> list = new ArrayList<>();
-        list.add("http://www.thepaintershandbook.com/wp-content/uploads/2016/10/Cute-Puppy-Wallpaper.jpg");
-        list.add("http://www.thepaintershandbook.com/wp-content/uploads/2016/10/Cute-Puppy-Wallpaper.jpg");
-        list.add("http://www.thepaintershandbook.com/wp-content/uploads/2016/10/Cute-Puppy-Wallpaper.jpg");
-        list.add("http://www.thepaintershandbook.com/wp-content/uploads/2016/10/Cute-Puppy-Wallpaper.jpg");
+        list.add("https://a2milk.co.uk/wp-content/uploads/foodtip01-copy205kb.png");
+        list.add("https://a2milk.co.uk/wp-content/uploads/foodtip04-copy250kb.png");
+        list.add("https://a2milk.co.uk/wp-content/uploads/foodtip03-copy147kb.png");
+        list.add("https://a2milk.co.uk/wp-content/uploads/foodtip02-copy203kb.png" );
         return list;
     }
 
