@@ -35,7 +35,7 @@ public class ParseRelativeDate {
                     System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS).toString();
         return relativeDate;
     }public static String getTimeFromDateMillis(long dateMillis) {
-        String format = "EEE MMM dd HH:mm:ss";
+        String format = "EEE MMM dd HH:mm";
         SimpleDateFormat sf = new SimpleDateFormat(format, Locale.ENGLISH);
         Date date = new Date(dateMillis);
 
