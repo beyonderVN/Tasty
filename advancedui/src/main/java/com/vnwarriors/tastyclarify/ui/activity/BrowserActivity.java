@@ -120,12 +120,15 @@ public class BrowserActivity extends AppCompatActivity {
 
             setupDrawable();
 
+//            userModel = new UserModel(auth.getCurrentUser().getDisplayName(),
+//                    auth.getCurrentUser().getPhotoUrl().toString(),
+//                    auth.getCurrentUser().getUid());
             userModel = new UserModel(auth.getCurrentUser().getDisplayName(),
-                    auth.getCurrentUser().getPhotoUrl().toString(),
+                    "",
                     auth.getCurrentUser().getUid());
             mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
             Log.d(TAG, "auth.getCurrentUser().getUid(): "+userModel.getId());
-            Log.d(TAG, "auth.getCurrentUser().getPhotoUrl().toString(): "+auth.getCurrentUser().getPhotoUrl().toString());
+//            Log.d(TAG, "auth.getCurrentUser().getPhotoUrl().toString(): "+auth.getCurrentUser().getPhotoUrl().toString());
             mFirebaseDatabaseReference.child(USER_REFERENCE).child(auth.getCurrentUser().getUid()).setValue(userModel);
             mFirebaseDatabaseReference.child(USER_REFERENCE).child(auth.getCurrentUser().getUid()).addChildEventListener(new ChildEventListener() {
                 @Override

@@ -20,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.facebook.CallbackManager;
@@ -53,6 +54,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ItemActivity extends AppCompatActivity {
 
@@ -86,6 +88,8 @@ public class ItemActivity extends AppCompatActivity {
 
     @BindView(R.id.nsScrollView)
     NestedScrollView nsScrollView;
+    @BindView(R.id.pbLoading)
+    ProgressBar pbLoading;
 
     private PostModel mPost;
 
@@ -253,6 +257,20 @@ public class ItemActivity extends AppCompatActivity {
                 .build();
 
         if (ShareDialog.canShow(ShareLinkContent.class)) {
+            pbLoading.setVisibility(View.GONE);
+            ShareDialog.show(ItemActivity.this, linkContent);
+        }
+    }
+
+    private void shareRecipeFacebook() {
+        ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                .setContentUrl(Uri.parse("http://www.101cookbooks.com/"))
+                .setImageUrl(Uri.parse(mPost.getTipImage().getUrl()))
+                .setContentTitle(mPost.getTipName())
+                .setContentDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a lobortis....")
+                .build();
+
+        if (ShareDialog.canShow(ShareLinkContent.class)) {
             ShareDialog.show(ItemActivity.this, linkContent);
         }
     }
@@ -381,7 +399,7 @@ public class ItemActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.share:
-                onDialogChooseImageType();
+                shareRecipeFacebook();
                 break;
             case android.R.id.home:
                 onBackPressed();
@@ -392,7 +410,13 @@ public class ItemActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void onDialogChooseImageType() {
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    @OnClick(R.id.btnShareRecipe)
+    public void onDialogChooseImageType() {
         CharSequence colors[] = new CharSequence[]{"Choose photo gallery", "Take a picture"};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -477,12 +501,14 @@ public class ItemActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 selectedImageUri = data.getData();
                 sharePostToFacebook();
+                pbLoading.setVisibility(View.VISIBLE);
             }
         } else if (requestCode == IMAGE_CAMERA_REQUEST) {
             if (resultCode == RESULT_OK) {
                 if (filePathImageCamera != null && filePathImageCamera.exists()) {
                     StorageReference imageCameraRef = storageRef.child(filePathImageCamera.getName() + "_camera");
                     sendFileFirebase(imageCameraRef, filePathImageCamera);
+                    pbLoading.setVisibility(View.VISIBLE);
                 } else {
                     //IS NULL
                 }
