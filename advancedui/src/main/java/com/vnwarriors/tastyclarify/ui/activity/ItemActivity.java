@@ -442,7 +442,7 @@ public class ItemActivity extends AppCompatActivity {
         builder.show();
     }
 
-    @OnClick(R.id.btnShareRecipe)
+//    @OnClick(R.id.btnShareRecipe)
     public void customDialog() {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         // ...Irrelevant code for customizing the buttons and title
