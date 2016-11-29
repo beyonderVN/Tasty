@@ -2,6 +2,8 @@ package com.vnwarriors.tastyclarify.ui.fragment;
 
 
 import android.app.Fragment;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -203,7 +205,16 @@ public class AllPostFragment extends Fragment implements CatalogueAdapterItemCli
     public static class CatalogueAdapter extends RecyclerView.Adapter<CatalogueAdapter.ViewHolder> {
         private String[] mDataset;
         CatalogueAdapterItemClick catalogueAdapterItemClick;
-
+        int[] ics = {R.drawable.ic_recipe,
+                R.drawable.ic_appetizer,
+                R.drawable.ic_dessert,
+                R.drawable.ic_first_course,
+                R.drawable.ic_main,
+                R.drawable.ic_side_dish,
+                R.drawable.ic_salad,
+                R.drawable.ic_chip,
+                R.drawable.ic_pizza,
+        };
         public CatalogueAdapter() {
         }
 
@@ -223,13 +234,19 @@ public class AllPostFragment extends Fragment implements CatalogueAdapterItemCli
         @Override
         public void onBindViewHolder(CatalogueAdapter.ViewHolder holder, int position) {
             holder.cvWrap.setCardBackgroundColor(ColorUtils.getColorByCatalogue(position));
-            holder.tvCatalogue.setText(mDataset[position]);
+            holder.tvCatalogue.setText("  "+mDataset[position]);
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     catalogueAdapterItemClick.onCatalogueAdapterItemClick(position);
                 }
             });
+            Drawable img = holder.itemView.getContext().getResources().getDrawable(ics[position]);
+            img.setBounds( 5, 5, 5, 5 );
+            img.setHotspot(600,600);
+            img.setColorFilter(holder.itemView.getContext().getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+            holder.tvCatalogue.setCompoundDrawablesWithIntrinsicBounds( img, null, null, null );
+
         }
 
         @Override

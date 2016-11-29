@@ -34,4 +34,15 @@
         <item>@id/cheap</item>
         <item>@id/pizza</item>
     </integer-array>
+    <integer-array name="catalogue_ics">
+        <item>@drawable/ic_recipe</item>
+        <item>@drawable/ic_appetizer</item>
+        <item>@drawable/ic_dessert</item>
+        <item>@drawable/ic_first_course</item>
+        <item>@drawable/ic_main</item>
+        <item>@drawable/ic_side_dish</item>
+        <item>@drawable/ic_salad</item>
+        <item>@drawable/ic_chip</item>
+        <item>@drawable/ic_pizza</item>
+    </integer-array>
 </resources>
