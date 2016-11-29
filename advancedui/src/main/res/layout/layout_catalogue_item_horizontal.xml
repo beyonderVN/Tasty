@@ -18,6 +18,8 @@
         android:layout_marginRight="16dp"
         android:text="12323423423423423"
         android:textColor="@color/white"
+        android:textAlignment="gravity"
+        android:textSize="17sp"
         />
 </android.support.v7.widget.CardView>
 

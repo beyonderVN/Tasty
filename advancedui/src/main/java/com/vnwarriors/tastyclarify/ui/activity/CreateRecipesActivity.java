@@ -30,20 +30,15 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 import com.vnwarriors.tastyclarify.R;
-import com.vnwarriors.tastyclarify.model.Comment;
 import com.vnwarriors.tastyclarify.model.FileModel;
 import com.vnwarriors.tastyclarify.model.PostModel;
 import com.vnwarriors.tastyclarify.model.TipImage;
-import com.vnwarriors.tastyclarify.model.UserModel;
 import com.vnwarriors.tastyclarify.ui.firebase.util.Util;
-import com.vnwarriors.tastyclarify.utils.CloneDataUtils;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -126,32 +121,32 @@ public class CreateRecipesActivity extends AppCompatActivity {
         findViewById(R.id.btnSendRecipe).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                for (PostModel postModel : CloneDataUtils.getRateList("recipes.json", CreateRecipesActivity.this)
-                        ) {
-
-                    Log.d(TAG, "onClick: " + postModel.getTipName());
-                    List<Comment> comments = new ArrayList<Comment>();
-                    UserModel userModel = new UserModel();
-                    userModel.setId("gSUNZWLvLmS5vdu7YTcQlXEDX5p1");
-                    userModel.setName("who");
-                    userModel.setPhoto_profile("http://fanexpodallas.com/wp-content/uploads/550w_soaps_silhouettesm2.jpg");
-                    Comment comment = new Comment();
-                    comment.userModel = userModel;
-                    comment.message = "Yummy!";
-                    comment.createAt = "" + Calendar.getInstance().getTime().getTime();
-                    comment.updateAt = "" + Calendar.getInstance().getTime().getTime();
-                    comments.add(comment);
-                    comment.message = "Delicious!";
-                    comments.add(comment);
-                    postModel.setTipComments(comments);
-                    mFirebaseDatabaseReference.child("posts").push().setValue(postModel, new DatabaseReference.CompletionListener() {
-                        @Override
-                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                            Log.d(TAG, "onComplete: " + (databaseError == null ? "" : databaseError.getMessage()));
-                        }
-                    });
-                }
-//                onPost();
+//                for (PostModel postModel : CloneDataUtils.getRateList("recipes.json", CreateRecipesActivity.this)
+//                        ) {
+//
+//                    Log.d(TAG, "onClick: " + postModel.getTipName());
+//                    List<Comment> comments = new ArrayList<Comment>();
+//                    UserModel userModel = new UserModel();
+//                    userModel.setId("gSUNZWLvLmS5vdu7YTcQlXEDX5p1");
+//                    userModel.setName("who");
+//                    userModel.setPhoto_profile("http://fanexpodallas.com/wp-content/uploads/550w_soaps_silhouettesm2.jpg");
+//                    Comment comment = new Comment();
+//                    comment.userModel = userModel;
+//                    comment.message = "Yummy!";
+//                    comment.createAt = "" + Calendar.getInstance().getTime().getTime();
+//                    comment.updateAt = "" + Calendar.getInstance().getTime().getTime();
+//                    comments.add(comment);
+//                    comment.message = "Delicious!";
+//                    comments.add(comment);
+//                    postModel.setTipComments(comments);
+//                    mFirebaseDatabaseReference.child("posts").push().setValue(postModel, new DatabaseReference.CompletionListener() {
+//                        @Override
+//                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+//                            Log.d(TAG, "onComplete: " + (databaseError == null ? "" : databaseError.getMessage()));
+//                        }
+//                    });
+//                }
+                onPost();
             }
 
 
