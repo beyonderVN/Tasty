@@ -359,9 +359,12 @@ public class ItemActivity extends AppCompatActivity {
                 ingredientList.add(itemDetailViewModel);
             }
         }
-    }private void prepareCommentList() {
+    }
+
+    private void prepareCommentList() {
         commentList = new ArrayList<>();
-        if(mPost.getTipComments()!=null&&mPost.getTipComments().size()>0)commentList.addAll(mPost.getTipComments());
+        if (mPost.getTipComments() != null && mPost.getTipComments().size() > 0)
+            commentList.addAll(mPost.getTipComments());
     }
 
     private String clearString(String string) {
@@ -428,7 +431,7 @@ public class ItemActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
-    @OnClick(R.id.btnShareRecipe)
+    //    @OnClick(R.id.btnShareRecipe)
     public void onDialogChooseImageType() {
         CharSequence colors[] = new CharSequence[]{"Choose photo gallery", "Take a picture"};
 
@@ -453,7 +456,7 @@ public class ItemActivity extends AppCompatActivity {
         builder.show();
     }
 
-//    @OnClick(R.id.btnShareRecipe)
+    @OnClick(R.id.btnShareRecipe)
     public void customDialog() {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         // ...Irrelevant code for customizing the buttons and title
@@ -461,9 +464,20 @@ public class ItemActivity extends AppCompatActivity {
         View dialogView = inflater.inflate(R.layout.option_photo_layout, null);
         dialogBuilder.setView(dialogView);
 
-        TextView editText = (TextView) dialogView.findViewById(R.id.textext);
-        editText.setText("test label");
+        TextView tvGallery = (TextView) dialogView.findViewById(R.id.tvGallery);
+
+        TextView tvCamera = (TextView) dialogView.findViewById(R.id.tvCamera);
+
         AlertDialog alertDialog = dialogBuilder.create();
+
+        tvCamera.setOnClickListener(v -> {
+            photoCameraIntent();
+            alertDialog.hide();
+        });
+        tvGallery.setOnClickListener(v -> {
+            photoGalleryIntent();
+            alertDialog.hide();
+        });
         alertDialog.show();
     }
 
