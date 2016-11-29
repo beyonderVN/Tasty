@@ -33,6 +33,9 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -48,8 +51,12 @@ import com.vnwarriors.tastyclarify.ui.firebase.model.FileModel;
 import com.vnwarriors.tastyclarify.ui.firebase.model.MapModel;
 import com.vnwarriors.tastyclarify.ui.firebase.model.UserModel;
 import com.vnwarriors.tastyclarify.ui.firebase.util.Util;
+import com.vnwarriors.tastyclarify.ui.fragment.AllPostFragment;
 import com.vnwarriors.tastyclarify.ui.fragment.GuideFragment;
 import com.vnwarriors.tastyclarify.utils.CloneDataUtils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -95,8 +102,6 @@ public class BrowserActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
 
@@ -104,41 +109,75 @@ public class BrowserActivity extends AppCompatActivity {
             Log.d(TAG, "onCreate: " + "auth.getCurrentUser() is not null");
             startActivity(new Intent(this, LoginActivity.class));
             finish();
-        }
-
-        setTheme(R.style.AppTheme_NoActionBar);
-        setContentView(R.layout.activity_browser);
-        ButterKnife.bind(this);
-
-        setupDrawable();
+        } else {
+            Log.d(TAG, "onCreateBrowserActivity: ");
 
 
-        if (auth.getCurrentUser() != null) {
-            userModel = new UserModel(auth.getCurrentUser().getDisplayName(), "", auth.getCurrentUser().getUid());
+
+            setTheme(R.style.AppTheme_NoActionBar);
+            setContentView(R.layout.activity_browser);
+            ButterKnife.bind(this);
+
+            setupDrawable();
+
+            userModel = new UserModel(auth.getCurrentUser().getDisplayName(),
+                    auth.getCurrentUser().getPhotoUrl().toString(),
+                    auth.getCurrentUser().getUid());
             mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
-        }
-        authListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user == null) {
-                    startActivity(new Intent(BrowserActivity.this, LoginActivity.class));
-                    finish();
+            Log.d(TAG, "auth.getCurrentUser().getUid(): "+userModel.getId());
+            Log.d(TAG, "auth.getCurrentUser().getPhotoUrl().toString(): "+auth.getCurrentUser().getPhotoUrl().toString());
+            mFirebaseDatabaseReference.child(USER_REFERENCE).child(auth.getCurrentUser().getUid()).setValue(userModel);
+            mFirebaseDatabaseReference.child(USER_REFERENCE).child(auth.getCurrentUser().getUid()).addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                    Log.d(TAG, "onChildAdded: "+dataSnapshot.toString());
                 }
-            }
-        };
+
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                }
+
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+            authListener = new FirebaseAuth.AuthStateListener() {
+                @Override
+                public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                    FirebaseUser user = firebaseAuth.getCurrentUser();
+                    if (user == null) {
+                        startActivity(new Intent(BrowserActivity.this, LoginActivity.class));
+                        finish();
+                    }
+                }
+            };
 
 
-        PagerModelManager manager = new PagerModelManager();
-        manager.addCommonFragment(GuideFragment.class, getBgRes(), getTitles());
-        ModelPagerAdapter adapter = new ModelPagerAdapter(getSupportFragmentManager(), manager);
-        viewPager.setAdapter(adapter);
-        viewPager.fixScrollSpeed();
+            PagerModelManager manager = new PagerModelManager();
+            manager.addCommonFragment(GuideFragment.class, getBgRes(), getTitles());
+            ModelPagerAdapter adapter = new ModelPagerAdapter(getSupportFragmentManager(), manager);
+            viewPager.setAdapter(adapter);
+            viewPager.fixScrollSpeed();
 
 
-        InkPageIndicator springIndicator = (InkPageIndicator) findViewById(R.id.indicator);
-        // just set viewPager
-        springIndicator.setViewPager(viewPager);
+            InkPageIndicator springIndicator = (InkPageIndicator) findViewById(R.id.indicator);
+            // just set viewPager
+            springIndicator.setViewPager(viewPager);
+
+        }
 
 
     }
@@ -221,6 +260,7 @@ public class BrowserActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.favorite:
+                EventBus.getDefault().post(new NavigationViewItemClickEvent(findCatalogueIdPosition(item.getItemId())));
                 break;
             case R.id.cookBook:
                 break;
@@ -248,6 +288,15 @@ public class BrowserActivity extends AppCompatActivity {
         }
 
         mDrawer.closeDrawers();
+    }
+
+    private int findCatalogueIdPosition(int itemId) {
+        for (int i = 0; i < catalogueIds.length; i++) {
+            if (catalogueIds[i] == itemId) {
+                return i;
+            }
+        }
+        return -1;
     }
 
 
@@ -343,6 +392,7 @@ public class BrowserActivity extends AppCompatActivity {
     private UserModel userModel;
     private DatabaseReference mFirebaseDatabaseReference;
     static final String CHAT_REFERENCE = "chatmodel";
+    static final String USER_REFERENCE = "usermodel";
 
     private void sendMessageFirebase() {
         ChatModel model = new ChatModel(userModel, "new mess", Calendar.getInstance().getTime().getTime() + "", null);
@@ -361,14 +411,26 @@ public class BrowserActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         auth.addAuthStateListener(authListener);
+        EventBus.getDefault().register(this);
     }
 
     @Override
     public void onStop() {
-        super.onStop();
         if (authListener != null) {
             auth.removeAuthStateListener(authListener);
         }
+        EventBus.getDefault().unregister(this);
+        super.onStop();
+    }
+
+    static int[] catalogueIds = {R.id.appetizer, R.id.dessert, R.id.first_course, R.id.main_course, R.id.side_dish, R.id.vegetarian, R.id.cheap, R.id.pizza};
+
+
+    @Subscribe
+    public void onMessageEvent(AllPostFragment.CatalogueAdapterItemClickEvent event) {
+        Log.d(TAG, "onMessageEvent: " + R.id.appetizer);
+        Log.d(TAG, "onMessageEvent: " + catalogueIds[event.position]);
+        mNavigationView.setCheckedItem(catalogueIds[event.position]);
     }
 
     FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -462,5 +524,14 @@ public class BrowserActivity extends AppCompatActivity {
             //IS NULL
         }
 
+    }
+
+
+    public static class NavigationViewItemClickEvent {
+        public final int position;
+
+        NavigationViewItemClickEvent(int position) {
+            this.position = position;
+        }
     }
 }

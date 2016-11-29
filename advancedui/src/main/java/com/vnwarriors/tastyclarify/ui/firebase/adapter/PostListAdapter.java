@@ -20,10 +20,10 @@ import com.google.firebase.database.Query;
 import com.squareup.picasso.Picasso;
 import com.vnwarriors.advancedui.appcore.common.DynamicHeightImageView;
 import com.vnwarriors.advancedui.appcore.common.recyclerviewhelper.PlaceHolderDrawableHelper;
-import com.vnwarriors.tastyclarify.MainApplication;
 import com.vnwarriors.tastyclarify.R;
 import com.vnwarriors.tastyclarify.model.PostModel;
 import com.vnwarriors.tastyclarify.ui.activity.ItemActivity;
+import com.vnwarriors.tastyclarify.utils.ColorUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +52,7 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.PostVi
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 PostModel model = dataSnapshot.getValue(PostModel.class);
-                postModels.add(model);
+                postModels.add(0,model);
                 notifyDataSetChanged();
             }
 
@@ -114,28 +114,33 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.PostVi
         ImageView imageView;
         imageView = (ImageView) viewHolder.itemView.findViewById(R.id.imageView2);
 
-        int[] catalogueColors = MainApplication.mContext.getResources().getIntArray(R.array.catalogue_colors);
-        String[] catalogues = MainApplication.mContext.getResources().getStringArray(R.array.catalogues);
-        int color = catalogueColors[Integer.valueOf((model.getTipCategories().substring(0, 1)))+1];
-//        int color = ColorUtils.getColorByCatalogue(Integer.valueOf((model.getTipCategories().substring(0, 1)))+1);
+//        int[] catalogueColors = MainApplication.mContext.getResources().getIntArray(R.array.catalogue_colors);
+//        String[] catalogues = MainApplication.mContext.getResources().getStringArray(R.array.catalogues);
+//        int color = catalogueColors[Integer.valueOf((model.getTipCategories().substring(0, 1)))+1];
+        int color = ColorUtils.getColorByCatalogue(Integer.valueOf((model.getTipCategories().substring(0, 1)))+1);
         imageView.setColorFilter(color);
         ImageView imageView2;
         imageView2 = (ImageView) viewHolder.itemView.findViewById(R.id.icChef1);
         imageView2.setColorFilter(color);
-
+        viewHolder.icChef1.setColorFilter(color);
+        viewHolder.icChef2.setColorFilter(color);
+        viewHolder.icChef3.setColorFilter(color);
+        viewHolder.icChef1.setAlpha(0.5f);
+        viewHolder.icChef2.setAlpha(0.5f);
+        viewHolder.icChef3.setAlpha(0.5f);
 
         switch (model.getTipDifficulty()) {
             case 1:
-                viewHolder.icChef1.setColorFilter(color);
+                viewHolder.icChef1.setAlpha(1f);
                 break;
             case 2:
-                viewHolder.icChef1.setColorFilter(color);
-                viewHolder.icChef2.setColorFilter(color);
+                viewHolder.icChef1.setAlpha(1f);
+                viewHolder.icChef2.setAlpha(1f);
                 break;
             case 3:
-                viewHolder.icChef1.setColorFilter(color);
-                viewHolder.icChef2.setColorFilter(color);
-                viewHolder.icChef3.setColorFilter(color);
+                viewHolder.icChef1.setAlpha(1f);
+                viewHolder.icChef2.setAlpha(1f);
+                viewHolder.icChef3.setAlpha(1f);
                 break;
         }
 

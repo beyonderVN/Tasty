@@ -18,6 +18,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -185,6 +186,33 @@ public class ItemActivity extends AppCompatActivity {
         tvCookTime.setText(ints[2] + " min.");
         createData();
         setupAdapter();
+
+        NestedScrollView nestedScrollView = (NestedScrollView) findViewById(R.id.nsScrollView);
+        nestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                int distance = oldScrollY-scrollY;
+                if (distance > 5) {
+                    hideToolbar();
+                }
+                if (distance < -10) {
+                    showToolbar();
+                }
+            }
+        });
+
+    }
+
+    private void showToolbar() {
+        if (toolBar.getVisibility() != View.GONE) {
+            toolBar.setVisibility(View.GONE);
+        }
+    }
+
+    private void hideToolbar() {
+        if (toolBar.getVisibility() != View.VISIBLE) {
+            toolBar.setVisibility(View.VISIBLE);
+        }
     }
 
     private void sharePostToFacebook() {
@@ -355,6 +383,9 @@ public class ItemActivity extends AppCompatActivity {
             case R.id.share:
                 onDialogChooseImageType();
                 break;
+            case android.R.id.home:
+                onBackPressed();
+                return true;
             default:
                 break;
         }
