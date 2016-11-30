@@ -50,7 +50,6 @@ import com.vnwarriors.tastyclarify.model.UserModel;
 import com.vnwarriors.tastyclarify.ui.firebase.util.Util;
 import com.vnwarriors.tastyclarify.ui.fragment.AllPostFragment;
 import com.vnwarriors.tastyclarify.ui.fragment.GuideFragment;
-import com.vnwarriors.tastyclarify.utils.CloneDataUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -300,8 +299,8 @@ public class BrowserActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.createData:
-//                startActivity(new Intent(this, CreateDataActivity.class));
-                CloneDataUtils.getRateList("recipes.json", this);
+                startActivity(new Intent(this, CreateDataActivity.class));
+//                CloneDataUtils.getRateList("recipes.json", this);
                 break;
             case R.id.sendPhoto:
                 photoCameraIntent();
