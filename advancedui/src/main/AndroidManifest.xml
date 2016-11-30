@@ -50,7 +50,7 @@
         <activity android:name=".ui.activity.CreateDataActivity" />
         <activity
             android:name=".ui.activity.CreateRecipesActivity"
-            android:theme="@style/ThemeApp"
+            android:theme="@style/AppTheme.CreateRecipesActivity"
             android:windowSoftInputMode="stateHidden"></activity>
 
         <meta-data

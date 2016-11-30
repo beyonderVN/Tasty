@@ -46,6 +46,18 @@
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
 
     </style>
+    <style name="AppTheme.CreateRecipesActivity" parent="AppTheme.NoActionBar">
+
+        <item name="android:windowContentTransitions">true</item>
+        <!-- using a semi-transparent window background for the drag-back gesture -->
+        <item name="android:windowBackground">@color/transparent_color</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+
+    </style>
 
     <style name="splashScreenTheme" parent="AppTheme.Translucent">
         <item name="android:windowBackground">@drawable/ic_android_white_24dp</item>

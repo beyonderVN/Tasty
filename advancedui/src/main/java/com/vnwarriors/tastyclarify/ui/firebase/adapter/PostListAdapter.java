@@ -45,6 +45,10 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.PostVi
         postModels = new ArrayList<>();
         setChildEventListener(query);
     }
+    public PostListAdapter(List<PostModel> postModels) {
+        this.postModels = postModels;
+//        setChildEventListener(query);
+    }
 
     private void setChildEventListener(Query query) {
         postModels.clear();

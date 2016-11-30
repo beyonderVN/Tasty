@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -37,8 +38,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.Picasso;
-import com.vnwarriors.advancedui.appcore.common.recyclerviewhelper.PlaceHolderDrawableHelper;
 import com.vnwarriors.tastyclarify.R;
 import com.vnwarriors.tastyclarify.model.Comment;
 import com.vnwarriors.tastyclarify.model.ItemDetailViewModel;
@@ -156,6 +155,27 @@ public class ItemActivity extends AppCompatActivity {
 
         setupUI();
 
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        nsScrollView.setTranslationY(nsScrollView.getTranslationY()+100);
+        ViewCompat.animate(nsScrollView)
+                .translationYBy(-100)
+                .setStartDelay(200)
+                .setDuration(500)
+                .start();
+        View rlWrapCommentInput = findViewById(R.id.rlWrapCommentInput);
+        rlWrapCommentInput.setTranslationY(rlWrapCommentInput.getTranslationY()+100);
+        ViewCompat.animate(rlWrapCommentInput)
+                .translationYBy(-100)
+                .setStartDelay(500)
+                .setDuration(500)
+                .start();
+
     }
 
     private void setupUI() {
@@ -163,11 +183,11 @@ public class ItemActivity extends AppCompatActivity {
         DisplayMetrics displaymetrics = new DisplayMetrics();
         this.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         int width = displaymetrics.widthPixels;
-        Picasso.with(this)
-                .load(mPost.getTipImage().getUrl())
-                .placeholder(PlaceHolderDrawableHelper.getBackgroundDrawable())
-                .resize(400, (int) (400 * mPost.getTipImageRatio()))
-                .into(ivCover);
+//        Picasso.with(this)
+//                .load(mPost.getTipImage().getUrl())
+//                .placeholder(PlaceHolderDrawableHelper.getBackgroundDrawable())
+//                .resize(400, (int) (400 * mPost.getTipImageRatio()))
+//                .into(ivCover);
 //        tvIngredients.setText(post.getTipIngredients().replace("#i","- "));
 //        tvPreparation.setText(post.getTipDescription().replace("#p","- "));
 

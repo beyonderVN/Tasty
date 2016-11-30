@@ -172,7 +172,6 @@ public class BrowserActivity extends AppCompatActivity {
     private void setupNavigationMenu() {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
         View headerLayout = mNavigationView.getHeaderView(0);
         ivAvatar = (ImageView) headerLayout.findViewById(R.id.ivAvatar);
         tvNavigationHeader = (TextView) headerLayout.findViewById(R.id.tvNavigationHeader);
@@ -182,7 +181,6 @@ public class BrowserActivity extends AppCompatActivity {
         tvEmail.setText(user.getEmail());
         tvDes = (TextView) headerLayout.findViewById(R.id.tvDes);
         tvDes.setText("Today is good for cooking");
-
     }
 
 
@@ -226,25 +224,32 @@ public class BrowserActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.favorite:
-                EventBus.getDefault().post(new NavigationViewItemClickEvent(findCatalogueIdPosition(item.getItemId())));
                 break;
             case R.id.cookBook:
                 break;
             case R.id.appetizer:
+                EventBus.getDefault().post(new AllPostFragment.CatalogueAdapterItemClickEvent(findCatalogueIdPosition(item.getItemId())));
                 break;
             case R.id.dessert:
+                EventBus.getDefault().post(new AllPostFragment.CatalogueAdapterItemClickEvent(findCatalogueIdPosition(item.getItemId())));
                 break;
             case R.id.first_course:
+                EventBus.getDefault().post(new AllPostFragment.CatalogueAdapterItemClickEvent(findCatalogueIdPosition(item.getItemId())));
                 break;
             case R.id.main_course:
+                EventBus.getDefault().post(new AllPostFragment.CatalogueAdapterItemClickEvent(findCatalogueIdPosition(item.getItemId())));
                 break;
             case R.id.side_dish:
+                EventBus.getDefault().post(new AllPostFragment.CatalogueAdapterItemClickEvent(findCatalogueIdPosition(item.getItemId())));
                 break;
             case R.id.vegetarian:
+                EventBus.getDefault().post(new AllPostFragment.CatalogueAdapterItemClickEvent(findCatalogueIdPosition(item.getItemId())));
                 break;
             case R.id.cheap:
+                EventBus.getDefault().post(new AllPostFragment.CatalogueAdapterItemClickEvent(findCatalogueIdPosition(item.getItemId())));
                 break;
             case R.id.pizza:
+                EventBus.getDefault().post(new AllPostFragment.CatalogueAdapterItemClickEvent(findCatalogueIdPosition(item.getItemId())));
                 break;
             case R.id.sign_out:
                 auth.signOut();
@@ -391,7 +396,8 @@ public class BrowserActivity extends AppCompatActivity {
 
 
     @Subscribe
-    public void onMessageEvent(AllPostFragment.CatalogueAdapterItemClickEvent event) {
+    public void onCatalogueAdapterItemClickEvent(AllPostFragment.CatalogueAdapterItemClickEvent event) {
+        if(event.position<0)return;
         Log.d(TAG, "onMessageEvent: " + R.id.appetizer);
         Log.d(TAG, "onMessageEvent: " + catalogueIds[event.position]);
         mNavigationView.setCheckedItem(catalogueIds[event.position]);

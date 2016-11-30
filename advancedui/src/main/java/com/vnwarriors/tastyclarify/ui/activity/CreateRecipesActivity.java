@@ -1,9 +1,12 @@
 package com.vnwarriors.tastyclarify.ui.activity;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatRatingBar;
@@ -13,6 +16,9 @@ import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewAnimationUtils;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -48,6 +54,10 @@ import butterknife.OnClick;
 
 public class CreateRecipesActivity extends AppCompatActivity {
     private static final String TAG = "CreateRecipesActivity";
+    @BindView(R.id.parent)
+    ViewGroup parent;
+    @BindView(R.id.fab)
+    FloatingActionButton fab;
     @BindView(R.id.cbTerm)
     AppCompatCheckBox cbTerm;
 
@@ -93,8 +103,46 @@ public class CreateRecipesActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         initView();
+        parent.getViewTreeObserver().addOnGlobalLayoutListener(
+                new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() {
+                        enterReveal();
+                        fab.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    }
+                });
+
     }
 
+    private void enterReveal() {
+        int cx = (int) (fab.getX() + fab.getMeasuredWidth() / 2);
+        int cy = (int) (fab.getY() + fab.getMeasuredHeight() / 2);
+        int finalRadius = Math.max(parent.getWidth(), parent.getHeight());
+        ViewAnimationUtils.createCircularReveal(parent, cx, cy, 0, finalRadius).start();
+    }
+
+    @Override
+    public void onBackPressed() {
+        exitReveal();
+    }
+
+    public void exitReveal() {
+        int cx = (int) (fab.getX() + fab.getMeasuredWidth() / 2);
+        int cy = (int) (fab.getY() + fab.getMeasuredHeight() / 2);
+        int startRadius = Math.max(parent.getWidth(), parent.getHeight());
+        Animator animator = ViewAnimationUtils.createCircularReveal(parent, cx, cy,
+                startRadius, fab.getMeasuredWidth() / 2);
+        animator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                parent.setVisibility(View.INVISIBLE);
+                finishAfterTransition();
+                overridePendingTransition(0, 0);
+            }
+        });
+        animator.start();
+    }
     private DatabaseReference mFirebaseDatabaseReference;
 
     private void initView() {

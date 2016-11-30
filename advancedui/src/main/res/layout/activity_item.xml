@@ -35,6 +35,7 @@
         android:paddingTop="300dp">
 
         <LinearLayout
+            android:id="@+id/llWrap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#dddddd"
@@ -97,7 +98,7 @@
                             android:layout_weight="1"
                             android:drawableTop="@drawable/portion_cover"
                             android:gravity="center"
-                            android:text="Portion"
+                            android:text="Difficult"
                             android:textColor="#ffffff" />
 
                         <TextView
@@ -292,19 +293,10 @@
                     android:layout_height="wrap_content"
                     android:padding="8dp">
 
-                    <ImageView
-                        android:id="@+id/ivCommentSpan"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginRight="16dp"
-                        android:src="@drawable/ic_ingredients" />
-
                     <TextView
+                        android:id="@+id/ivCommentSpan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/ivCommentSpan"
-                        android:layout_alignTop="@+id/ivCommentSpan"
-                        android:layout_toRightOf="@+id/ivCommentSpan"
                         android:gravity="center"
                         android:text="COMMENTS"
                         android:textColor="#e1431c"
@@ -332,6 +324,7 @@
         app:title=" "
         />
     <RelativeLayout
+        android:id="@+id/rlWrapCommentInput"
         android:background="@color/tran_gray"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

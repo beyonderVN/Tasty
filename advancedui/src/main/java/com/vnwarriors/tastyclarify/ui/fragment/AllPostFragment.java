@@ -18,11 +18,14 @@ import android.widget.TextView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.vnwarriors.tastyclarify.MainApplication;
 import com.vnwarriors.tastyclarify.R;
 import com.vnwarriors.tastyclarify.ui.firebase.adapter.PostListAdapter;
+import com.vnwarriors.tastyclarify.utils.CloneDataUtils;
 import com.vnwarriors.tastyclarify.utils.ColorUtils;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,7 +35,7 @@ import butterknife.ButterKnife;
  * Use the {@link AllPostFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AllPostFragment extends Fragment implements CatalogueAdapterItemClick {
+public class AllPostFragment extends Fragment  {
     private static final String TAG = "AllPostFragment";
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -140,6 +143,7 @@ public class AllPostFragment extends Fragment implements CatalogueAdapterItemCli
     }
 
     RecyclerView rvListCatalogue;
+    CatalogueAdapter catalogueAdapter;
 
     private void bindViews2(View v) {
 
@@ -150,7 +154,8 @@ public class AllPostFragment extends Fragment implements CatalogueAdapterItemCli
         rvListCatalogue.setLayoutManager(linearLayoutManager);
 
         String[] mDataset = v.getContext().getResources().getStringArray(R.array.catalogues);
-        rvListCatalogue.setAdapter(new CatalogueAdapter(mDataset, this));
+        catalogueAdapter = new CatalogueAdapter(rvListCatalogue,mDataset);
+        rvListCatalogue.setAdapter(catalogueAdapter);
     }
 
     private void verificaUsuarioLogado() {
@@ -174,7 +179,8 @@ public class AllPostFragment extends Fragment implements CatalogueAdapterItemCli
 
         rvListPost.setLayoutManager(staggeredGridLayoutManagerVertical);
         Query query = mFirebaseDatabaseReference.child(POST_REFERENCE);
-        postListAdapter = new PostListAdapter(query);
+//        postListAdapter = new PostListAdapter(query);
+        postListAdapter = new PostListAdapter(CloneDataUtils.getRateListWithComments("recipes.json", MainApplication.mContext));
         rvListPost.setAdapter(postListAdapter);
 
     }
@@ -182,29 +188,43 @@ public class AllPostFragment extends Fragment implements CatalogueAdapterItemCli
     PostListAdapter postListAdapter;
 
 
-    @Override
-    public void onCatalogueAdapterItemClick(int position) {
-        if (position == 0) {
-            Query query = mFirebaseDatabaseReference.child(POST_REFERENCE);
-            postListAdapter.setQuery(query);
-        } else {
-            Query query = mFirebaseDatabaseReference.child(POST_REFERENCE).orderByChild("tipCategories").equalTo(String.valueOf(position - 1));
-            postListAdapter.setQuery(query);
-            EventBus.getDefault().post(new CatalogueAdapterItemClickEvent(position-1));
-        }
-
-    }
 
     public static class CatalogueAdapterItemClickEvent {
         public final int  position;
-        CatalogueAdapterItemClickEvent(int position){
+        public CatalogueAdapterItemClickEvent(int position){
             this.position = position;
         }
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
+    }
+    @Subscribe
+    public void onCatalogueAdapterItemClickEvent(AllPostFragment.CatalogueAdapterItemClickEvent event) {
+        int position = event.position;
+        Log.d(TAG, "onCatalogueAdapterItemClickEvent: position: "+position);
+        if (position == 0) {
+            Query query = mFirebaseDatabaseReference.child(POST_REFERENCE);
+            postListAdapter.setQuery(query);
+
+        } else {
+            Query query = mFirebaseDatabaseReference.child(POST_REFERENCE).orderByChild("tipCategories").equalTo(String.valueOf(position));
+            postListAdapter.setQuery(query);
+        }
+        catalogueAdapter.setSelectedPosition(event.position+1);
+    }
     public static class CatalogueAdapter extends RecyclerView.Adapter<CatalogueAdapter.ViewHolder> {
         private String[] mDataset;
-        CatalogueAdapterItemClick catalogueAdapterItemClick;
+        int lastCheckedPosition;
+        RecyclerView recyclerView;
         int[] ics = {R.drawable.ic_recipe,
                 R.drawable.ic_appetizer,
                 R.drawable.ic_dessert,
@@ -218,9 +238,10 @@ public class AllPostFragment extends Fragment implements CatalogueAdapterItemCli
         public CatalogueAdapter() {
         }
 
-        public CatalogueAdapter(String[] myDataset, CatalogueAdapterItemClick catalogueAdapterItemClick) {
+        public CatalogueAdapter(RecyclerView recyclerView ,String[] myDataset) {
             mDataset = myDataset;
-            this.catalogueAdapterItemClick = catalogueAdapterItemClick;
+            lastCheckedPosition= 0;
+            this.recyclerView = recyclerView;
         }
 
         @Override
@@ -233,20 +254,41 @@ public class AllPostFragment extends Fragment implements CatalogueAdapterItemCli
 
         @Override
         public void onBindViewHolder(CatalogueAdapter.ViewHolder holder, int position) {
-            holder.cvWrap.setCardBackgroundColor(ColorUtils.getColorByCatalogue(position));
+            int color = ColorUtils.getColorByCatalogue(position);
+            if(lastCheckedPosition==position){
+                holder.cvWrap.setCardElevation(10);
+                holder.cvWrap.setCardBackgroundColor(color);
+                holder.tvCatalogue.setTextColor(holder.itemView.getContext().getResources().getColor(R.color.white));
+                Drawable img = holder.itemView.getContext().getResources().getDrawable(ics[position]);
+                img.setColorFilter(holder.itemView.getContext().getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+                holder.tvCatalogue.setCompoundDrawablesWithIntrinsicBounds( img, null, null, null );
+
+            }else {
+                holder.cvWrap.setCardElevation(0);
+                holder.cvWrap.setCardBackgroundColor(holder.itemView.getContext().getResources().getColor(R.color.white));
+                holder.tvCatalogue.setTextColor(color);
+                Drawable img = holder.itemView.getContext().getResources().getDrawable(ics[position]);
+                img.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+                holder.tvCatalogue.setCompoundDrawablesWithIntrinsicBounds( img, null, null, null );
+            }
             holder.tvCatalogue.setText("  "+mDataset[position]);
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    catalogueAdapterItemClick.onCatalogueAdapterItemClick(position);
+
+                    setSelectedPosition(position);
+//                    catalogueAdapterItemClick.onCatalogueAdapterItemClick(position);
+                    EventBus.getDefault().post(new CatalogueAdapterItemClickEvent(position-1));
                 }
             });
-            Drawable img = holder.itemView.getContext().getResources().getDrawable(ics[position]);
-            img.setBounds( 5, 5, 5, 5 );
-            img.setHotspot(600,600);
-            img.setColorFilter(holder.itemView.getContext().getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
-            holder.tvCatalogue.setCompoundDrawablesWithIntrinsicBounds( img, null, null, null );
 
+
+        }
+
+        public void setSelectedPosition(int position) {
+            lastCheckedPosition=position;
+            CatalogueAdapter.this.notifyDataSetChanged();
+            recyclerView.smoothScrollToPosition(position);
         }
 
         @Override
