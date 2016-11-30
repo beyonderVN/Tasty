@@ -155,8 +155,8 @@ public class ItemActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        setupUI();
 
+        setupUI();
 
 
     }
@@ -164,10 +164,11 @@ public class ItemActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
         nsScrollView.setTranslationY(nsScrollView.getTranslationY()+100);
         ViewCompat.animate(nsScrollView)
                 .translationYBy(-100)
-                .setStartDelay(200)
+                .setStartDelay(500)
                 .setDuration(500)
                 .start();
         View rlWrapCommentInput = findViewById(R.id.rlWrapCommentInput);
