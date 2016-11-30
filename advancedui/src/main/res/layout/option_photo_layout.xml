@@ -2,16 +2,50 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="please chooose"/>
+        android:paddingBottom="24dp"
+        android:paddingLeft="32dp"
+        android:paddingTop="24dp"
+        android:text="Photo"
+        android:textColor="#d88e8888"
+        android:textSize="32sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#f3293b74" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/tvGallery"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="gggg"
-        android:id="@+id/textext"/>
+        android:drawableLeft="@drawable/ic_collections"
+        android:drawablePadding="8dp"
+        android:drawableTint="#d88e8888"
+        android:padding="16dp"
+        android:text="Photo from gallery"
+        android:textColor="#d88e8888"
+        android:textSize="24sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f3484545" />
+
+    <TextView
+        android:id="@+id/tvCamera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_camera"
+        android:drawablePadding="8dp"
+        android:drawableTint="#d88e8888"
+        android:padding="16dp"
+        android:text="Photo from camera"
+        android:textColor="#d88e8888"
+        android:textSize="24sp" />
 </LinearLayout>
