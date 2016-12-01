@@ -165,16 +165,16 @@ public class ItemActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        nsScrollView.setTranslationY(nsScrollView.getTranslationY()+100);
+        nsScrollView.setTranslationY(nsScrollView.getTranslationY()+1000);
         ViewCompat.animate(nsScrollView)
-                .translationYBy(-100)
-                .setStartDelay(500)
+                .translationYBy(-1000)
+                .setStartDelay(200)
                 .setDuration(500)
                 .start();
         View rlWrapCommentInput = findViewById(R.id.rlWrapCommentInput);
-        rlWrapCommentInput.setTranslationY(rlWrapCommentInput.getTranslationY()+100);
+        rlWrapCommentInput.setTranslationY(rlWrapCommentInput.getTranslationY()+200);
         ViewCompat.animate(rlWrapCommentInput)
-                .translationYBy(-100)
+                .translationYBy(-200)
                 .setStartDelay(500)
                 .setDuration(500)
                 .start();
