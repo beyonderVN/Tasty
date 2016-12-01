@@ -20,7 +20,7 @@ import com.vnwarriors.advancedui.appcore.common.DynamicHeightImageView;
 import com.vnwarriors.advancedui.appcore.common.recyclerviewhelper.PlaceHolderDrawableHelper;
 import com.vnwarriors.tastyclarify.R;
 import com.vnwarriors.tastyclarify.model.PostModel;
-import com.vnwarriors.tastyclarify.ui.activity.ItemActivity;
+import com.vnwarriors.tastyclarify.ui.activity.recipedetail.ItemActivity;
 import com.vnwarriors.tastyclarify.utils.ColorUtils;
 
 import butterknife.BindView;

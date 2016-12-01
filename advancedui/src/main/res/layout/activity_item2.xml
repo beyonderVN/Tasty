@@ -9,7 +9,7 @@
     android:transitionGroup="false"
     app:dragDismissDistance="168dp"
     app:dragDismissScale="0.95"
-    tools:context=".ui.activity.ItemActivity">
+    tools:context=".ui.activity.recipedetail.ItemActivity">
 
     <TextView
         android:id="@+id/tvHeaderSection"

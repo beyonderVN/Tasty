@@ -1,4 +1,4 @@
-package com.vnwarriors.tastyclarify.ui.activity;
+package com.vnwarriors.tastyclarify.ui.activity.browser;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -47,6 +47,8 @@ import com.vnwarriors.tastyclarify.model.ChatModel;
 import com.vnwarriors.tastyclarify.model.FileModel;
 import com.vnwarriors.tastyclarify.model.MapModel;
 import com.vnwarriors.tastyclarify.model.UserModel;
+import com.vnwarriors.tastyclarify.ui.activity.createrecipe.CreateDataActivity;
+import com.vnwarriors.tastyclarify.ui.activity.createrecipe.CreateRecipesActivity;
 import com.vnwarriors.tastyclarify.ui.activity.authentication.LoginActivity;
 import com.vnwarriors.tastyclarify.ui.activity.authentication.ProfileActivity;
 import com.vnwarriors.tastyclarify.ui.firebase.util.Util;

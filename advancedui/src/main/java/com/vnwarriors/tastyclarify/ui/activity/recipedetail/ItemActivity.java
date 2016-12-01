@@ -1,4 +1,4 @@
-package com.vnwarriors.tastyclarify.ui.activity;
+package com.vnwarriors.tastyclarify.ui.activity.recipedetail;
 
 import android.content.DialogInterface;
 import android.content.Intent;

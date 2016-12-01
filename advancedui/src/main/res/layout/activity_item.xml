@@ -12,7 +12,7 @@
     android:focusableInTouchMode="true"
     app:dragDismissDistance="260dp"
     app:dragDismissScale="0.8"
-    tools:context=".ui.activity.ItemActivity">
+    tools:context=".ui.activity.recipedetail.ItemActivity">
 
 
     <ImageView

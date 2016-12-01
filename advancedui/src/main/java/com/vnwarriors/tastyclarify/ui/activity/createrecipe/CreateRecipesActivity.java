@@ -1,4 +1,4 @@
-package com.vnwarriors.tastyclarify.ui.activity;
+package com.vnwarriors.tastyclarify.ui.activity.createrecipe;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

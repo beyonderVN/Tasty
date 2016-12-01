@@ -23,7 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.vnwarriors.tastyclarify.R;
 import com.vnwarriors.tastyclarify.model.UserModel;
-import com.vnwarriors.tastyclarify.ui.activity.BrowserActivity;
+import com.vnwarriors.tastyclarify.ui.activity.browser.BrowserActivity;
 
 
 public class SignupActivity extends AppCompatActivity {

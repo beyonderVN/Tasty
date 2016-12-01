@@ -18,10 +18,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.activity.BrowserActivity"
+            android:name=".ui.activity.browser.BrowserActivity"
             android:theme="@style/AppTheme.Translucent" />
         <activity
-            android:name=".ui.activity.ItemActivity"
+            android:name=".ui.activity.recipedetail.ItemActivity"
             android:theme="@style/AppTheme.Translucent"
             android:windowSoftInputMode="adjustPan"/>
         <activity
@@ -39,7 +39,7 @@
 
         <activity-alias
             android:name=".laucher"
-            android:targetActivity=".ui.activity.BrowserActivity">
+            android:targetActivity=".ui.activity.browser.BrowserActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -47,9 +47,9 @@
             </intent-filter>
         </activity-alias>
 
-        <activity android:name=".ui.activity.CreateDataActivity" />
+        <activity android:name=".ui.activity.createrecipe.CreateDataActivity" />
         <activity
-            android:name=".ui.activity.CreateRecipesActivity"
+            android:name=".ui.activity.createrecipe.CreateRecipesActivity"
             android:theme="@style/AppTheme.CreateRecipesActivity"
             android:windowSoftInputMode="stateHidden"></activity>
 

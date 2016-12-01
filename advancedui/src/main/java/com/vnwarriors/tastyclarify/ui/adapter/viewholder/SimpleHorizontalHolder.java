@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.vnwarriors.tastyclarify.R;
-import com.vnwarriors.tastyclarify.ui.activity.ItemActivity;
+import com.vnwarriors.tastyclarify.ui.activity.recipedetail.ItemActivity;
 import com.vnwarriors.tastyclarify.ui.adapter.viewmodel.SimpleHorizontalVM;
 
 import butterknife.BindView;
