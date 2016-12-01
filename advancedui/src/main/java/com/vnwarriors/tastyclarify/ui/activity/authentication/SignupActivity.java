@@ -1,4 +1,4 @@
-package com.vnwarriors.tastyclarify.ui.activity;
+package com.vnwarriors.tastyclarify.ui.activity.authentication;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -23,8 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.vnwarriors.tastyclarify.R;
 import com.vnwarriors.tastyclarify.model.UserModel;
-
-import static com.vnwarriors.tastyclarify.ui.activity.BrowserActivity.USER_REFERENCE;
+import com.vnwarriors.tastyclarify.ui.activity.BrowserActivity;
 
 
 public class SignupActivity extends AppCompatActivity {
@@ -32,7 +31,7 @@ public class SignupActivity extends AppCompatActivity {
     private Button btnSignIn, btnSignUp, btnResetPassword;
     private ProgressBar progressBar;
     private FirebaseAuth auth;
-
+    static final String USER_REFERENCE = "usermodel";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

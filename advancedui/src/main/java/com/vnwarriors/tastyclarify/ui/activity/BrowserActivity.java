@@ -47,6 +47,8 @@ import com.vnwarriors.tastyclarify.model.ChatModel;
 import com.vnwarriors.tastyclarify.model.FileModel;
 import com.vnwarriors.tastyclarify.model.MapModel;
 import com.vnwarriors.tastyclarify.model.UserModel;
+import com.vnwarriors.tastyclarify.ui.activity.authentication.LoginActivity;
+import com.vnwarriors.tastyclarify.ui.activity.authentication.ProfileActivity;
 import com.vnwarriors.tastyclarify.ui.firebase.util.Util;
 import com.vnwarriors.tastyclarify.ui.fragment.AllPostFragment;
 import com.vnwarriors.tastyclarify.ui.fragment.GuideFragment;

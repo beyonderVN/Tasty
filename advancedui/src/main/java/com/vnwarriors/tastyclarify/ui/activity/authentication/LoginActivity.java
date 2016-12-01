@@ -1,4 +1,4 @@
-package com.vnwarriors.tastyclarify.ui.activity;
+package com.vnwarriors.tastyclarify.ui.activity.authentication;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.vnwarriors.tastyclarify.R;
+import com.vnwarriors.tastyclarify.ui.activity.BrowserActivity;
 
 
 public class LoginActivity extends AppCompatActivity {

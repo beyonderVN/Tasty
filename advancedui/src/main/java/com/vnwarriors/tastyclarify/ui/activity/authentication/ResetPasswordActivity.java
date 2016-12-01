@@ -1,4 +1,4 @@
-package com.vnwarriors.tastyclarify.ui.activity;
+package com.vnwarriors.tastyclarify.ui.activity.authentication;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

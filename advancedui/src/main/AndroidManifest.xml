@@ -25,16 +25,16 @@
             android:theme="@style/AppTheme.Translucent"
             android:windowSoftInputMode="adjustPan"/>
         <activity
-            android:name=".ui.activity.LoginActivity"
+            android:name=".ui.activity.authentication.LoginActivity"
             android:theme="@style/AppTheme.Translucent" />
         <activity
-            android:name=".ui.activity.SignupActivity"
+            android:name=".ui.activity.authentication.SignupActivity"
             android:theme="@style/AppTheme.Translucent" />
         <activity
-            android:name=".ui.activity.ResetPasswordActivity"
+            android:name=".ui.activity.authentication.ResetPasswordActivity"
             android:theme="@style/AppTheme.Translucent" />
         <activity
-            android:name=".ui.activity.ProfileActivity"
+            android:name=".ui.activity.authentication.ProfileActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity-alias

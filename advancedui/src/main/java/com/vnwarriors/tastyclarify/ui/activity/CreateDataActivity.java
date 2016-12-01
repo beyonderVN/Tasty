@@ -17,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.vnwarriors.tastyclarify.R;
 import com.vnwarriors.tastyclarify.model.PostModel;
 import com.vnwarriors.tastyclarify.model.TipImage;
+import com.vnwarriors.tastyclarify.ui.activity.authentication.LoginActivity;
 import com.vnwarriors.tastyclarify.ui.firebase.adapter.ClickListenerChatFirebase;
 import com.vnwarriors.tastyclarify.ui.firebase.adapter.PostListAdapter;
 import com.vnwarriors.tastyclarify.ui.firebase.adapter.PostListFirebaseAdapter;
