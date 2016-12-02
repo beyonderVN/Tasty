@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatCheckBox;
@@ -26,9 +25,6 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -36,12 +32,10 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 import com.vnwarriors.tastyclarify.R;
-import com.vnwarriors.tastyclarify.model.FileModel;
 import com.vnwarriors.tastyclarify.model.PostModel;
 import com.vnwarriors.tastyclarify.model.TipImage;
 import com.vnwarriors.tastyclarify.ui.firebase.util.Util;
 
-import java.io.File;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -220,66 +214,56 @@ public class CreateRecipesActivity extends AppCompatActivity {
             final String name = DateFormat.format("yyyy-MM-dd_hhmmss", new Date()).toString();
             StorageReference imageGalleryRef = storageRef.child(name + "_gallery");
             UploadTask uploadTask = imageGalleryRef.putFile(selectedImageUri);
-            uploadTask.addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Log.e(TAG, "onFailure sendFileFirebase " + e.getMessage());
-                    return;
+            uploadTask.addOnFailureListener(e -> {
+                Log.e(TAG, "onFailure sendFileFirebase " + e.getMessage());
+                return;
+            }).addOnSuccessListener(taskSnapshot -> {
+                Log.i(TAG, "onSuccess sendFileFirebase");
+                Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                TipImage tipImage = new TipImage("File", "image name", downloadUrl.toString());
+                PostModel postModel = new PostModel();
+                postModel.setTipName(idRecipeName.getText().toString());
+                postModel.setTipImage(tipImage);
+                postModel.setCreatedAt(Calendar.getInstance().getTime().getTime() + "");
+                int[] checkedCatelogues = {R.id.cbAppetizer, R.id.cbDessert, R.id.cbFirstCourse, R.id.cbMainCourse, R.id.cbSideDish,
+                        R.id.cbVegetarian, R.id.cbCheap, R.id.cbPizza};
+                postModel.setTipCategories("");
+                for (int i = 0; i < checkedCatelogues.length; i++) {
+                    if (((AppCompatCheckBox) findViewById(checkedCatelogues[i])).isChecked()) {
+                        postModel.setTipCategories(String.valueOf(i));
+                    }
                 }
-            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Log.i(TAG, "onSuccess sendFileFirebase");
-                    Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                    FileModel fileModel = new FileModel("img", downloadUrl.toString(), name, "");
-                    TipImage tipImage = new TipImage("File", "image name", downloadUrl.toString());
-                    PostModel postModel = new PostModel();
-                    postModel.setTipName(idRecipeName.getText().toString());
-                    postModel.setTipImage(tipImage);
-                    postModel.setCreatedAt(Calendar.getInstance().getTime().getTime() + "");
-                    int[] checkedCatelogues = {R.id.cbAppetizer, R.id.cbDessert, R.id.cbFirstCourse, R.id.cbMainCourse, R.id.cbSideDish,
-                            R.id.cbVegetarian, R.id.cbCheap, R.id.cbPizza};
-                    postModel.setTipCategories("");
-                    for (int i = 0; i < checkedCatelogues.length; i++) {
-                        if (((AppCompatCheckBox) findViewById(checkedCatelogues[i])).isChecked()) {
-                            postModel.setTipCategories(String.valueOf(i));
-                        }
-                    }
-                    postModel.setTipPersons(sbServe.getProgress());
-                    postModel.setTipDifficulty(sbDifficult.getProgress());
-                    EditText etPreparationTime = (EditText) findViewById(R.id.etPreparationTime);
-                    EditText etCookingTime = (EditText) findViewById(R.id.etCookingTime);
-                    postModel.setTipTime("#tp" + etPreparationTime.getText().toString() + "#tc" + etCookingTime.getText().toString() + "");
-                    String ingredients = "";
-                    for (String key : ingredient.keySet()
-                            ) {
-                        ingredients = ingredients + ingredient.get(key) + "\n";
-                    }
-                    postModel.setTipIngredients(ingredients);
-                    EditText etPreparation = (EditText) findViewById(R.id.etPreparation);
-                    postModel.setTipDescription(etPreparation.getText().toString());
-                    postModel.setObjectId("");
-                    postModel.setTipDairy(false);
-                    postModel.setTipHot(false);
-                    postModel.setTipImageRatio((double) ivDish.getMeasuredHeight() / (double) ivDish.getMeasuredWidth());
-                    postModel.setTipOven(false);
-                    postModel.setTipPortion("");
-                    postModel.setTipPublished(1);
-                    postModel.setTipSeasons("");
-                    postModel.setTipZzz("");
-                    postModel.setUpdatedAt(Calendar.getInstance().getTime().getTime() + "");
-                    com.google.firebase.database.DatabaseReference.CompletionListener completionListener
-                            = new DatabaseReference.CompletionListener() {
-                        @Override
-                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                postModel.setTipPersons(sbServe.getProgress());
+                postModel.setTipDifficulty(sbDifficult.getProgress());
+                EditText etPreparationTime = (EditText) findViewById(R.id.etPreparationTime);
+                EditText etCookingTime = (EditText) findViewById(R.id.etCookingTime);
+                postModel.setTipTime("#tp" + etPreparationTime.getText().toString() + "#tc" + etCookingTime.getText().toString() + "");
+                String ingredients = "";
+                for (String key : ingredient.keySet()
+                        ) {
+                    ingredients = ingredients + ingredient.get(key) + "\n";
+                }
+                postModel.setTipIngredients(ingredients);
+                EditText etPreparation = (EditText) findViewById(R.id.etPreparation);
+                postModel.setTipDescription(etPreparation.getText().toString());
+                postModel.setObjectId("");
+                postModel.setTipDairy(false);
+                postModel.setTipHot(false);
+                postModel.setTipImageRatio((double) ivDish.getMeasuredHeight() / (double) ivDish.getMeasuredWidth());
+                postModel.setTipOven(false);
+                postModel.setTipPortion("");
+                postModel.setTipPublished(1);
+                postModel.setTipSeasons("");
+                postModel.setTipZzz("");
+                postModel.setUpdatedAt(Calendar.getInstance().getTime().getTime() + "");
+                DatabaseReference.CompletionListener completionListener
+                        = (databaseError, databaseReference) -> {
                             if (databaseError != null) {
                                 Log.d(TAG, "DatabaseReference.CompletionListener: " + databaseError.getMessage());
                             }
                             Toast.makeText(CreateRecipesActivity.this, "Your recipe has been shared!\nThanks for your contribution", Toast.LENGTH_LONG).show();
-                        }
-                    };
-                    mFirebaseDatabaseReference.child("posts").push().setValue(postModel, completionListener);
-                }
+                        };
+                mFirebaseDatabaseReference.child("posts").push().setValue(postModel, completionListener);
             });
         } else {
             //IS NULL
@@ -336,54 +320,37 @@ public class CreateRecipesActivity extends AppCompatActivity {
     }
 
     private void onGenderClick() {
-        cbMan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cbWoman.setChecked(false);
-            }
-        });
+        cbMan.setOnClickListener(v -> cbWoman.setChecked(false));
 
-        cbWoman.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cbMan.setChecked(false);
-            }
-        });
+        cbWoman.setOnClickListener(v -> cbMan.setChecked(false));
     }
 
     private String Ingredient = "rlIngredientNo";
     private String characterSpe = "- ";
 
     private void onAddIngredientClick() {
-        ivAddIngredient.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String ingredientText = etGredient.getText().toString().trim();
-                String key = keyIngredient();
-                Log.d("keyIngre", key);
-                Log.d("textIngre", ingredientText);
-                ingredient.put(key, ingredientText);
+        ivAddIngredient.setOnClickListener(v -> {
+            String ingredientText = etGredient.getText().toString().trim();
+            String key = keyIngredient();
+            Log.d("keyIngre", key);
+            Log.d("textIngre", ingredientText);
+            ingredient.put(key, ingredientText);
+            Log.d("Ingredient", String.valueOf(ingredient.size()));
+            etGredient.setText("");
+
+            View view = LayoutInflater.from(v.getContext()).inflate(R.layout.gredient_cancel, llIngredient, false);
+            view.setTag("key");
+            TextView tvIngredient = (TextView) view.findViewById(R.id.tvIngredient);
+            tvIngredient.setText(characterSpe + ingredientText);
+            ImageView ivCancelIngredient = (ImageView) view.findViewById(R.id.ivCancelIngredient);
+            ivCancelIngredient.setOnClickListener(v1 -> {
+                llIngredient.removeView(view);
+                ingredient.remove(key);
                 Log.d("Ingredient", String.valueOf(ingredient.size()));
-                etGredient.setText("");
+            });
 
-                View view = LayoutInflater.from(v.getContext()).inflate(R.layout.gredient_cancel, llIngredient, false);
-                view.setTag("key");
-                TextView tvIngredient = (TextView) view.findViewById(R.id.tvIngredient);
-                tvIngredient.setText(characterSpe + ingredientText);
-                ImageView ivCancelIngredient = (ImageView) view.findViewById(R.id.ivCancelIngredient);
-                ivCancelIngredient.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        llIngredient.removeView(view);
-                        ingredient.remove(key);
-                        Log.d("Ingredient", String.valueOf(ingredient.size()));
-                    }
-                });
+            llIngredient.addView(view);
 
-                llIngredient.addView(view);
-//                RelativeLayout relativeLayout = (RelativeLayout) view;
-
-            }
         });
     }
 
@@ -436,61 +403,7 @@ public class CreateRecipesActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 selectedImageUri = data.getData();
                 Picasso.with(this).load(selectedImageUri).into(ivDish);
-//                if (selectedImageUri != null) {
-//                    sendFileFirebase(storageRef, selectedImageUri);
-//                } else {
-//                    //URI IS NULL
-//                }
             }
         }
-    }
-
-    private void sendFileFirebase(StorageReference storageReference, final Uri file) {
-        if (storageReference != null) {
-            final String name = DateFormat.format("yyyy-MM-dd_hhmmss", new Date()).toString();
-            StorageReference imageGalleryRef = storageReference.child(name + "_gallery");
-            UploadTask uploadTask = imageGalleryRef.putFile(file);
-            uploadTask.addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Log.e(TAG, "onFailure sendFileFirebase " + e.getMessage());
-                }
-            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Log.i(TAG, "onSuccess sendFileFirebase");
-                    Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                    FileModel fileModel = new FileModel("img", downloadUrl.toString(), name, "");
-//                    ChatModel chatModel = new ChatModel(userModel, "", Calendar.getInstance().getTime().getTime() + "", fileModel);
-//                    mFirebaseDatabaseReference.child(CHAT_REFERENCE).push().setValue(chatModel);
-                }
-            });
-        } else {
-            //IS NULL
-        }
-    }
-
-    private void sendFileFirebase(StorageReference storageReference, final File file) {
-        if (storageReference != null) {
-            UploadTask uploadTask = storageReference.putFile(Uri.fromFile(file));
-            uploadTask.addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Log.e(TAG, "onFailure sendFileFirebase " + e.getMessage());
-                }
-            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Log.i(TAG, "onSuccess sendFileFirebase");
-                    Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                    FileModel fileModel = new FileModel("img", downloadUrl.toString(), file.getName(), file.length() + "");
-//                    ChatModel chatModel = new ChatModel(userModel, "", Calendar.getInstance().getTime().getTime() + "", fileModel);
-//                    mFirebaseDatabaseReference.child(CHAT_REFERENCE).push().setValue(chatModel);
-                }
-            });
-        } else {
-            //IS NULL
-        }
-
     }
 }

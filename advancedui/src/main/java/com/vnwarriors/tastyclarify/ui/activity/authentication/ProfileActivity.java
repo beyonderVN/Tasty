@@ -59,10 +59,7 @@ public class ProfileActivity extends AppCompatActivity {
         };
         tvProfileName = (TextView) findViewById(R.id.tvProfileName);
         tvProfileName.setText("User name");
-//        btnChangeEmail = (Button) findViewById(R.id.change_email_button);
-//        btnChangePassword = (Button) findViewById(R.id.change_password_button);
-//        btnSendResetEmail = (Button) findViewById(R.id.sending_pass_reset_button);
-//        btnRemoveUser = (Button) findViewById(R.id.remove_user_button);
+
         changeEmail = (Button) findViewById(R.id.changeEmail);
         changePassword = (Button) findViewById(R.id.changePass);
         sendEmail = (Button) findViewById(R.id.send);

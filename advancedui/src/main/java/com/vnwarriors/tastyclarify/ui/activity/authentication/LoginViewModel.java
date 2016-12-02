@@ -5,15 +5,13 @@ import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.vnwarriors.tastyclarify.utils.view.TextChange;
 
 import rx.Observable;
 import rx.Subscriber;
+import rx.subjects.BehaviorSubject;
 import rx.subjects.PublishSubject;
 
 /**
@@ -29,10 +27,14 @@ public class LoginViewModel {
     private String password = "";
     public ObservableField<String> emailError = new ObservableField<>();
     public ObservableField<String> passwordError = new ObservableField<>();
-    public ObservableBoolean registerBtnState = new ObservableBoolean(false);
+    public ObservableBoolean loginBtnState = new ObservableBoolean(false);
     private PublishSubject<String> message = PublishSubject.create();
+    private BehaviorSubject<Integer> loginState = BehaviorSubject.create();
 
     public Observable<String> message() {
+        return message.asObservable();
+    }
+    public Observable<String> loginState() {
         return message.asObservable();
     }
 
@@ -64,7 +66,7 @@ public class LoginViewModel {
     }
 
     private void updateBtnState() {
-        registerBtnState.set(!hasEmptyData() && !hasError());
+        loginBtnState.set(!hasEmptyData() && !hasError());
     }
 
     private boolean hasEmptyData() {
@@ -76,39 +78,38 @@ public class LoginViewModel {
         return emailError.get() != null
                 || passwordError.get() != null;
     }
-
+    public static final int onLoginState = 0;
+    public static final int onFinishedState = 0;
     public Observable<AuthResult> login() {
-        Log.d(TAG, "Observable<AuthResult> login(): ");
-        return Observable.just(registerBtnState.get())
+        loginState.onNext(onLoginState);
+        return Observable.just(loginBtnState.get())
                 .filter(btnState -> btnState)
                 .flatMap((value) -> signInWithEmailAndPassword(auth,email, password))
-                .doOnNext(value -> message.onNext("Successful!"))
-                .doOnError(throwable -> message.onNext(throwable.getMessage()));
+                ;
+
     }
 
     @NonNull
     public static Observable<AuthResult> signInWithEmailAndPassword(@NonNull final FirebaseAuth firebaseAuth,
                                                                     @NonNull final String email,
                                                                     @NonNull final String password) {
+
         return Observable.create(new Observable.OnSubscribe<AuthResult>() {
             @Override
             public void call(final Subscriber<? super AuthResult> subscriber) {
+
                 firebaseAuth.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> t) {
-                                Log.d(TAG, "onComplete: ");
-                                subscriber.onCompleted();
+                        .addOnCompleteListener(t -> {
+                            Log.d(TAG, "onComplete: "+t.isSuccessful());
+                            if(t.isSuccessful()){
+                                subscriber.onNext(t.getResult());
                             }
-                        })
-                        .addOnFailureListener(subscriber::onError)
-                        .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                            @Override
-                            public void onSuccess(AuthResult t1) {
-                                Log.d(TAG, "onSuccess: ");
-                                subscriber.onNext(t1);
+                            else {
+                                subscriber.onError(t.getException());
                             }
+                            subscriber.onCompleted();
                         });
+
             }
         });
     }
