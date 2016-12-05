@@ -1,4 +1,4 @@
-package com.vnwarriors.tastyclarify.ui.activity.authentication;
+package com.vnwarriors.tastyclarify.ui.activity.authentication.login;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -9,9 +9,12 @@ import android.util.Log;
 import android.widget.ViewAnimator;
 
 import com.google.firebase.auth.AuthResult;
+import com.vnwarriors.tastyclarify.MainApplication;
 import com.vnwarriors.tastyclarify.R;
 import com.vnwarriors.tastyclarify.databinding.ActivityLoginBinding;
 import com.vnwarriors.tastyclarify.ui.activity.BaseActivity;
+import com.vnwarriors.tastyclarify.ui.activity.authentication.resetpassword.ResetPasswordActivity;
+import com.vnwarriors.tastyclarify.ui.activity.authentication.signup.SignupActivity;
 import com.vnwarriors.tastyclarify.ui.activity.browser.BrowserActivity;
 
 import butterknife.BindView;
@@ -28,10 +31,11 @@ public class LoginActivity extends BaseActivity {
     LoginViewModel viewModel = new LoginViewModel();
     @BindView(R.id.vaLoginState)
     ViewAnimator viewAnimator;
+
     @OnClick(R.id.btn_login)
     public void onLoginClick() {
         Log.d(TAG, "onLoginClick: ");
-        viewAnimator.setDisplayedChild(1);
+
         viewModel.login()
                 .takeUntil(stopEvent())
                 .subscribeOn(Schedulers.io())
@@ -46,6 +50,7 @@ public class LoginActivity extends BaseActivity {
                     public void onError(Throwable e) {
                         Log.d(TAG, "onError: ");
                         showMessage(e.getMessage());
+                        viewAnimator.setDisplayedChild(1);
                     }
 
                     @Override
@@ -57,24 +62,33 @@ public class LoginActivity extends BaseActivity {
                     }
                 });
     }
+
     @OnClick(R.id.btn_signup)
-    public void onSighupClick(){
-        startActivity(new Intent(LoginActivity.this, SignupActivity.class));
+    public void onSighupClick() {
+        startActivity(new Intent(MainApplication.mContext, SignupActivity.class));
     }
-    @OnClick(R.id.btn_reset_password)
-    public void onResetPasswordClick(){
+
+    @OnClick(R.id.btnResetPassword)
+    public void onResetPasswordClick() {
         startActivity(new Intent(LoginActivity.this, ResetPasswordActivity.class));
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         binding.setViewModel(viewModel);
         ButterKnife.bind(this);
+        setupUI();
+
+    }
+
+    private void setupUI() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        viewAnimator.setDisplayedChild(1);
     }
+
 
     @Override
     protected void bindViewModel() {
@@ -82,6 +96,10 @@ public class LoginActivity extends BaseActivity {
                 .takeUntil(stopEvent())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::showMessage);
+        viewModel.loadingState()
+                .takeUntil(stopEvent())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::setLoadingState);
     }
 
 
@@ -91,5 +109,8 @@ public class LoginActivity extends BaseActivity {
                 .setPositiveButton(android.R.string.yes, (dialog, which) -> dialog.dismiss())
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
+    }
+    private void setLoadingState(Integer value) {
+        viewAnimator.setDisplayedChild(value);
     }
 }

@@ -1,4 +1,4 @@
-package com.vnwarriors.tastyclarify.ui.activity.authentication;
+package com.vnwarriors.tastyclarify.ui.activity.authentication.userprofile;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.vnwarriors.tastyclarify.R;
+import com.vnwarriors.tastyclarify.ui.activity.authentication.login.LoginActivity;
 
 
 public class ProfileActivity extends AppCompatActivity {
@@ -80,7 +81,7 @@ public class ProfileActivity extends AppCompatActivity {
         sendEmail.setVisibility(View.VISIBLE);
 //        remove.setVisibility(View.VISIBLE);
 
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar = (ProgressBar) findViewById(R.id.pbLoading);
 
         if (progressBar != null) {
             progressBar.setVisibility(View.GONE);

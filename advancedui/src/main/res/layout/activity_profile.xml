@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".ui.activity.authentication.ProfileActivity">
+    tools:context=".ui.activity.authentication.userprofile.ProfileActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -359,7 +359,7 @@
         android:layout_height="match_parent">
 
         <ProgressBar
-            android:id="@+id/progressBar"
+            android:id="@+id/pbLoading"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerInParent="true"

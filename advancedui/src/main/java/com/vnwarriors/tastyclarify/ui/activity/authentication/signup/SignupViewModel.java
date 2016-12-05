@@ -1,4 +1,4 @@
-package com.vnwarriors.tastyclarify.ui.activity.authentication;
+package com.vnwarriors.tastyclarify.ui.activity.authentication.signup;
 
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
@@ -11,16 +11,16 @@ import com.vnwarriors.tastyclarify.utils.view.TextChange;
 
 import rx.Observable;
 import rx.Subscriber;
-import rx.subjects.BehaviorSubject;
 import rx.subjects.PublishSubject;
 
 /**
- * Created by Long on 12/1/2016.
+ * Created by Long on 12/5/2016.
  */
 
-public class LoginViewModel {
-    private static final String TAG = "LoginViewModel";
-    private LoginValidator validator = new LoginValidator();
+public class SignupViewModel {
+    private static final String TAG = "SignupViewModel";
+    private SignupValidator validator = new SignupValidator();
+    static final String USER_REFERENCE = "usermodel";
     private FirebaseAuth auth = FirebaseAuth.getInstance();
     ;
     private String email = "";
@@ -29,13 +29,14 @@ public class LoginViewModel {
     public ObservableField<String> passwordError = new ObservableField<>();
     public ObservableBoolean loginBtnState = new ObservableBoolean(false);
     private PublishSubject<String> message = PublishSubject.create();
-    private BehaviorSubject<Integer> loginState = BehaviorSubject.create();
+    private PublishSubject<Integer> loadingState = PublishSubject.create();
 
     public Observable<String> message() {
         return message.asObservable();
     }
-    public Observable<String> loginState() {
-        return message.asObservable();
+
+    public Observable<Integer> loadingState() {
+        return loadingState.asObservable();
     }
 
     public TextChange emailChange = value -> {
@@ -78,19 +79,23 @@ public class LoginViewModel {
         return emailError.get() != null
                 || passwordError.get() != null;
     }
-    public static final int onLoginState = 0;
-    public static final int onFinishedState = 0;
-    public Observable<AuthResult> login() {
-        loginState.onNext(onLoginState);
-        return Observable.just(loginBtnState.get())
-                .filter(btnState -> btnState)
-                .flatMap((value) -> signInWithEmailAndPassword(auth,email, password))
-                ;
 
+    public Observable<AuthResult> signup() {
+        Log.d(TAG, "signup: ");
+        return Observable.just(loginBtnState.get())
+                .doOnSubscribe(() -> {
+                    Log.d(TAG, "signup: ");
+                    loadingState.onNext(0);
+                })
+                .filter(btnState -> btnState)
+                .flatMap((value) -> signupWithEmailAndPassword(auth, email, password))
+                .doOnNext(authResult -> message.onNext("Signup Successfully!"))
+                .doOnError((throwable -> loadingState.onNext(1)))
+                ;
     }
 
     @NonNull
-    public static Observable<AuthResult> signInWithEmailAndPassword(@NonNull final FirebaseAuth firebaseAuth,
+    public static Observable<AuthResult> signupWithEmailAndPassword(@NonNull final FirebaseAuth firebaseAuth,
                                                                     @NonNull final String email,
                                                                     @NonNull final String password) {
 
@@ -98,20 +103,21 @@ public class LoginViewModel {
             @Override
             public void call(final Subscriber<? super AuthResult> subscriber) {
 
-                firebaseAuth.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(t -> {
-                            Log.d(TAG, "onComplete: "+t.isSuccessful());
-                            if(t.isSuccessful()){
-                                subscriber.onNext(t.getResult());
+                firebaseAuth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(task -> {
+                            if (!task.isSuccessful()) {
+                                subscriber.onError(task.getException());
+                            } else {
+                                subscriber.onNext(task.getResult());
                             }
-                            else {
-                                subscriber.onError(t.getException());
-                            }
-                            subscriber.onCompleted();
                         });
-
             }
         });
+    }
+
+    private static String convertEmailToName(String email) {
+        String[] s = email.split("@");
+        return s.length > 0 ? s[0] : email;
     }
 
 }

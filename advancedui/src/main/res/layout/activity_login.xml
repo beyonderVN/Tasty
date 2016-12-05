@@ -5,7 +5,7 @@
 
     <data>
 
-        <import type="com.vnwarriors.tastyclarify.ui.activity.authentication.LoginViewModel" />
+        <import type="com.vnwarriors.tastyclarify.ui.activity.authentication.login.LoginViewModel" />
 
         <variable
             name="viewModel"
@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context=".ui.activity.authentication.LoginActivity">
+        tools:context=".ui.activity.authentication.login.LoginActivity">
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -40,11 +40,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
-                app:errorEnabled="true"
-                app:error="@{viewModel.emailError}">
+                app:error="@{viewModel.emailError}"
+                app:errorEnabled="true">
 
                 <EditText
-                    android:id="@+id/email"
+                    android:id="@+id/etEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
@@ -65,7 +65,7 @@
                 app:errorEnabled="true">
 
                 <EditText
-                    android:id="@+id/password"
+                    android:id="@+id/etPassword"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
@@ -73,26 +73,42 @@
                     android:hint="@string/hint_password"
                     android:inputType="textPassword"
                     android:textColor="#828282"
-                    tools:text="asdasdad"
-                    app:textChange="@{viewModel.passwordChange}"/>
+                    app:textChange="@{viewModel.passwordChange}"
+                    tools:text="asdasdad" />
             </android.support.design.widget.TextInputLayout>
 
             <!-- Login Button -->
-
-            <Button
-                android:id="@+id/btn_login"
-                android:layout_width="fill_parent"
+            <!-- Link to Login Screen -->
+            <ViewAnimator
+                android:id="@+id/vaLoginState"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
-                android:layout_marginTop="20dip"
-                android:background="#da3a25"
-                android:text="@string/btn_login"
-                android:enabled="@{viewModel.registerBtnState}"
-                android:textColor="@android:color/white" />
+                android:inAnimation="@android:anim/fade_in"
+                android:outAnimation="@android:anim/fade_out">
+
+                <ProgressBar
+                    android:id="@+id/pbLoading"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center|bottom"
+                    android:layout_marginBottom="20dp"
+                    />
+
+                <Button
+                    android:id="@+id/btn_login"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginTop="20dip"
+                    android:background="#da3a25"
+                    android:enabled="@{viewModel.loginBtnState}"
+                    android:text="@string/btn_login"
+                    android:textColor="@android:color/white" />
+            </ViewAnimator>
 
             <Button
-                android:id="@+id/btn_reset_password"
+                android:id="@+id/btnResetPassword"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dip"
@@ -101,34 +117,20 @@
                 android:textAllCaps="false"
                 android:textColor="#cecece" />
 
-            <!-- Link to Login Screen -->
-            <ViewAnimator
-                android:id="@+id/vaLoginState"
-                android:layout_width="match_parent"
+
+            <Button
+                android:id="@+id/btn_signup"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:inAnimation="@android:anim/fade_in"
-                android:outAnimation="@android:anim/fade_out"
-                >
-                <Button
-                    android:id="@+id/btn_signup"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
-                    android:layout_marginTop="20dip"
-                    android:background="@null"
-                    android:text="@string/btn_link_to_register"
-                    android:textAllCaps="false"
-                    android:textColor="#9a635c"
-                    android:textSize="15dp" />
-                <ProgressBar
-                    android:id="@+id/progressBar"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center|bottom"
-                    android:layout_marginBottom="20dp"
-                    android:visibility="gone" />
-            </ViewAnimator>
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="20dip"
+                android:background="@null"
+                android:text="@string/btn_link_to_register"
+                android:textAllCaps="false"
+                android:textColor="#9a635c"
+                android:textSize="15dp" />
+
 
         </LinearLayout>
 

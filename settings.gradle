@@ -1,1 +1,1 @@
-include ':advancedui', ':libs', ':tastybrower'
+include ':advancedui', ':libs'
