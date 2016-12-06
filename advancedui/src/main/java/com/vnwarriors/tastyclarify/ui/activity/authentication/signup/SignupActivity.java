@@ -25,7 +25,7 @@ import rx.schedulers.Schedulers;
 
 public class SignupActivity extends BaseActivity {
     private static final String TAG = "SignupActivity";
-    ActivitySignupBinding binding;
+    private ActivitySignupBinding binding;
     SignupViewModel viewModel = new SignupViewModel();
     @BindView(R.id.pbLoading)
     ProgressBar pbLoading;
@@ -46,8 +46,6 @@ public class SignupActivity extends BaseActivity {
                     @Override
                     public void onError(Throwable e) {
                         Log.d(TAG, "onError: ");
-                        showMessage(e.getMessage());
-                        viewAnimator.setDisplayedChild(1);
                     }
 
                     @Override
@@ -72,6 +70,7 @@ public class SignupActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_signup);
+        binding.setViewModel(viewModel);
         ButterKnife.bind(this);
         setupUI();
     }

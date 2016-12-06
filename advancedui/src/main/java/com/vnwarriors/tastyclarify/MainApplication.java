@@ -32,6 +32,7 @@ public class MainApplication extends Application {
         FacebookSdk.sdkInitialize(getApplicationContext());
         AppEventsLogger.activateApp(this);
 
+
     }
 
     void setupGraph(){

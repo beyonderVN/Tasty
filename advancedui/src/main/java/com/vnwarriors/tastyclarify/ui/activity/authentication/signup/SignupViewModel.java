@@ -3,8 +3,8 @@ package com.vnwarriors.tastyclarify.ui.activity.authentication.signup;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
+import com.fernandocejas.frodo.annotation.RxLogObservable;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.vnwarriors.tastyclarify.utils.view.TextChange;
@@ -39,12 +39,12 @@ public class SignupViewModel {
         return loadingState.asObservable();
     }
 
-    public TextChange emailChange = value -> {
+    public TextChange emailSignupChange = value -> {
         email = value;
         validateEmail();
     };
 
-    public TextChange passwordChange = value -> {
+    public TextChange passwordSignupChange = value -> {
         password = value;
         validatePassword();
     };
@@ -79,21 +79,23 @@ public class SignupViewModel {
         return emailError.get() != null
                 || passwordError.get() != null;
     }
-
+    @RxLogObservable
     public Observable<AuthResult> signup() {
-        Log.d(TAG, "signup: ");
         return Observable.just(loginBtnState.get())
                 .doOnSubscribe(() -> {
-                    Log.d(TAG, "signup: ");
                     loadingState.onNext(0);
                 })
                 .filter(btnState -> btnState)
                 .flatMap((value) -> signupWithEmailAndPassword(auth, email, password))
                 .doOnNext(authResult -> message.onNext("Signup Successfully!"))
-                .doOnError((throwable -> loadingState.onNext(1)))
+                .doOnError((throwable -> {
+                    loadingState.onNext(1);
+                    message.onNext(throwable.getMessage());
+                }))
                 ;
     }
 
+    @RxLogObservable
     @NonNull
     public static Observable<AuthResult> signupWithEmailAndPassword(@NonNull final FirebaseAuth firebaseAuth,
                                                                     @NonNull final String email,
@@ -104,13 +106,9 @@ public class SignupViewModel {
             public void call(final Subscriber<? super AuthResult> subscriber) {
 
                 firebaseAuth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(task -> {
-                            if (!task.isSuccessful()) {
-                                subscriber.onError(task.getException());
-                            } else {
-                                subscriber.onNext(task.getResult());
-                            }
-                        });
+                        .addOnSuccessListener(subscriber::onNext)
+                        .addOnFailureListener(subscriber::onError)
+                ;
             }
         });
     }

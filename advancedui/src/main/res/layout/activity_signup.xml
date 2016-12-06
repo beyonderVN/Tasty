@@ -39,7 +39,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp">
+                android:layout_marginRight="25dp"
+                app:error="@{viewModel.emailError}"
+                app:errorEnabled="true">
 
                 <EditText
                     android:id="@+id/etEmail"
@@ -50,15 +52,17 @@
                     android:hint="@string/hint_email"
                     android:inputType="textEmailAddress"
                     android:textColor="#828282"
+                    app:textChange="@{viewModel.emailSignupChange}"
                     tools:text="asdasdad" />
-
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp">
+                android:layout_marginRight="25dp"
+                app:error="@{viewModel.passwordError}"
+                app:errorEnabled="true">
 
                 <EditText
                     android:id="@+id/etPassword"
@@ -69,8 +73,8 @@
                     android:hint="@string/hint_password"
                     android:inputType="textPassword"
                     android:textColor="#828282"
+                    app:textChange="@{viewModel.passwordSignupChange}"
                     tools:text="asdasdad" />
-
             </android.support.design.widget.TextInputLayout>
 
             <ViewAnimator

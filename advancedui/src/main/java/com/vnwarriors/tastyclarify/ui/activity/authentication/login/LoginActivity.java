@@ -8,21 +8,17 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.ViewAnimator;
 
-import com.google.firebase.auth.AuthResult;
 import com.vnwarriors.tastyclarify.MainApplication;
 import com.vnwarriors.tastyclarify.R;
 import com.vnwarriors.tastyclarify.databinding.ActivityLoginBinding;
 import com.vnwarriors.tastyclarify.ui.activity.BaseActivity;
 import com.vnwarriors.tastyclarify.ui.activity.authentication.resetpassword.ResetPasswordActivity;
 import com.vnwarriors.tastyclarify.ui.activity.authentication.signup.SignupActivity;
-import com.vnwarriors.tastyclarify.ui.activity.browser.BrowserActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 
 public class LoginActivity extends BaseActivity {
@@ -35,32 +31,7 @@ public class LoginActivity extends BaseActivity {
     @OnClick(R.id.btn_login)
     public void onLoginClick() {
         Log.d(TAG, "onLoginClick: ");
-
-        viewModel.login()
-                .takeUntil(stopEvent())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<AuthResult>() {
-                    @Override
-                    public void onCompleted() {
-                        Log.d(TAG, "onCompleted: ");
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.d(TAG, "onError: ");
-                        showMessage(e.getMessage());
-                        viewAnimator.setDisplayedChild(1);
-                    }
-
-                    @Override
-                    public void onNext(AuthResult authResult) {
-                        Log.d(TAG, "onNext: ");
-                        Intent intent = new Intent(LoginActivity.this, BrowserActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                });
+        viewModel.loginDemo();
     }
 
     @OnClick(R.id.btn_signup)
@@ -100,6 +71,7 @@ public class LoginActivity extends BaseActivity {
                 .takeUntil(stopEvent())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::setLoadingState);
+        viewModel.init();
     }
 
 
@@ -110,6 +82,7 @@ public class LoginActivity extends BaseActivity {
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
     }
+
     private void setLoadingState(Integer value) {
         viewAnimator.setDisplayedChild(value);
     }
