@@ -1,5 +1,6 @@
 package com.vnwarriors.tastyclarify.ui.activity;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -21,10 +22,13 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -35,6 +39,10 @@ import com.facebook.share.widget.ShareDialog;
 import com.google.android.gms.dynamic.LifecycleDelegate;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -44,22 +52,26 @@ import com.vnwarriors.tastyclarify.R;
 import com.vnwarriors.tastyclarify.model.Comment;
 import com.vnwarriors.tastyclarify.model.ItemDetailViewModel;
 import com.vnwarriors.tastyclarify.model.PostModel;
+import com.vnwarriors.tastyclarify.model.UserModel;
 import com.vnwarriors.tastyclarify.ui.adapter.BaseAdapter;
-import com.vnwarriors.tastyclarify.ui.adapter.CommentAdapter;
 import com.vnwarriors.tastyclarify.ui.adapter.IngredientAdapter;
 import com.vnwarriors.tastyclarify.ui.adapter.PrepareAdapter;
 import com.vnwarriors.tastyclarify.ui.adapter.viewmodel.BaseVM;
 import com.vnwarriors.tastyclarify.ui.delegate.DragDismissDelegate;
+import com.vnwarriors.tastyclarify.ui.firebase.adapter.FirebaseCommentAdapter;
 import com.vnwarriors.tastyclarify.ui.firebase.util.Util;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.vnwarriors.tastyclarify.ui.activity.CreateDataActivity.POST_REFERENCE;
 
 public class ItemActivity extends AppCompatActivity {
 
@@ -168,15 +180,15 @@ public class ItemActivity extends AppCompatActivity {
         nsScrollView.setTranslationY(nsScrollView.getTranslationY()+1000);
         ViewCompat.animate(nsScrollView)
                 .translationYBy(-1000)
-                .setStartDelay(200)
-                .setDuration(500)
+                .setStartDelay(500)
+                .setDuration(300)
                 .start();
         View rlWrapCommentInput = findViewById(R.id.rlWrapCommentInput);
         rlWrapCommentInput.setTranslationY(rlWrapCommentInput.getTranslationY()+200);
         ViewCompat.animate(rlWrapCommentInput)
                 .translationYBy(-200)
-                .setStartDelay(500)
-                .setDuration(500)
+                .setStartDelay(800)
+                .setDuration(300)
                 .start();
 
     }
@@ -385,9 +397,8 @@ public class ItemActivity extends AppCompatActivity {
     }
 
     private void prepareCommentList() {
-        commentList = new ArrayList<>();
         if (mPost.getTipComments() != null && mPost.getTipComments().size() > 0)
-            commentList.addAll(mPost.getTipComments());
+            commentList =  new ArrayList<Comment>(mPost.getTipComments().values());
     }
 
     private String clearString(String string) {
@@ -421,7 +432,8 @@ public class ItemActivity extends AppCompatActivity {
         rvPreparationList.setAdapter(prepareAdapter);
 
         rvCommentList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        rvCommentList.setAdapter(new CommentAdapter(commentList));
+        DatabaseReference databaseReference = mFirebaseDatabaseReference.child(POST_REFERENCE).child(mPost.getObjectId()).child("tipComments");
+        rvCommentList.setAdapter(new FirebaseCommentAdapter(databaseReference));
 //      fix bug layout auto scroll up
         rvIngredientList.setFocusable(false);
         rvIngredientList.setFocusable(false);
@@ -602,7 +614,49 @@ public class ItemActivity extends AppCompatActivity {
         rlProgressLoading.setClickable(false);
         pbLoading.setVisibility(View.GONE);
     }
+    private DatabaseReference mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
+    @BindView(R.id.etComment)
+    EditText etComment;
+    @OnClick(R.id.btnSendComment)
+    void sendCommentClick(){
 
+        String message = "";
+        message = etComment.getText().toString();
+        etComment.setText("");
+        etComment.clearFocus();
+        hideKeyboard(this);
+        DatabaseReference databaseReference = mFirebaseDatabaseReference.child(POST_REFERENCE).child(mPost.getObjectId()).child("tipComments");
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        UserModel userModel = new UserModel();
+        userModel.setId(""+auth.getCurrentUser().getUid());
+        userModel.setName(""+auth.getCurrentUser().getEmail());
+        userModel.setPhoto_profile("http://fanexpodallas.com/wp-content/uploads/550w_soaps_silhouettesm2.jpg");
+        Comment comment = new Comment();
+        comment.userModel = userModel;
+        comment.message = message;
+        comment.createAt = "" + Calendar.getInstance().getTime().getTime();
+        comment.updateAt = "" + Calendar.getInstance().getTime().getTime();
+        databaseReference.push().setValue(comment, new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                if(databaseError!=null){
+                    Toast.makeText(ItemActivity.this, "databaseError" +databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                }else{
+                    rvCommentList.getAdapter().notifyDataSetChanged();
+                }
+            }
+        });
+    }
+    public static void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = activity.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(activity);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
 }
 //https://developers.facebook.com/docs/sharing/android
 //        https://developers.facebook.com/docs/sharing/opengraph/android

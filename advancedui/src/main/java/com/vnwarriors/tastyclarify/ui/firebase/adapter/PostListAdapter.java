@@ -55,9 +55,16 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.PostVi
         listener = query.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                PostModel model = dataSnapshot.getValue(PostModel.class);
-                postModels.add(0,model);
-                notifyDataSetChanged();
+                try {
+                    PostModel model = dataSnapshot.getValue(PostModel.class);
+                    model.setObjectId(dataSnapshot.getKey());
+                    postModels.add(0,model);
+                    notifyDataSetChanged();
+                }catch (Exception e){
+                    e.printStackTrace();
+                    return;
+                }
+
             }
 
             @Override

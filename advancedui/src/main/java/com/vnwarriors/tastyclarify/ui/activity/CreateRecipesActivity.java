@@ -143,6 +143,7 @@ public class CreateRecipesActivity extends AppCompatActivity {
         });
         animator.start();
     }
+
     private DatabaseReference mFirebaseDatabaseReference;
 
     private void initView() {
@@ -169,33 +170,8 @@ public class CreateRecipesActivity extends AppCompatActivity {
         findViewById(R.id.btnSendRecipe).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                for (PostModel postModel : CloneDataUtils.getRateList("recipes.json", CreateRecipesActivity.this)
-//                        ) {
-//
-//                    Log.d(TAG, "onClick: " + postModel.getTipName());
-//                    List<Comment> comments = new ArrayList<Comment>();
-//                    UserModel userModel = new UserModel();
-//                    userModel.setId("gSUNZWLvLmS5vdu7YTcQlXEDX5p1");
-//                    userModel.setName("who");
-//                    userModel.setPhoto_profile("http://fanexpodallas.com/wp-content/uploads/550w_soaps_silhouettesm2.jpg");
-//                    Comment comment = new Comment();
-//                    comment.userModel = userModel;
-//                    comment.message = "Yummy!";
-//                    comment.createAt = "" + Calendar.getInstance().getTime().getTime();
-//                    comment.updateAt = "" + Calendar.getInstance().getTime().getTime();
-//                    comments.add(comment);
-//                    comment.message = "Delicious!";
-//                    comments.add(comment);
-//                    postModel.setTipComments(comments);
-//                    mFirebaseDatabaseReference.child("posts").push().setValue(postModel, new DatabaseReference.CompletionListener() {
-//                        @Override
-//                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-//                            Log.d(TAG, "onComplete: " + (databaseError == null ? "" : databaseError.getMessage()));
-//                        }
-//                    });
-//                }
 
-//                List<PostModel> postModels = CloneDataUtils.getRateListWithComments("recipes.json", CreateRecipesActivity.this);
+//                List<PostModel> postModels = CloneDataUtils.getRateList("recipes.json", CreateRecipesActivity.this);
 //                for (PostModel postModel : postModels
 //                        ) {
 //
@@ -203,10 +179,37 @@ public class CreateRecipesActivity extends AppCompatActivity {
 //                        @Override
 //                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
 //                            Log.d(TAG, "onComplete: " + (databaseError == null ? "" : databaseError.getMessage()));
+//
+//                            String[] names = {"Ezeal", "Leona", "Corgi", "Lucian", "Olaf", "Kennen"};
+//                            String[] messages = {"I will cook it!", "Delicious!", "Thank you!", "I love this recipe!", "Yummy!", "Ahihi!"};
+//                            String[] urlImage = {"http://megaicons.net/static/img/icons_sizes/189/462/256/comics-mask-icon.png",
+//                                    "http://icons.iconarchive.com/icons/mattahan/ultrabuuf/256/Comics-Spiderman-Baby-icon.png",
+//                                    "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTewuTy1j2gt_BoeviovAlMAIpMvFIaIVftgLjVYux2Tt0CViwT",
+//                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTrXI_f-G8CVHsgGwR2GsjCw6yEpN23GLifO7KVd-btwe4kOH3",
+//                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDlvAMyhNTtQAmc_VBKfN2hLf3ct3JKZsRkabRZC4fQKdocvuj",
+//                                    "http://icons.iconarchive.com/icons/mattahan/ultrabuuf/256/Comics-Logan-icon.png"};
+//                            for (int i = 0; i < 10; i++) {
+//                                UserModel userModel = new UserModel();
+//                                userModel.setId("gSUNZWLvLmS5vdu7YTcQlXEDX5p1");
+//                                Random r = new Random();
+//                                int i1 = (r.nextInt(names.length - 1));
+//                                userModel.setName(names[i1]);
+//                                userModel.setPhoto_profile(urlImage[i1]);
+//                                Comment comment = new Comment();
+//                                comment.userModel = userModel;
+//                                Random r2 = new Random();
+//                                int i2 = (r2.nextInt(messages.length - 1));
+//                                comment.message = messages[i2];
+//                                comment.createAt = "" + Calendar.getInstance().getTime().getTime();
+//                                comment.updateAt = "" + Calendar.getInstance().getTime().getTime();
+//                                databaseReference.child("tipComments").push().setValue(comment);
+//                            }
+//
 //                        }
 //                    });
 //                }
-                 onPost();
+                findViewById(R.id.btnSendRecipe).setEnabled(false);
+//                 onPost();
             }
 
 
@@ -274,8 +277,13 @@ public class CreateRecipesActivity extends AppCompatActivity {
                         public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                             if (databaseError != null) {
                                 Log.d(TAG, "DatabaseReference.CompletionListener: " + databaseError.getMessage());
+                                Toast.makeText(CreateRecipesActivity.this, "Failed! " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                                findViewById(R.id.btnSendRecipe).setEnabled(true);
+                            } else {
+                                Toast.makeText(CreateRecipesActivity.this, "Your recipe has been shared!\nThanks for your contribution", Toast.LENGTH_LONG).show();
+                                CreateRecipesActivity.this.finishAfterTransition();
                             }
-                            Toast.makeText(CreateRecipesActivity.this, "Your recipe has been shared!\nThanks for your contribution", Toast.LENGTH_LONG).show();
+
                         }
                     };
                     mFirebaseDatabaseReference.child("posts").push().setValue(postModel, completionListener);
