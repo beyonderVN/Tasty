@@ -19,7 +19,7 @@ import com.squareup.picasso.Picasso;
 import com.vnwarriors.advancedui.appcore.common.DynamicHeightImageView;
 import com.vnwarriors.advancedui.appcore.common.recyclerviewhelper.PlaceHolderDrawableHelper;
 import com.vnwarriors.tastyclarify.R;
-import com.vnwarriors.tastyclarify.model.PostModel;
+import com.vnwarriors.tastyclarify.model.Post;
 import com.vnwarriors.tastyclarify.ui.activity.recipedetail.ItemActivity;
 import com.vnwarriors.tastyclarify.utils.ColorUtils;
 
@@ -30,7 +30,7 @@ import butterknife.ButterKnife;
 /**
  * Created by Alessandro Barreto on 23/06/2016.
  */
-public class PostListFirebaseAdapter extends FirebaseRecyclerAdapter<PostModel,PostListFirebaseAdapter.PostViewHolder> {
+public class PostListFirebaseAdapter extends FirebaseRecyclerAdapter<Post,PostListFirebaseAdapter.PostViewHolder> {
 
 
     private static final int POST = 0;
@@ -38,7 +38,7 @@ public class PostListFirebaseAdapter extends FirebaseRecyclerAdapter<PostModel,P
 
 
     public PostListFirebaseAdapter(DatabaseReference ref, ClickListenerChatFirebase mClickListenerChatFirebase) {
-        super(PostModel.class, R.layout.layout_post, PostViewHolder.class, ref);
+        super(Post.class, R.layout.layout_post, PostViewHolder.class, ref);
         this.mClickListenerChatFirebase = mClickListenerChatFirebase;
     }
 
@@ -59,7 +59,7 @@ public class PostListFirebaseAdapter extends FirebaseRecyclerAdapter<PostModel,P
     }
 
     @Override
-    protected void populateViewHolder(PostViewHolder viewHolder, PostModel model, int position) {
+    protected void populateViewHolder(PostViewHolder viewHolder, Post model, int position) {
         viewHolder.tvName.setText(model.getTipName());
         viewHolder.ivTipImage.setRatio(model.getTipImageRatio());
         Picasso.with(viewHolder.itemView.getContext())

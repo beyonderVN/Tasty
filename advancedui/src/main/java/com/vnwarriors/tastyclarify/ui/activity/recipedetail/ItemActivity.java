@@ -43,7 +43,7 @@ import com.vnwarriors.advancedui.appcore.common.recyclerviewhelper.PlaceHolderDr
 import com.vnwarriors.tastyclarify.R;
 import com.vnwarriors.tastyclarify.model.Comment;
 import com.vnwarriors.tastyclarify.model.ItemDetailViewModel;
-import com.vnwarriors.tastyclarify.model.PostModel;
+import com.vnwarriors.tastyclarify.model.Post;
 import com.vnwarriors.tastyclarify.ui.adapter.BaseAdapter;
 import com.vnwarriors.tastyclarify.ui.adapter.CommentAdapter;
 import com.vnwarriors.tastyclarify.ui.adapter.IngredientAdapter;
@@ -65,10 +65,7 @@ public class ItemActivity extends AppCompatActivity {
 
     @BindView(R.id.ivCover)
     ImageView ivCover;
-    //    @BindView(R.id.tvIngredients)
-//    TextView tvIngredients;
-//    @BindView(R.id.tvPreparation)
-//    TextView tvPreparation;
+
     List<BaseVM> sectionList = new ArrayList<>();
     BaseAdapter baseAdapter;
 
@@ -100,7 +97,7 @@ public class ItemActivity extends AppCompatActivity {
     @BindView(R.id.rlProgressLoading)
     RelativeLayout rlProgressLoading;
 
-    private PostModel mPost;
+    private Post mPost;
 
     private IngredientAdapter ingredientAdapter;
     private PrepareAdapter prepareAdapter;
@@ -182,7 +179,7 @@ public class ItemActivity extends AppCompatActivity {
     }
 
     private void setupUI() {
-        mPost = (PostModel) getIntent().getSerializableExtra("POST");
+        mPost = (Post) getIntent().getSerializableExtra("POST");
         DisplayMetrics displaymetrics = new DisplayMetrics();
         this.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         int width = displaymetrics.widthPixels;
@@ -387,7 +384,7 @@ public class ItemActivity extends AppCompatActivity {
     private void prepareCommentList() {
         commentList = new ArrayList<>();
         if (mPost.getTipComments() != null && mPost.getTipComments().size() > 0)
-            commentList.addAll(mPost.getTipComments());
+            commentList.addAll(new ArrayList<>(mPost.getTipComments().values()));
     }
 
     private String clearString(String string) {

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.vnwarriors.tastyclarify.ui.fragment;
+package com.vnwarriors.tastyclarify.ui.activity.browser.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

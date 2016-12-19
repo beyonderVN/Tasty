@@ -1,4 +1,4 @@
-package com.vnwarriors.tastyclarify.ui.activity.authentication.login.database;
+package com.vnwarriors.tastyclarify.data.database;
 
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -10,8 +10,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.vnwarriors.tastyclarify.model.Authentication;
 import com.vnwarriors.tastyclarify.model.UserModel;
-import com.vnwarriors.tastyclarify.ui.activity.authentication.login.model.Authentication;
 
 import rx.Observable;
 import rx.Subscriber;

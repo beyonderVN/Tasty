@@ -32,7 +32,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        appComponent = ((MyApplication) getApplication()).component();
-        Dependencies.INSTANCE.init(this);
+
     }
 
 //    protected AppComponent getAppComponent() {

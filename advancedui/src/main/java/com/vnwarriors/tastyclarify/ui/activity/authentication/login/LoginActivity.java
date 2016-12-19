@@ -51,7 +51,6 @@ public class LoginActivity extends BaseActivity {
         binding.setViewModel(viewModel);
         ButterKnife.bind(this);
         setupUI();
-
     }
 
     private void setupUI() {
@@ -73,7 +72,6 @@ public class LoginActivity extends BaseActivity {
                 .subscribe(this::setLoadingState);
         viewModel.init();
     }
-
 
     private void showMessage(String value) {
         new AlertDialog.Builder(this)

@@ -31,15 +31,13 @@ public class MainApplication extends Application {
         // Initialize the SDK before executing any other operations,
         FacebookSdk.sdkInitialize(getApplicationContext());
         AppEventsLogger.activateApp(this);
-
-
+        Dependencies.INSTANCE.init(this);
     }
 
     void setupGraph(){
         applicationComponent = DaggerMainComponent.builder()
                 .mainModule(new com.vnwarriors.tastyclarify.di.MainModule(this))
                 .build();
-
 
     }
 

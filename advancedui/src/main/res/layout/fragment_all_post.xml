@@ -5,7 +5,7 @@
 
     android:background="@color/card_default_background"
     android:orientation="vertical"
-    tools:context="com.vnwarriors.tastyclarify.ui.fragment.AllPostFragment">
+    tools:context="com.vnwarriors.tastyclarify.ui.activity.browser.fragment.AllPostFragment">
 
     <!-- TODO: Update blank fragment layout -->
 

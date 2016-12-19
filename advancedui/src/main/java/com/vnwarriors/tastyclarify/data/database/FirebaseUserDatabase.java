@@ -1,10 +1,10 @@
-package com.vnwarriors.tastyclarify.ui.activity.authentication.login.database;
+package com.vnwarriors.tastyclarify.data.database;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.vnwarriors.tastyclarify.model.UserModel;
-import com.vnwarriors.tastyclarify.ui.activity.authentication.login.database.rx.FirebaseObservableListeners;
+import com.vnwarriors.tastyclarify.utils.rx.FirebaseObservableListeners;
 
 import rx.Observable;
 import rx.functions.Func1;

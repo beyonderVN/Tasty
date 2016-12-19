@@ -1,4 +1,4 @@
-package com.vnwarriors.tastyclarify.ui.fragment;
+package com.vnwarriors.tastyclarify.ui.activity.browser.fragment;
 
 
 import android.app.Fragment;
@@ -35,37 +35,19 @@ import butterknife.ButterKnife;
  */
 public class AllPostFragment extends Fragment  {
     private static final String TAG = "AllPostFragment";
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     private DatabaseReference mFirebaseDatabaseReference;
     static final String POST_REFERENCE = "posts";
     private RecyclerView rvListPost;
 
     public AllPostFragment() {
-        // Required empty public constructor
+
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AllPostFragment.
-     */
+
     // TODO: Rename and change types and number of parameters
     public static AllPostFragment newInstance(String param1, String param2) {
         AllPostFragment fragment = new AllPostFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -74,8 +56,7 @@ public class AllPostFragment extends Fragment  {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
     }
 
@@ -98,13 +79,11 @@ public class AllPostFragment extends Fragment  {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-
             }
 
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                Log.d(TAG, "onScrolled: " + dy);
                 if (dy > 20) {
                     hideCatalogue();
                 }
@@ -113,7 +92,6 @@ public class AllPostFragment extends Fragment  {
                 }
             }
         });
-
     }
 
     private void hideCatalogue() {
@@ -163,22 +141,10 @@ public class AllPostFragment extends Fragment  {
     private void lerMessagensFirebase() {
 
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
-//        final PostListFirebaseAdapter firebaseAdapter
-//                = new PostListFirebaseAdapter(
-//                mFirebaseDatabaseReference.child(POST_REFERENCE)
-//                ,
-//                this);
-//        firebaseAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
-//            @Override
-//            public void onItemRangeInserted(int positionStart, int itemCount) {
-//                super.onItemRangeInserted(positionStart, itemCount);
-//            }
-//        });
 
         rvListPost.setLayoutManager(staggeredGridLayoutManagerVertical);
         Query query = mFirebaseDatabaseReference.child(POST_REFERENCE);
         postListAdapter = new PostListAdapter(query);
-//        postListAdapter = new PostListAdapter(CloneDataUtils.getRateListWithComments("recipes.json", MainApplication.mContext));
         rvListPost.setAdapter(postListAdapter);
 
     }
@@ -260,7 +226,6 @@ public class AllPostFragment extends Fragment  {
                 Drawable img = holder.itemView.getContext().getResources().getDrawable(ics[position]);
                 img.setColorFilter(holder.itemView.getContext().getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
                 holder.tvCatalogue.setCompoundDrawablesWithIntrinsicBounds( img, null, null, null );
-
             }else {
                 holder.cvWrap.setCardElevation(0);
                 holder.cvWrap.setCardBackgroundColor(holder.itemView.getContext().getResources().getColor(R.color.white));
@@ -273,9 +238,7 @@ public class AllPostFragment extends Fragment  {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     setSelectedPosition(position);
-//                    catalogueAdapterItemClick.onCatalogueAdapterItemClick(position);
                     EventBus.getDefault().post(new CatalogueAdapterItemClickEvent(position-1));
                 }
             });

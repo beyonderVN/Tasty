@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.vnwarriors.tastyclarify.R;
-import com.vnwarriors.tastyclarify.model.PostModel;
+import com.vnwarriors.tastyclarify.model.Post;
 import com.vnwarriors.tastyclarify.model.TipImage;
 import com.vnwarriors.tastyclarify.ui.activity.authentication.login.LoginActivity;
 import com.vnwarriors.tastyclarify.ui.firebase.adapter.ClickListenerChatFirebase;
@@ -143,10 +143,10 @@ public class CreateDataActivity extends AppCompatActivity implements ClickListen
 //    https://www.buzzfeed.com/tasty/junior
     String url = "https://www.buzzfeed.com/tasty/cheatday";
 
-    public List<PostModel> getHTML(String url2) {
+    public List<Post> getHTML(String url2) {
         Document doc;
         List<String> hrefs = new ArrayList<>();
-        List<PostModel> postModels = new ArrayList<>();
+        List<Post> posts = new ArrayList<>();
         try {
 
             doc = Jsoup.connect(url2).userAgent("Mozilla").get();
@@ -211,37 +211,37 @@ public class CreateDataActivity extends AppCompatActivity implements ClickListen
 
 
                     }
-                    PostModel postModel = new PostModel();
-                    postModel.setTipName(name);
+                    Post post = new Post();
+                    post.setTipName(name);
                     TipImage tipImage = new TipImage("File", "image name", imageUrl);
-                    postModel.setTipImage(tipImage);
-                    postModel.setCreatedAt(Calendar.getInstance().getTime().getTime() + "");
+                    post.setTipImage(tipImage);
+                    post.setCreatedAt(Calendar.getInstance().getTime().getTime() + "");
                     int[] checkedCatelogues = {R.id.cbAppetizer, R.id.cbDessert, R.id.cbFirstCourse, R.id.cbMainCourse, R.id.cbSideDish,
                             R.id.cbVegetarian, R.id.cbCheap, R.id.cbPizza};
-                    postModel.setTipCategories("");
-                    postModel.setTipCategories(String.valueOf(new Random().nextInt(7)));
-                    postModel.setTipPersons(3);
-                    postModel.setTipDifficulty(2);
+                    post.setTipCategories("");
+                    post.setTipCategories(String.valueOf(new Random().nextInt(7)));
+                    post.setTipPersons(3);
+                    post.setTipDifficulty(2);
 
-                    postModel.setTipTime("#tp" + "20" + "#tc" + "20" + "");
-                    postModel.setTipDescription(PREPARATION);
-                    postModel.setTipIngredients(INGREDIENTS);
-                    postModel.setObjectId("");
-                    postModel.setTipDairy(false);
-                    postModel.setTipHot(false);
+                    post.setTipTime("#tp" + "20" + "#tc" + "20" + "");
+                    post.setTipDescription(PREPARATION);
+                    post.setTipIngredients(INGREDIENTS);
+                    post.setObjectId("");
+                    post.setTipDairy(false);
+                    post.setTipHot(false);
                     try{
-                        postModel.setTipImageRatio(Double.valueOf(imageUrl.substring(imageUrl.length() - 3))  / Double.valueOf(imageUrl.substring(imageUrl.length() - 7,imageUrl.length() - 4)) );
+                        post.setTipImageRatio(Double.valueOf(imageUrl.substring(imageUrl.length() - 3))  / Double.valueOf(imageUrl.substring(imageUrl.length() - 7,imageUrl.length() - 4)) );
                     }catch (Exception e){
-                        postModel.setTipImageRatio(1.0);
+                        post.setTipImageRatio(1.0);
                     }
 
-                    postModel.setTipOven(false);
-                    postModel.setTipPortion("");
-                    postModel.setTipPublished(1);
-                    postModel.setTipSeasons("");
-                    postModel.setTipZzz("");
-                    postModel.setUpdatedAt(Calendar.getInstance().getTime().getTime() + "");
-                    postModels.add(postModel);
+                    post.setTipOven(false);
+                    post.setTipPortion("");
+                    post.setTipPublished(1);
+                    post.setTipSeasons("");
+                    post.setTipZzz("");
+                    post.setUpdatedAt(Calendar.getInstance().getTime().getTime() + "");
+                    posts.add(post);
                 }
 
             }
@@ -249,15 +249,15 @@ public class CreateDataActivity extends AppCompatActivity implements ClickListen
 
         } catch (IOException e) {
             e.printStackTrace();
-            return postModels;
+            return posts;
         }
-        return postModels;
+        return posts;
     }
 
-    public class CreateData extends AsyncTask<String, String, List<PostModel>> {
+    public class CreateData extends AsyncTask<String, String, List<Post>> {
 
         @Override
-        protected List<PostModel> doInBackground(String[] params) {
+        protected List<Post> doInBackground(String[] params) {
 
             Log.d(TAG, "CreateData > doInBackground: ");
 
@@ -266,11 +266,11 @@ public class CreateDataActivity extends AppCompatActivity implements ClickListen
     }
 
     String rootUrl = "https://www.buzzfeed.com/";
-    public class CreateDataFromJson extends AsyncTask<String, String, List<PostModel>> {
+    public class CreateDataFromJson extends AsyncTask<String, String, List<Post>> {
 
         @Override
-        protected List<PostModel> doInBackground(String... params) {
-            List<PostModel> postModels = new ArrayList<>();
+        protected List<Post> doInBackground(String... params) {
+            List<Post> posts = new ArrayList<>();
             String[] urls = {
                     "https://www.buzzfeed.com/tasty?render_template=0&page=1",
                     "https://www.buzzfeed.com/tasty?render_template=0&page=2",
@@ -336,35 +336,35 @@ public class CreateDataActivity extends AppCompatActivity implements ClickListen
 
 
                             }
-                            PostModel postModel = new PostModel();
-                            postModel.setTipName(name);
+                            Post post = new Post();
+                            post.setTipName(name);
                             TipImage tipImage = new TipImage("File", "image name", imageUrl);
-                            postModel.setTipImage(tipImage);
-                            postModel.setCreatedAt(Calendar.getInstance().getTime().getTime() + "");
-                            postModel.setTipCategories("");
-                            postModel.setTipCategories(String.valueOf(new Random().nextInt(7)));
-                            postModel.setTipPersons(3);
-                            postModel.setTipDifficulty(2);
+                            post.setTipImage(tipImage);
+                            post.setCreatedAt(Calendar.getInstance().getTime().getTime() + "");
+                            post.setTipCategories("");
+                            post.setTipCategories(String.valueOf(new Random().nextInt(7)));
+                            post.setTipPersons(3);
+                            post.setTipDifficulty(2);
 
-                            postModel.setTipTime("#tp" + "20" + "#tc" + "20" + "");
-                            postModel.setTipDescription(PREPARATION);
-                            postModel.setTipIngredients(INGREDIENTS);
-                            postModel.setObjectId("");
-                            postModel.setTipDairy(false);
-                            postModel.setTipHot(false);
+                            post.setTipTime("#tp" + "20" + "#tc" + "20" + "");
+                            post.setTipDescription(PREPARATION);
+                            post.setTipIngredients(INGREDIENTS);
+                            post.setObjectId("");
+                            post.setTipDairy(false);
+                            post.setTipHot(false);
                             try{
-                                postModel.setTipImageRatio(Double.valueOf(imageUrl.substring(imageUrl.length() - 3))  / Double.valueOf(imageUrl.substring(imageUrl.length() - 7,imageUrl.length() - 4)) );
+                                post.setTipImageRatio(Double.valueOf(imageUrl.substring(imageUrl.length() - 3))  / Double.valueOf(imageUrl.substring(imageUrl.length() - 7,imageUrl.length() - 4)) );
                             }catch (Exception e){
-                                postModel.setTipImageRatio(1.0);
+                                post.setTipImageRatio(1.0);
                             }
 
-                            postModel.setTipOven(false);
-                            postModel.setTipPortion("");
-                            postModel.setTipPublished(1);
-                            postModel.setTipSeasons("");
-                            postModel.setTipZzz("");
-                            postModel.setUpdatedAt(Calendar.getInstance().getTime().getTime() + "");
-                            postModels.add(postModel);
+                            post.setTipOven(false);
+                            post.setTipPortion("");
+                            post.setTipPublished(1);
+                            post.setTipSeasons("");
+                            post.setTipZzz("");
+                            post.setUpdatedAt(Calendar.getInstance().getTime().getTime() + "");
+                            posts.add(post);
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -372,7 +372,7 @@ public class CreateDataActivity extends AppCompatActivity implements ClickListen
 
                 }
             }
-            return postModels;
+            return posts;
         }
     }
     public String getJSON(String url) {

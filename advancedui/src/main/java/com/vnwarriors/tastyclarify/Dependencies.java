@@ -4,11 +4,11 @@ import android.content.Context;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
-import com.vnwarriors.tastyclarify.ui.activity.authentication.login.database.FirebaseAuthDatabase;
-import com.vnwarriors.tastyclarify.ui.activity.authentication.login.database.FirebaseUserDatabase;
-import com.vnwarriors.tastyclarify.ui.activity.authentication.login.database.rx.FirebaseObservableListeners;
-import com.vnwarriors.tastyclarify.ui.activity.authentication.login.service.FirebaseLoginService;
-import com.vnwarriors.tastyclarify.ui.activity.authentication.login.service.LoginService;
+import com.vnwarriors.tastyclarify.data.database.FirebaseAuthDatabase;
+import com.vnwarriors.tastyclarify.data.database.FirebaseUserDatabase;
+import com.vnwarriors.tastyclarify.utils.rx.FirebaseObservableListeners;
+import com.vnwarriors.tastyclarify.data.service.FirebaseLoginService;
+import com.vnwarriors.tastyclarify.data.service.LoginService;
 
 /**
  * Created by Long on 12/6/2016.

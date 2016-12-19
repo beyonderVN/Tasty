@@ -15,7 +15,7 @@
 
     <fragment
         android:id="@+id/frmAllPost"
-        android:name="com.vnwarriors.tastyclarify.ui.fragment.AllPostFragment"
+        android:name="com.vnwarriors.tastyclarify.ui.activity.browser.fragment.AllPostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
         <ProgressBar

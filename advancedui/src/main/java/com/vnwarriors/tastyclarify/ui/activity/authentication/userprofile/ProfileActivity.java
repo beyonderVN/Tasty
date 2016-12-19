@@ -43,7 +43,7 @@ public class ProfileActivity extends AppCompatActivity {
         //get firebase auth instance
         auth = FirebaseAuth.getInstance();
 
-        //get current user
+        //get current userModel
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         authListener = new FirebaseAuth.AuthStateListener() {
@@ -51,7 +51,7 @@ public class ProfileActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user == null) {
-                    // user auth state is changed - user is null
+                    // userModel auth state is changed - userModel is null
                     // launch login activity
                     startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
                     finish();
@@ -215,8 +215,8 @@ public class ProfileActivity extends AppCompatActivity {
 //            @Override
 //            public void onCatalogueAdapterItemClick(View v) {
 //                progressBar.setVisibility(View.VISIBLE);
-//                if (user != null) {
-//                    user.delete()
+//                if (userModel != null) {
+//                    userModel.delete()
 //                            .addOnCompleteListener(new OnCompleteListener<Void>() {
 //                                @Override
 //                                public void onComplete(@NonNull Task<Void> task) {

@@ -1,4 +1,4 @@
-package com.vnwarriors.tastyclarify.ui.activity.authentication.login.database;
+package com.vnwarriors.tastyclarify.data.database;
 
 
 import com.vnwarriors.tastyclarify.model.UserModel;

@@ -9,9 +9,9 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.HashMap;
 
-public class PostModel implements Serializable{
+public class Post implements Serializable{
 
     @SerializedName("updatedAt")
     @Expose
@@ -83,24 +83,24 @@ public class PostModel implements Serializable{
 
     @SerializedName("tipComments")
     @Expose
-    private List<Comment> tipComments;
+    private HashMap<String,Comment> tipComments;
 
     public void setTipUserId(String tipUserId) {
         this.tipUserId = tipUserId;
     }
 
-    public List<Comment> getTipComments() {
+    public HashMap<String,Comment> getTipComments() {
         return tipComments;
     }
 
-    public void setTipComments(List<Comment> tipComments) {
+    public void setTipComments(HashMap<String,Comment> tipComments) {
         this.tipComments = tipComments;
     }
 
-    public PostModel() {
+    public Post() {
     }
 
-    public PostModel(String tipName) {
+    public Post(String tipName) {
         this.tipName = tipName;
     }
 

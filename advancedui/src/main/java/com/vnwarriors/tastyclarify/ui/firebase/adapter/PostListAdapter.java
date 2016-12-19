@@ -21,7 +21,7 @@ import com.squareup.picasso.Picasso;
 import com.vnwarriors.advancedui.appcore.common.DynamicHeightImageView;
 import com.vnwarriors.advancedui.appcore.common.recyclerviewhelper.PlaceHolderDrawableHelper;
 import com.vnwarriors.tastyclarify.R;
-import com.vnwarriors.tastyclarify.model.PostModel;
+import com.vnwarriors.tastyclarify.model.Post;
 import com.vnwarriors.tastyclarify.ui.activity.recipedetail.ItemActivity;
 import com.vnwarriors.tastyclarify.utils.ColorUtils;
 
@@ -37,26 +37,26 @@ import butterknife.ButterKnife;
 
 public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.PostViewHolder> {
     private static final String TAG = "PostListAdapter";
-    List<PostModel> postModels;
+    List<Post> posts;
     RecyclerView recyclerView;
 
     ChildEventListener listener;
     public PostListAdapter(Query query) {
-        postModels = new ArrayList<>();
+        posts = new ArrayList<>();
         setChildEventListener(query);
     }
-    public PostListAdapter(List<PostModel> postModels) {
-        this.postModels = postModels;
+    public PostListAdapter(List<Post> posts) {
+        this.posts = posts;
 //        setChildEventListener(query);
     }
 
     private void setChildEventListener(Query query) {
-        postModels.clear();
+        posts.clear();
         listener = query.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                PostModel model = dataSnapshot.getValue(PostModel.class);
-                postModels.add(0,model);
+                Post model = dataSnapshot.getValue(Post.class);
+                posts.add(0,model);
                 notifyDataSetChanged();
             }
 
@@ -83,7 +83,7 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.PostVi
     }
 
     public PostListAdapter(RecyclerView recyclerView, Query query) {
-        postModels = new ArrayList<>();
+        posts = new ArrayList<>();
         this.recyclerView = recyclerView;
         recyclerView.setAdapter(this);
         setChildEventListener(query);
@@ -103,7 +103,7 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.PostVi
 
     @Override
     public void onBindViewHolder(PostListAdapter.PostViewHolder viewHolder, int position) {
-        PostModel model = postModels.get(position);
+        Post model = posts.get(position);
         viewHolder.tvName.setText(model.getTipName());
         viewHolder.ivTipImage.setRatio(model.getTipImageRatio());
 
@@ -166,7 +166,7 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.PostVi
 
     @Override
     public int getItemCount() {
-        return postModels.size();
+        return posts.size();
     }
 
     public class PostViewHolder extends RecyclerView.ViewHolder {

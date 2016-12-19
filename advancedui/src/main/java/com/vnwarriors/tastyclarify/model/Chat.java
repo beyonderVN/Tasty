@@ -4,29 +4,29 @@ package com.vnwarriors.tastyclarify.model;
 /**
  * Created by Alessandro Barreto on 17/06/2016.
  */
-public class ChatModel {
+public class Chat {
 
     private String id;
-    private UserModel userModel;
+    private UserModel user;
     private String message;
     private String timeStamp;
-    private FileModel file;
-    private MapModel mapModel;
+    private File file;
+    private Map map;
 
-    public ChatModel() {
+    public Chat() {
     }
 
-    public ChatModel(UserModel userModel, String message, String timeStamp, FileModel file) {
-        this.userModel = userModel;
+    public Chat(UserModel user, String message, String timeStamp, File file) {
+        this.user = user;
         this.message = message;
         this.timeStamp = timeStamp;
         this.file = file;
     }
 
-    public ChatModel(UserModel userModel, String timeStamp, MapModel mapModel) {
-        this.userModel = userModel;
+    public Chat(UserModel user, String timeStamp, Map map) {
+        this.user = user;
         this.timeStamp = timeStamp;
-        this.mapModel = mapModel;
+        this.map = map;
     }
 
     public String getId() {
@@ -37,12 +37,12 @@ public class ChatModel {
         this.id = id;
     }
 
-    public UserModel getUserModel() {
-        return userModel;
+    public UserModel getUser() {
+        return user;
     }
 
-    public void setUserModel(UserModel userModel) {
-        this.userModel = userModel;
+    public void setUser(UserModel user) {
+        this.user = user;
     }
 
     public String getMessage() {
@@ -61,30 +61,30 @@ public class ChatModel {
         this.timeStamp = timeStamp;
     }
 
-    public FileModel getFile() {
+    public File getFile() {
         return file;
     }
 
-    public void setFile(FileModel file) {
+    public void setFile(File file) {
         this.file = file;
     }
 
-    public MapModel getMapModel() {
-        return mapModel;
+    public Map getMap() {
+        return map;
     }
 
-    public void setMapModel(MapModel mapModel) {
-        this.mapModel = mapModel;
+    public void setMap(Map map) {
+        this.map = map;
     }
 
     @Override
     public String toString() {
-        return "ChatModel{" +
-                "mapModel=" + mapModel +
+        return "Chat{" +
+                "map=" + map +
                 ", file=" + file +
                 ", timeStamp='" + timeStamp + '\'' +
                 ", message='" + message + '\'' +
-                ", userModel=" + userModel +
+                ", userModel=" + user +
                 '}';
     }
 }

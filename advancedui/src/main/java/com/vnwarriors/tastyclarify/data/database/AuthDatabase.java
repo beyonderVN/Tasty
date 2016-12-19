@@ -1,7 +1,7 @@
-package com.vnwarriors.tastyclarify.ui.activity.authentication.login.database;
+package com.vnwarriors.tastyclarify.data.database;
 
 
-import com.vnwarriors.tastyclarify.ui.activity.authentication.login.model.Authentication;
+import com.vnwarriors.tastyclarify.model.Authentication;
 
 import rx.Observable;
 

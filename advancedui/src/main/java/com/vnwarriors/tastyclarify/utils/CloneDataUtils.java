@@ -9,12 +9,13 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import com.vnwarriors.tastyclarify.model.Comment;
-import com.vnwarriors.tastyclarify.model.PostModel;
+import com.vnwarriors.tastyclarify.model.Post;
 import com.vnwarriors.tastyclarify.model.UserModel;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -24,15 +25,15 @@ import java.util.Random;
 
 public class CloneDataUtils {
     private static final String TAG = "CloneDataUtils";
-    public static List<PostModel> getRateList(String fileName, Context context){
+    public static List<Post> getRateList(String fileName, Context context){
         Gson gson = new Gson();
-        List<PostModel> rateList = new ArrayList<>();
+        List<Post> rateList = new ArrayList<>();
         String rateListString =  FileUtils.readFromfile(fileName, context);
 
         JsonParser parser = new JsonParser();
         JsonArray jsonArray = parser.parse(rateListString).getAsJsonObject().getAsJsonArray("posts");
 
-        Type listType = new TypeToken<List<PostModel>>() {}.getType();
+        Type listType = new TypeToken<List<Post>>() {}.getType();
         rateList = new Gson().fromJson(jsonArray, listType);
 
 
@@ -41,39 +42,39 @@ public class CloneDataUtils {
         String result = element.getAsJsonArray().toString();
         Log.d(TAG, "rateList: "+result);
         return  rateList;
-    }public static List<PostModel> getRateListWithComments(String fileName, Context context){
+    }public static List<Post> getRateListWithComments(String fileName, Context context){
         Gson gson = new Gson();
-        List<PostModel> rateList = new ArrayList<>();
+        List<Post> rateList = new ArrayList<>();
         String rateListString =  FileUtils.readFromfile(fileName, context);
 
         JsonParser parser = new JsonParser();
         JsonArray jsonArray = parser.parse(rateListString).getAsJsonObject().getAsJsonArray("posts");
 
-        Type listType = new TypeToken<List<PostModel>>() {}.getType();
+        Type listType = new TypeToken<List<Post>>() {}.getType();
         rateList = new Gson().fromJson(jsonArray, listType);
-        for (PostModel postModel : rateList){
+        for (Post post : rateList){
 
-            Log.d(TAG, "onClick: " + postModel.getTipName());
-            List<Comment> comments = new ArrayList<Comment>();
+            Log.d(TAG, "onClick: " + post.getTipName());
+            HashMap<String,Comment> comments = new HashMap<String,Comment>();
             String[] names = {"Ezeal","Leona","Corgi","Lucian","Olaf","Kennen"};
             String[] messages = {"I will cook it!","Delicious!","Thank you!","I love this recipe!","Yummy!","Ahihi!"};
             for (int i = 0; i < 10; i++) {
-                UserModel userModel = new UserModel();
-                userModel.setId("gSUNZWLvLmS5vdu7YTcQlXEDX5p1");
+                UserModel user = new UserModel();
+                user.setId("gSUNZWLvLmS5vdu7YTcQlXEDX5p1");
                 Random r = new Random();
                 int i1 = (r.nextInt(names.length-1));
-                userModel.setName(names[i1]);
-                userModel.setPhoto_profile("http://fanexpodallas.com/wp-content/uploads/550w_soaps_silhouettesm2.jpg");
+                user.setName(names[i1]);
+                user.setPhoto_profile("http://fanexpodallas.com/wp-content/uploads/550w_soaps_silhouettesm2.jpg");
                 Comment comment = new Comment();
-                comment.userModel = userModel;
+                comment.userModel = user;
                 Random r2 = new Random();
                 int i2 = (r2.nextInt(messages.length-1));
                 comment.message = messages[i2];
                 comment.createAt = "" + Calendar.getInstance().getTime().getTime();
                 comment.updateAt = "" + Calendar.getInstance().getTime().getTime();
-                comments.add(comment);
+                comments.put(""+i,comment);
             }
-            postModel.setTipComments(comments);
+            post.setTipComments(comments);
 
         }
 

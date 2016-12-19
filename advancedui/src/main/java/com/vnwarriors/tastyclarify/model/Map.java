@@ -3,14 +3,14 @@ package com.vnwarriors.tastyclarify.model;
 /**
  * Created by Alessandro Barreto on 24/06/2016.
  */
-public class MapModel {
+public class Map {
     private String latitude;
     private String longitude;
 
-    public MapModel() {
+    public Map() {
     }
 
-    public MapModel(String latitude, String longitude) {
+    public Map(String latitude, String longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
     }

@@ -1,4 +1,4 @@
-package com.vnwarriors.tastyclarify.ui.fragment;
+package com.vnwarriors.tastyclarify.ui.activity.browser.fragment;
 
 /**
  * Created by Long on 11/25/2016.

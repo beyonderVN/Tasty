@@ -1,4 +1,4 @@
-package com.vnwarriors.tastyclarify.ui.activity.authentication.login.database.rx;
+package com.vnwarriors.tastyclarify.utils.rx;
 
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

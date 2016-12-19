@@ -16,10 +16,10 @@ import rx.Observable;
 
 public interface GithubApi {
     @RxLogObservable
-    @GET("users/{user}")
-    Observable<UserGit> getUser(@Path("user") String user);
+    @GET("users/{userModel}")
+    Observable<UserGit> getUser(@Path("userModel") String user);
 
     @RxLogObservable
-    @GET("users/{user}/repos")
-    Observable<List<GitRepo>> getRepos(@Path("user") String user);
+    @GET("users/{userModel}/repos")
+    Observable<List<GitRepo>> getRepos(@Path("userModel") String user);
 }

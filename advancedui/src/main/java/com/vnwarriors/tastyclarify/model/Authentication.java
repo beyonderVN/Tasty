@@ -1,6 +1,4 @@
-package com.vnwarriors.tastyclarify.ui.activity.authentication.login.model;
-
-import com.vnwarriors.tastyclarify.model.UserModel;
+package com.vnwarriors.tastyclarify.model;
 
 /**
  * Created by Long on 12/6/2016.
