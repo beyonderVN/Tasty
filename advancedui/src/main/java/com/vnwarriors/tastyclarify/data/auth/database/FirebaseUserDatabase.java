@@ -1,4 +1,4 @@
-package com.vnwarriors.tastyclarify.data.database;
+package com.vnwarriors.tastyclarify.data.auth.database;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;

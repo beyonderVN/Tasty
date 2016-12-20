@@ -1,4 +1,4 @@
-package com.vnwarriors.tastyclarify.data.database;
+package com.vnwarriors.tastyclarify.data.auth.database;
 
 import android.net.Uri;
 import android.support.annotation.NonNull;

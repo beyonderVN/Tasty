@@ -4,7 +4,7 @@ import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 
 import com.vnwarriors.tastyclarify.Dependencies;
-import com.vnwarriors.tastyclarify.data.service.LoginService;
+import com.vnwarriors.tastyclarify.data.auth.service.LoginService;
 import com.vnwarriors.tastyclarify.utils.view.TextChange;
 
 import rx.Observable;

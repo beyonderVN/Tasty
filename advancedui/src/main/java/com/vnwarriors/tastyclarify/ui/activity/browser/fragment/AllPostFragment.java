@@ -17,16 +17,23 @@ import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.vnwarriors.tastyclarify.R;
-import com.vnwarriors.tastyclarify.ui.firebase.adapter.PostListAdapter;
+import com.vnwarriors.tastyclarify.data.DatabaseResult;
+import com.vnwarriors.tastyclarify.data.recipe.database.FirebaseRecipeDatabase;
+import com.vnwarriors.tastyclarify.data.recipe.repo.RecipeRepo;
+import com.vnwarriors.tastyclarify.model.Post;
 import com.vnwarriors.tastyclarify.utils.ColorUtils;
+import com.vnwarriors.tastyclarify.utils.rx.FirebaseObservableListeners;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import rx.functions.Action1;
+import rx.subscriptions.CompositeSubscription;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,6 +46,8 @@ public class AllPostFragment extends Fragment  {
     static final String POST_REFERENCE = "posts";
     private RecyclerView rvListPost;
 
+    RecipeRepo recipeRepo = new RecipeRepo(new FirebaseRecipeDatabase(FirebaseDatabase.getInstance(),new FirebaseObservableListeners()));
+    private CompositeSubscription subscriptions = new CompositeSubscription();
     public AllPostFragment() {
 
     }
@@ -58,6 +67,7 @@ public class AllPostFragment extends Fragment  {
         if (getArguments() != null) {
 
         }
+
     }
 
     @Override
@@ -92,6 +102,14 @@ public class AllPostFragment extends Fragment  {
                 }
             }
         });
+        subscriptions.add(recipeRepo.getRecipes("0").subscribe(new Action1<DatabaseResult<List<Post>>>() {
+            @Override
+            public void call(DatabaseResult<List<Post>> listDatabaseResult) {
+                Log.d(TAG, "getRecipes: "+listDatabaseResult.getData().size());
+                postListAdapter.setList(listDatabaseResult.getData());
+                postListAdapter.notifyDataSetChanged();
+            }
+        }));
     }
 
     private void hideCatalogue() {
@@ -139,14 +157,9 @@ public class AllPostFragment extends Fragment  {
     }
 
     private void lerMessagensFirebase() {
-
-        mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
-
         rvListPost.setLayoutManager(staggeredGridLayoutManagerVertical);
-        Query query = mFirebaseDatabaseReference.child(POST_REFERENCE);
-        postListAdapter = new PostListAdapter(query);
+        postListAdapter = new PostListAdapter();
         rvListPost.setAdapter(postListAdapter);
-
     }
 
     PostListAdapter postListAdapter;
@@ -175,14 +188,14 @@ public class AllPostFragment extends Fragment  {
     public void onCatalogueAdapterItemClickEvent(AllPostFragment.CatalogueAdapterItemClickEvent event) {
         int position = event.position;
         Log.d(TAG, "onCatalogueAdapterItemClickEvent: position: "+position);
-        if (position == -1) {
-            Query query = mFirebaseDatabaseReference.child(POST_REFERENCE);
-            postListAdapter.setQuery(query);
-
-        } else {
-            Query query = mFirebaseDatabaseReference.child(POST_REFERENCE).orderByChild("tipCategories").equalTo(String.valueOf(position));
-            postListAdapter.setQuery(query);
-        }
+//        if (position == -1) {
+//            Query query = mFirebaseDatabaseReference.child(POST_REFERENCE);
+//            postListAdapter.setQuery(query);
+//
+//        } else {
+//            Query query = mFirebaseDatabaseReference.child(POST_REFERENCE).orderByChild("tipCategories").equalTo(String.valueOf(position));
+//            postListAdapter.setQuery(query);
+//        }
         catalogueAdapter.setSelectedPosition(event.position+1);
     }
     public static class CatalogueAdapter extends RecyclerView.Adapter<CatalogueAdapter.ViewHolder> {

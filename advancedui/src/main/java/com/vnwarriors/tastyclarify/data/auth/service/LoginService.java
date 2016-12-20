@@ -1,4 +1,4 @@
-package com.vnwarriors.tastyclarify.data.service;
+package com.vnwarriors.tastyclarify.data.auth.service;
 
 import com.vnwarriors.tastyclarify.model.Authentication;
 
