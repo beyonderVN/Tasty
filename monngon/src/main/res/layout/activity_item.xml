@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ngohoanglong.advancedui.appcore.common.ElasticDragDismissFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="0dp"
+    android:transitionGroup="true"
+    android:animateLayoutChanges="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    app:dragDismissDistance="260dp"
+    app:dragDismissScale="0.8"
+    tools:context=".ui.activity.ItemActivity">
+
+
+    <ImageView
+        android:id="@+id/ivCover"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/cover_image"
+        android:transitionName="@string/detail_image" />
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nsScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:paddingTop="300dp">
+
+        <LinearLayout
+            android:id="@+id/llWrap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#dddddd"
+            android:orientation="vertical"
+            android:paddingBottom="50dp"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="0dp">
+
+                <LinearLayout
+                    android:id="@+id/llHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#dc3c28"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:paddingBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/tvName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="42dp"
+                        android:text="Roast bell peer chicken drik coca "
+                        android:textColor="#ffffff"
+                        android:textSize="24dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:text="Appetizer, side dishes"
+                        android:textColor="#ffffff" />
+
+                    <include layout="@layout/devider_item" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:orientation="horizontal"
+                        android:weightSum="4">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:drawableTop="@drawable/portion_cover"
+                            android:gravity="center"
+                            android:text="Portion"
+                            android:textColor="#ffffff" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:drawableTop="@drawable/portion_cover"
+                            android:gravity="center"
+                            android:text="Difficult"
+                            android:textColor="#ffffff" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:drawableTop="@drawable/preparation_cover"
+                            android:gravity="center"
+                            android:text="Preparation"
+                            android:textColor="#ffffff" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:drawableTop="@drawable/cooking_cover"
+                            android:gravity="center"
+                            android:text="Cooking"
+                            android:textColor="#ffffff" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="4">
+
+                        <TextView
+                            android:id="@+id/tvPersons"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="4 People"
+                            android:textColor="#ffffff" />
+
+                        <TextView
+                            android:id="@+id/tvDifficult"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="Easy"
+                            android:textColor="#ffffff" />
+
+                        <TextView
+                            android:id="@+id/tvPreparationTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="35 min."
+                            android:textColor="#ffffff" />
+
+                        <TextView
+                            android:id="@+id/tvCookTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="50 min."
+                            android:textColor="#ffffff" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <android.support.design.widget.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginTop="45dp"
+                    android:visibility="gone"
+                    android:src="@drawable/ic_edit_white_24dp" />
+
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginTop="4dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardUseCompatPadding="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:id="@+id/ivIngredientSpan"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="16dp"
+                        android:src="@drawable/ic_ingredients" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/ivIngredientSpan"
+                        android:layout_alignTop="@+id/ivIngredientSpan"
+                        android:layout_toRightOf="@+id/ivIngredientSpan"
+                        android:gravity="center"
+                        android:text="INGREDIENT"
+                        android:textColor="#e1431c"
+                        android:textSize="24sp" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rvIngredientList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ivIngredientSpan"
+                        android:layout_marginTop="16dp"
+                        android:nestedScrollingEnabled="false" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginTop="4dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardUseCompatPadding="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:id="@+id/ivPreparationSpan"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="16dp"
+                        android:src="@drawable/ic_preparation" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/ivPreparationSpan"
+                        android:layout_alignTop="@+id/ivPreparationSpan"
+                        android:layout_toRightOf="@+id/ivPreparationSpan"
+                        android:gravity="center"
+                        android:text="PREPARE"
+                        android:textColor="#e1431c"
+                        android:textSize="24sp" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rvPreparationList"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ivPreparationSpan"
+                        android:layout_marginTop="16dp"
+                        android:nestedScrollingEnabled="false"
+                        android:paddingBottom="50dp" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+            <Button
+                android:id="@+id/btnShareRecipe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="4dp"
+                android:textSize="24sp"
+                android:textColor="#ffffff"
+                android:text="SHARE YOUR DISH"
+                android:background="@drawable/share_button"
+                android:shadowColor="#BABABA"
+                android:shadowDx="0"
+                android:shadowDy="4"
+                android:shadowRadius="0"/>
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginTop="4dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardUseCompatPadding="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/ivCommentSpan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="COMMENTS"
+                        android:textAlignment="center"
+                        android:textColor="#e1431c"
+                        android:textSize="24sp" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rvCommentList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:nestedScrollingEnabled="false"
+                        android:layout_below="@+id/ivCommentSpan"/>
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="@drawable/action_bar"
+        android:fitsSystemWindows="true"
+        app:title=" "
+        />
+    <RelativeLayout
+        android:id="@+id/rlWrapCommentInput"
+        android:background="@color/tran_gray"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        android:layout_gravity="bottom"
+        android:elevation="8dp"
+        >
+        <ImageView
+            android:id="@+id/buttonEmoji"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="4dp"
+            android:src="@drawable/ic_camera_alt_24dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignBottom="@+id/etComment"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/etComment"
+            android:layout_toStartOf="@+id/btnSendComment"
+            android:layout_toRightOf="@+id/buttonEmoji"
+            android:layout_toEndOf="@+id/buttonEmoji"
+            android:textColor="@color/black_54p"
+            />
+        <ImageView
+            android:id="@+id/btnSendComment"
+            android:src="@android:drawable/ic_menu_send"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="4dp"
+            android:layout_alignBottom="@+id/etComment"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rlProgressLoading">
+
+        <ProgressBar
+            android:id="@+id/pbLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+    </RelativeLayout>
+</com.ngohoanglong.advancedui.appcore.common.ElasticDragDismissFrameLayout>

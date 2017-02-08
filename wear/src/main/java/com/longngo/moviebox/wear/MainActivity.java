@@ -8,9 +8,9 @@ import android.support.wearable.view.GridViewPager;
 import android.support.wearable.view.WearableListView;
 
 import com.longngo.moviebox.wear.adapter.BaseAdapter;
-import com.vnwarriors.advancedui.appcore.presentation.moviebox.presentor.main.MainPresentationModel;
-import com.vnwarriors.advancedui.appcore.presentation.moviebox.presentor.main.MainPresenter;
-import com.vnwarriors.advancedui.appcore.presentation.moviebox.presentor.main.MainView;
+import com.ngohoanglong.advancedui.appcore.presentation.moviebox.presentor.main.MainPresentationModel;
+import com.ngohoanglong.advancedui.appcore.presentation.moviebox.presentor.main.MainPresenter;
+import com.ngohoanglong.advancedui.appcore.presentation.moviebox.presentor.main.MainView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

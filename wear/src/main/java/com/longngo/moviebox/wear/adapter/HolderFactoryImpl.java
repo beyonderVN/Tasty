@@ -9,11 +9,11 @@ import com.longngo.moviebox.wear.adapter.holder.MovieDetailHolder;
 import com.longngo.moviebox.wear.adapter.holder.MovieTrailerItemHolder;
 import com.longngo.moviebox.wear.adapter.holder.MovieViewHolder;
 import com.longngo.moviebox.wear.adapter.holder.NoMoreItemHolder;
-import com.vnwarriors.advancedui.appcore.presentation.moviebox.viewmodel.LoadingMoreVM;
-import com.vnwarriors.advancedui.appcore.presentation.moviebox.viewmodel.MovieDetailVM;
-import com.vnwarriors.advancedui.appcore.presentation.moviebox.viewmodel.MovieVM;
-import com.vnwarriors.advancedui.appcore.presentation.moviebox.viewmodel.NoMoreItemVM;
-import com.vnwarriors.advancedui.appcore.presentation.moviebox.viewmodel.TrailerMovieVM;
+import com.ngohoanglong.advancedui.appcore.presentation.moviebox.viewmodel.LoadingMoreVM;
+import com.ngohoanglong.advancedui.appcore.presentation.moviebox.viewmodel.MovieDetailVM;
+import com.ngohoanglong.advancedui.appcore.presentation.moviebox.viewmodel.MovieVM;
+import com.ngohoanglong.advancedui.appcore.presentation.moviebox.viewmodel.NoMoreItemVM;
+import com.ngohoanglong.advancedui.appcore.presentation.moviebox.viewmodel.TrailerMovieVM;
 
 /**
  * Created by Long on 10/5/2016.

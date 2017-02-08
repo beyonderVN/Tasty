@@ -3,10 +3,10 @@ package com.longngo.moviebox.wear.di;
 import android.content.Context;
 
 import com.longngo.moviebox.wear.WearApplication;
-import com.vnwarriors.advancedui.appcore.common.schedulers.BaseSchedulerProvider;
-import com.vnwarriors.advancedui.appcore.common.schedulers.SchedulerProvider;
-import com.vnwarriors.advancedui.appcore.data.moviebox.backend.MovieBoxServiceApi;
-import com.vnwarriors.advancedui.appcore.data.moviebox.backend.MovieBoxServiceFactory;
+import com.ngohoanglong.advancedui.appcore.common.schedulers.BaseSchedulerProvider;
+import com.ngohoanglong.advancedui.appcore.common.schedulers.SchedulerProvider;
+import com.ngohoanglong.advancedui.appcore.data.moviebox.backend.MovieBoxServiceApi;
+import com.ngohoanglong.advancedui.appcore.data.moviebox.backend.MovieBoxServiceFactory;
 
 import javax.inject.Singleton;
 

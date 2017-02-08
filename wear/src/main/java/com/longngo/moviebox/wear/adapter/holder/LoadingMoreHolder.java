@@ -4,7 +4,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import com.vnwarriors.advancedui.appcore.presentation.moviebox.viewmodel.LoadingMoreVM;
+import com.ngohoanglong.advancedui.appcore.presentation.moviebox.viewmodel.LoadingMoreVM;
 
 
 /**

@@ -3,7 +3,7 @@ package com.longngo.moviebox.wear.adapter;
 import android.view.View;
 
 import com.longngo.moviebox.wear.adapter.holder.BaseViewHolder;
-import com.vnwarriors.advancedui.appcore.presentation.moviebox.viewmodel.VMTypeFactory;
+import com.ngohoanglong.advancedui.appcore.presentation.moviebox.viewmodel.VMTypeFactory;
 
 
 /**

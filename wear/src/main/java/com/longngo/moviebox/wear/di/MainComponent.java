@@ -3,7 +3,7 @@ package com.longngo.moviebox.wear.di;
 import android.content.Context;
 
 import com.longngo.moviebox.wear.MainActivity;
-import com.vnwarriors.advancedui.appcore.data.moviebox.backend.MovieBoxService;
+import com.ngohoanglong.advancedui.appcore.data.moviebox.backend.MovieBoxService;
 
 import javax.inject.Singleton;
 

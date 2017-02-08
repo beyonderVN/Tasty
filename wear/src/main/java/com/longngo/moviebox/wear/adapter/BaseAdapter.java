@@ -7,8 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.longngo.moviebox.wear.adapter.holder.BaseViewHolder;
-import com.vnwarriors.advancedui.appcore.presentation.BasePresentationModel;
-import com.vnwarriors.advancedui.appcore.presentation.moviebox.viewmodel.BaseVM;
+import com.ngohoanglong.advancedui.appcore.presentation.BasePresentationModel;
+import com.ngohoanglong.advancedui.appcore.presentation.moviebox.viewmodel.BaseVM;
 
 import java.util.List;
 

@@ -13,7 +13,7 @@
         android:layout_gravity="center_horizontal"
         android:clipToPadding="false">
 
-        <com.vnwarriors.advancedui.appcore.common.SquaredView
+        <com.ngohoanglong.advancedui.appcore.common.SquaredView
             android:id="@+id/achievement_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

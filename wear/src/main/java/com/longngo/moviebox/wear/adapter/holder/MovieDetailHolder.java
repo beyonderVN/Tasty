@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.longngo.moviebox.wear.R;
-import com.vnwarriors.advancedui.appcore.presentation.moviebox.viewmodel.MovieDetailVM;
+import com.ngohoanglong.advancedui.appcore.presentation.moviebox.viewmodel.MovieDetailVM;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;

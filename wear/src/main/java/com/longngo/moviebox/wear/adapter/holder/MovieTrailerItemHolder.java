@@ -4,8 +4,8 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.longngo.moviebox.wear.R;
-import com.vnwarriors.advancedui.appcore.common.recyclerviewhelper.PlaceHolderDrawableHelper;
-import com.vnwarriors.advancedui.appcore.presentation.moviebox.viewmodel.TrailerMovieVM;
+import com.ngohoanglong.advancedui.appcore.common.recyclerviewhelper.PlaceHolderDrawableHelper;
+import com.ngohoanglong.advancedui.appcore.presentation.moviebox.viewmodel.TrailerMovieVM;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;

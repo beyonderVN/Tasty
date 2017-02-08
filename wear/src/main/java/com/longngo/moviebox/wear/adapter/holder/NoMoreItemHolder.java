@@ -3,7 +3,7 @@ package com.longngo.moviebox.wear.adapter.holder;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 
-import com.vnwarriors.advancedui.appcore.presentation.moviebox.viewmodel.MovieVM;
+import com.ngohoanglong.advancedui.appcore.presentation.moviebox.viewmodel.MovieVM;
 
 import butterknife.ButterKnife;
 

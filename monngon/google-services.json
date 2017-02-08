@@ -1,0 +1,83 @@
+{
+  "project_info": {
+    "project_number": "782930863049",
+    "firebase_url": "https://tastyclarify-6a322.firebaseio.com",
+    "project_id": "tastyclarify-6a322",
+    "storage_bucket": "tastyclarify-6a322.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:782930863049:android:7b100bd39dfce119",
+        "android_client_info": {
+          "package_name": "com.vnwarriors.tastyclarify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "782930863049-d9paerkh5eipj8ocpe07jbtkkl1la12i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtgmB5HUBYVEsL3Za8Y0s1zyiIjNlwcXo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "782930863049-d9paerkh5eipj8ocpe07jbtkkl1la12i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:782930863049:android:25fb64cff7a9c1e7",
+        "android_client_info": {
+          "package_name": "com.ngohoanglong.monngon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "782930863049-d9paerkh5eipj8ocpe07jbtkkl1la12i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtgmB5HUBYVEsL3Za8Y0s1zyiIjNlwcXo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "782930863049-d9paerkh5eipj8ocpe07jbtkkl1la12i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

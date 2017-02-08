@@ -3,9 +3,9 @@ package com.longngo.moviebox.wear;
 
 import android.support.annotation.NonNull;
 
-import com.vnwarriors.advancedui.appcore.common.coremvp.MVPPresenter;
-import com.vnwarriors.advancedui.appcore.common.coremvp.MVPView;
-import com.vnwarriors.advancedui.appcore.common.coremvp.MVPWearActivity;
+import com.ngohoanglong.advancedui.appcore.common.coremvp.MVPPresenter;
+import com.ngohoanglong.advancedui.appcore.common.coremvp.MVPView;
+import com.ngohoanglong.advancedui.appcore.common.coremvp.MVPWearActivity;
 
 import java.io.Serializable;
 
