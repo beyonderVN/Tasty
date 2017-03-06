@@ -94,6 +94,7 @@ public class AllPostFragment extends Fragment  {
         bindViews(view);
         verificaUsuarioLogado();
         bindViews2(view);
+
         rvListPost.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
